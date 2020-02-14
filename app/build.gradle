@@ -30,4 +30,7 @@ dependencies {
     // For onboarding
     implementation 'com.cuneytayyildiz:onboarder:1.0.4'
 
+    // For the SwipeCards
+    implementation 'com.lorentzos.swipecards:library:1.0.9'
+
 }
