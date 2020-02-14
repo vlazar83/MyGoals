@@ -33,4 +33,9 @@ dependencies {
     // For the SwipeCards
     implementation 'com.lorentzos.swipecards:library:1.0.9'
 
+    // For https://github.com/kikoso/Swipeable-Cards/tree/master
+
+    implementation 'com.github.kikoso:SwipeableCards:1.1-RELEASE@aar'
+
+
 }

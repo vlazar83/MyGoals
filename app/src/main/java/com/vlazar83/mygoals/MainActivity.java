@@ -4,12 +4,16 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
+import com.andtinder.model.CardModel;
+import com.andtinder.view.CardContainer;
+import com.andtinder.view.SimpleCardStackAdapter;
 import com.lorentzos.flingswipe.SwipeFlingAdapterView;
 
 import java.util.ArrayList;
@@ -21,6 +25,8 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<String> cardShapesStringList;
     private ArrayAdapter<String> arrayAdapter;
     private int i;
+
+    private CardContainer mCardContainer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,9 +46,46 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-        displayTheCards();
-    }
+        mCardContainer = (CardContainer) findViewById(R.id.layoutview);
 
+        Resources r = getResources();
+
+        SimpleCardStackAdapter adapter = new SimpleCardStackAdapter(this);
+
+        CardModel cardModel1 = new CardModel("Title1", "Description goes here1", r.getDrawable(R.drawable.picture1));
+        CardModel cardModel2 = new CardModel("Title2", "Description goes here2", r.getDrawable(R.drawable.picture2));
+        CardModel cardModel3 = new CardModel("Title3", "Description goes here3", r.getDrawable(R.drawable.picture3));
+        CardModel cardModel4 = new CardModel("Title4", "Description goes here4", r.getDrawable(R.drawable.picture1));
+
+        cardModel4.setOnClickListener(new CardModel.OnClickListener() {
+            @Override
+            public void OnClickListener() {
+                Log.i("Swipeable Cards","I am pressing the card");
+            }
+        });
+
+        cardModel4.setOnCardDimissedListener(new CardModel.OnCardDimissedListener() {
+            @Override
+            public void onLike() {
+                Log.i("Swipeable Cards","I like the card");
+            }
+
+            @Override
+            public void onDislike() {
+                Log.i("Swipeable Cards","I dislike the card");
+            }
+        });
+
+        adapter.add(cardModel1);
+        adapter.add(cardModel2);
+        adapter.add(cardModel3);
+        adapter.add(cardModel4);
+
+        mCardContainer.setAdapter(adapter);
+
+        //displayTheCards();
+    }
+/*
     private void displayTheCards(){
 
         //add the view via xml or programmatically
@@ -115,5 +158,5 @@ public class MainActivity extends AppCompatActivity {
         cardShapesList.add(cardFactory.getCardShape("BlueCard", "put the trash out4"));
         cardShapesList.add(cardFactory.getCardShape("RedCard", "put the trash out5"));
     }
-
+*/
 }
