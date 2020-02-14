@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">MyGoals</string>
+    <string name="pref_previously_started">FirstStart</string>
+</resources>
