@@ -17,6 +17,10 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    compileOptions {
+        sourceCompatibility = 1.8
+        targetCompatibility = 1.8
+    }
 }
 
 dependencies {
@@ -30,7 +34,20 @@ dependencies {
     // For onboarding
     implementation 'com.cuneytayyildiz:onboarder:1.0.4'
 
-    // For the SwipeCards
-    implementation 'com.lorentzos.swipecards:library:1.0.9'
+    // CardStackView
+    implementation "com.yuyakaido.android:card-stack-view:2.3.4"
+
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.recyclerview:recyclerview:1.0.0'
+    implementation 'androidx.cardview:cardview:1.0.0'
+    implementation 'com.google.android.material:material:1.0.0'
+
+    // Image Loading
+    implementation 'com.github.bumptech.glide:glide:4.10.0'
+    //kapt 'com.github.bumptech.glide:compiler:4.10.0'
+
+    // View
+    implementation 'com.makeramen:roundedimageview:2.3.0'
+
 
 }

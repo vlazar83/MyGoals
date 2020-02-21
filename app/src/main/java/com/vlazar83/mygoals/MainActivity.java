@@ -1,26 +1,29 @@
 package com.vlazar83.mygoals;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.util.Log;
-import android.widget.ArrayAdapter;
-import android.widget.Toast;
+import android.view.View;
+import android.view.animation.LinearInterpolator;
 
-import com.lorentzos.flingswipe.SwipeFlingAdapterView;
+import com.yuyakaido.android.cardstackview.CardStackLayoutManager;
+import com.yuyakaido.android.cardstackview.CardStackListener;
+import com.yuyakaido.android.cardstackview.CardStackView;
+import com.yuyakaido.android.cardstackview.Direction;
+import com.yuyakaido.android.cardstackview.StackFrom;
+import com.yuyakaido.android.cardstackview.SwipeableMethod;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements CardStackListener {
 
     private CardFactory cardFactory;
-    private ArrayList<CardShape> cardShapesList;
-    private ArrayList<String> cardShapesStringList;
-    private ArrayAdapter<String> arrayAdapter;
-    private int i;
+    private CardStackLayoutManager manager;
+    private CardStackView cardStackView;
+    private CardStackAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,81 +42,80 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
 
+        manager = new CardStackLayoutManager(this, this);
+        cardStackView = (CardStackView) findViewById(R.id.card_stack_view);
+        adapter = new CardStackAdapter();
+        adapter.setCards(generateCards());
 
-        displayTheCards();
-    }
-
-    private void displayTheCards(){
-
-        //add the view via xml or programmatically
-        SwipeFlingAdapterView flingContainer = (SwipeFlingAdapterView) findViewById(R.id.frame);
-
-        generateCards();
-
-        //choose your favorite adapter
-        cardShapesStringList = Utils.getCardGoalList(cardShapesList);
-        arrayAdapter = new ArrayAdapter<String>(this, R.layout.item, R.id.helloText, cardShapesStringList );
-
-        //set the listener and the adapter
-        flingContainer.setAdapter(arrayAdapter);
-
-        flingContainer.setFlingListener(new SwipeFlingAdapterView.onFlingListener() {
-
-            @Override
-            public void onScroll(float v) {
-                // TODO
-            }
-
-            @Override
-            public void removeFirstObjectInAdapter() {
-                // this is the simplest way to delete an object from the Adapter (/AdapterView)
-                Log.d("LIST", "removed object!");
-                cardShapesList.remove(0);
-                cardShapesStringList.remove(0);
-                arrayAdapter.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onLeftCardExit(Object dataObject) {
-                //Do something on the left!
-                //You also have access to the original object.
-                //If you want to use it just cast it (String) dataObject
-                Toast.makeText(MainActivity.this, "Left!", Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onRightCardExit(Object dataObject) {
-                Toast.makeText(MainActivity.this, "Right!", Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onAdapterAboutToEmpty(int itemsInAdapter) {
-                // Ask for more data here
-                cardShapesList.add(cardFactory.getCardShape("RedCard", "put the trash out" + i));
-                //arrayAdapter.notifyDataSetChanged();
-                Log.d("LIST", "notified");
-                i++;
-            }
-        });
-
-        // Optionally add an OnItemClickListener
-        flingContainer.setOnItemClickListener(new SwipeFlingAdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClicked(int itemPosition, Object dataObject) {
-                Toast.makeText(MainActivity.this, "Clicked!",  Toast.LENGTH_SHORT).show();
-            }
-        });
+        setupCardStackView();
 
     }
 
-    public void generateCards(){
+    @Override
+    public void onCardDragging(Direction direction, float ratio) {
+
+    }
+
+    @Override
+    public void onCardSwiped(Direction direction) {
+
+    }
+
+    @Override
+    public void onCardRewound() {
+
+    }
+
+    @Override
+    public void onCardCanceled() {
+
+    }
+
+    @Override
+    public void onCardAppeared(View view, int position) {
+
+    }
+
+    @Override
+    public void onCardDisappeared(View view, int position) {
+
+    }
+
+    private void setupCardStackView(){
+        initialize();
+
+    }
+
+    private void initialize(){
+        manager.setStackFrom(StackFrom.None);
+        manager.setVisibleCount(3);
+        manager.setTranslationInterval(8.0f);
+        manager.setScaleInterval(0.95f);
+        manager.setSwipeThreshold(0.3f);
+        manager.setMaxDegree(20.0f);
+        manager.setDirections(Direction.HORIZONTAL);
+        manager.setCanScrollHorizontal(true);
+        manager.setCanScrollVertical(true);
+        manager.setSwipeableMethod(SwipeableMethod.AutomaticAndManual);
+        manager.setOverlayInterpolator(new LinearInterpolator());
+
+        cardStackView.setLayoutManager(manager);
+        cardStackView.setAdapter(adapter);
+        cardStackView.getItemAnimator();
+    }
+
+    private List<CardShape> generateCards(){
+
         cardFactory = new CardFactory();
-        cardShapesList = new ArrayList<CardShape>();
+        ArrayList<CardShape> cardShapesList = new ArrayList<CardShape>();
         cardShapesList.add(cardFactory.getCardShape("RedCard", "put the trash out"));
         cardShapesList.add(cardFactory.getCardShape("BlueCard", "put the trash out2"));
         cardShapesList.add(cardFactory.getCardShape("RedCard", "put the trash out3"));
         cardShapesList.add(cardFactory.getCardShape("BlueCard", "put the trash out4"));
         cardShapesList.add(cardFactory.getCardShape("RedCard", "put the trash out5"));
+
+        return cardShapesList;
+
     }
 
 }
