@@ -36,14 +36,14 @@ public class CardStackAdapter extends RecyclerView.Adapter<CardStackAdapter.View
 
     @Override
     public void onBindViewHolder(@NonNull CardStackAdapter.ViewHolder holder, int position) {
-        CardShape spot = cards.get(position);
-        holder.name.setText(spot.getCardGoal());
-        //holder.city.setText(spot.getCity());
+        CardShape card = cards.get(position);
+        holder.name.setText(card.getCardGoal());
+        //holder.city.setText(card.getCity());
         //Glide.with(holder.image)
-        //        .load(spot.getUrl())
+        //        .load(card.getUrl())
         //         .into(holder.image);
         holder.itemView.setOnClickListener(v ->
-                Toast.makeText(v.getContext(), spot.getCardGoal(), Toast.LENGTH_SHORT).show());
+                Toast.makeText(v.getContext(), card.getCardGoal(), Toast.LENGTH_SHORT).show());
     }
 
     @Override

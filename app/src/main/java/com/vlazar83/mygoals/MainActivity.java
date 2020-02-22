@@ -1,13 +1,20 @@
 package com.vlazar83.mygoals;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.drawerlayout.widget.DrawerLayout;
+
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.LinearInterpolator;
 
+import com.google.android.material.navigation.NavigationView;
 import com.yuyakaido.android.cardstackview.CardStackLayoutManager;
 import com.yuyakaido.android.cardstackview.CardStackListener;
 import com.yuyakaido.android.cardstackview.CardStackView;
@@ -24,6 +31,7 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
     private CardStackLayoutManager manager;
     private CardStackView cardStackView;
     private CardStackAdapter adapter;
+    private DrawerLayout drawerLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,11 +50,14 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
 
         setContentView(R.layout.activity_main);
 
+
         manager = new CardStackLayoutManager(this, this);
         cardStackView = (CardStackView) findViewById(R.id.card_stack_view);
         adapter = new CardStackAdapter();
         adapter.setCards(generateCards());
+        drawerLayout = findViewById(R.id.drawer_layout);
 
+        setupNavigation();
         setupCardStackView();
 
     }
@@ -79,6 +90,43 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
     @Override
     public void onCardDisappeared(View view, int position) {
 
+    }
+
+    private void setupNavigation(){
+        // Toolbar
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        // DrawerLayout
+        ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open_drawer, R.string.close_drawer);
+        actionBarDrawerToggle.syncState();
+        drawerLayout.addDrawerListener(actionBarDrawerToggle);
+
+        // NavigationView
+        NavigationView navigationView = findViewById(R.id.navigation_view);
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener(){
+
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+                // Handle navigation view item clicks here.
+                int id = item.getItemId();
+
+                switch(id){
+                    case R.id.reload:
+                        break;
+
+                    case R.id.add_spot_to_first:
+                        break;
+                }
+
+                    drawerLayout.closeDrawers();
+
+
+
+                return true;
+            }
+        });
     }
 
     private void setupCardStackView(){
