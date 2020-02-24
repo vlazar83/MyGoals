@@ -52,3 +52,26 @@ class RedCard implements CardShape{
     }
 
 }
+
+class GreenCard implements CardShape{
+
+    private String cardGoal;
+
+    public GreenCard(String cardGoal) {
+        this.cardGoal = cardGoal;
+    }
+
+    public String getCardGoal() {
+        return cardGoal;
+    }
+
+    public void setCardGoal(String cardGoal) {
+        this.cardGoal = cardGoal;
+    }
+
+    @Override
+    public void draw() {
+        System.out.println("Inside GreenCard draw() method");
+    }
+
+}

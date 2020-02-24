@@ -10,6 +10,8 @@ public class CardFactory {
             return new BlueCard(cardGoal);
         } else if (cardShapeType.equalsIgnoreCase("RedCard")){
             return new RedCard(cardGoal);
+        } else if (cardShapeType.equalsIgnoreCase("GreenCard")){
+            return new GreenCard(cardGoal);
         }
 
         return null;
