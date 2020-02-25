@@ -19,7 +19,9 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.DiffUtil;
 
+import android.os.SystemClock;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.AccelerateInterpolator;
@@ -29,12 +31,13 @@ import android.view.animation.LinearInterpolator;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PlanTheWeekActivity extends AppCompatActivity implements CardStackListener {
+public class PlanTheCardSetActivity extends AppCompatActivity implements CardStackListener {
 
     private CardFactory cardFactory;
     private CardStackLayoutManager manager;
     private CardStackView cardStackView;
     private CardStackAdapter adapter;
+    private CardSetHolder cardSetHolder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,6 +90,8 @@ public class PlanTheWeekActivity extends AppCompatActivity implements CardStackL
     private void setupButton(){
         FloatingActionButton skip = findViewById(R.id.skip_button);
         skip.setOnClickListener(v -> {
+            //CardShape firstCard = adapter.getFirstCard();
+            removeFirst();
             SwipeAnimationSetting.Builder builder = new SwipeAnimationSetting.Builder();
             SwipeAnimationSetting setting = builder.setDirection(Direction.Left)
                     .setDuration(Duration.Normal.duration)
@@ -94,6 +99,7 @@ public class PlanTheWeekActivity extends AppCompatActivity implements CardStackL
                     .build();
             manager.setSwipeAnimationSetting(setting);
             cardStackView.swipe();
+            //cardSetHolder.removeCard(firstCard);
         });
 
         FloatingActionButton rewind = findViewById(R.id.rewind_button);
@@ -120,9 +126,27 @@ public class PlanTheWeekActivity extends AppCompatActivity implements CardStackL
 
     }
 
-        private void setupCardStackView(){
-        initialize();
+    private void removeFirst(){
+        if (adapter.getCards().isEmpty()) {
+            return;
+        }
 
+        List<CardShape> old = adapter.getCards();
+        List<CardShape> newList = new ArrayList<CardShape>();
+
+        newList.addAll(old);
+        newList.remove(0);
+
+        DiffUtil.Callback callback = new SpotDiffCallback(old,newList);
+        DiffUtil.DiffResult diffResult = DiffUtil.calculateDiff(callback);
+        adapter.setCards(newList);
+        diffResult.dispatchUpdatesTo(adapter);
+
+
+    }
+
+    private void setupCardStackView(){
+        initialize();
     }
 
     private void initialize(){
@@ -146,14 +170,15 @@ public class PlanTheWeekActivity extends AppCompatActivity implements CardStackL
     private List<CardShape> generateCards(){
 
         cardFactory = new CardFactory();
-        ArrayList<CardShape> cardShapesList = new ArrayList<CardShape>();
-        cardShapesList.add(cardFactory.getCardShape("RedCard", "put the trash out"));
-        cardShapesList.add(cardFactory.getCardShape("BlueCard", "put the trash out2"));
-        cardShapesList.add(cardFactory.getCardShape("RedCard", "put the trash out3"));
-        cardShapesList.add(cardFactory.getCardShape("BlueCard", "put the trash out4"));
-        cardShapesList.add(cardFactory.getCardShape("GreenCard", "put the trash out5"));
+        cardSetHolder = CardSetHolder.getInstance();
+        cardSetHolder.emptyCardList();
+        cardSetHolder.addCard(cardFactory.getCardShape("RedCard", "put the trash out"));
+        cardSetHolder.addCard(cardFactory.getCardShape("BlueCard", "put the trash out2"));
+        cardSetHolder.addCard(cardFactory.getCardShape("GreenCard", "put the trash out3"));
+        cardSetHolder.addCard(cardFactory.getCardShape("RedCard", "put the trash out4"));
+        cardSetHolder.addCard(cardFactory.getCardShape("GreenCard", "put the trash out5"));
 
-        return cardShapesList;
+        return cardSetHolder.getCardShapeList();
 
     }
 

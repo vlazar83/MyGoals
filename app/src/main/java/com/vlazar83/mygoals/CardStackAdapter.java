@@ -26,6 +26,10 @@ public class CardStackAdapter extends RecyclerView.Adapter<CardStackAdapter.View
         return this.cards;
     }
 
+    public CardShape getFirstCard(){
+        return this.cards.get(0);
+    }
+
     @NonNull
     @Override
     public CardStackAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {

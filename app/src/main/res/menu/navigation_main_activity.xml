@@ -3,8 +3,8 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/plan_the_week"
-        android:title="@string/plan_the_week"
+        android:id="@+id/plan_the_card_set"
+        android:title="@string/plan_the_card_set"
         />
 
     <item

@@ -15,7 +15,6 @@ import android.view.View;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.LinearInterpolator;
-import android.widget.Button;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
@@ -162,7 +161,7 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
                     case R.id.add_spot_to_first:
                         break;
 
-                    case R.id.plan_the_week:
+                    case R.id.plan_the_card_set:
                         planTheWeek();
                         break;
                 }
@@ -177,7 +176,7 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
     }
 
     private void planTheWeek(){
-        Intent planTheWeekIntent = new Intent(MainActivity.this, PlanTheWeekActivity.class);
+        Intent planTheWeekIntent = new Intent(MainActivity.this, PlanTheCardSetActivity.class);
         startActivity(planTheWeekIntent);
 
     }
