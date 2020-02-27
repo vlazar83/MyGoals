@@ -6,11 +6,14 @@ public interface CardShape {
     String getCardGoal();
     String getCardCity();
     String getCardUrl();
+    int getId();
 
 }
 
 class BlueCard implements CardShape{
 
+    private static int count;
+    private int id;
     private String cardGoal;
     private String city;
     private String url;
@@ -19,6 +22,8 @@ class BlueCard implements CardShape{
         this.cardGoal = cardGoal;
         this.city = city;
         this.url = url;
+        id=count;
+        count = count+1;
     }
 
     public String getCardGoal() {
@@ -32,6 +37,8 @@ class BlueCard implements CardShape{
     public String getCardUrl() {
         return url;
     }
+
+    public int getId(){ return id;}
 
     public void setCardGoal(String cardGoal) {
         this.cardGoal = cardGoal;
@@ -46,6 +53,8 @@ class BlueCard implements CardShape{
 
 class RedCard implements CardShape{
 
+    private static int count;
+    private int id;
     private String cardGoal;
     private String city;
     private String url;
@@ -54,11 +63,11 @@ class RedCard implements CardShape{
         this.cardGoal = cardGoal;
         this.city = city;
         this.url = url;
+        id=count;
+        count = count+1;
     }
 
-    public String getCardGoal() {
-        return cardGoal;
-    }
+    public String getCardGoal() { return cardGoal; }
 
     public String getCardCity() {
         return city;
@@ -67,6 +76,8 @@ class RedCard implements CardShape{
     public String getCardUrl() {
         return url;
     }
+
+    public int getId(){ return id;}
 
     public void setCardGoal(String cardGoal) {
         this.cardGoal = cardGoal;
@@ -81,6 +92,8 @@ class RedCard implements CardShape{
 
 class GreenCard implements CardShape{
 
+    private static int count;
+    private int id;
     private String cardGoal;
     private String city;
     private String url;
@@ -89,6 +102,8 @@ class GreenCard implements CardShape{
         this.cardGoal = cardGoal;
         this.city = city;
         this.url = url;
+        id=count;
+        count = count+1;
     }
 
     public String getCardGoal() {
@@ -102,6 +117,8 @@ class GreenCard implements CardShape{
     public String getCardUrl() {
         return url;
     }
+
+    public int getId(){ return id;}
 
     public void setCardGoal(String cardGoal) {
         this.cardGoal = cardGoal;

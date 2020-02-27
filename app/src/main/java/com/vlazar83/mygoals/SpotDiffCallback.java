@@ -26,7 +26,7 @@ public class SpotDiffCallback extends DiffUtil.Callback {
 
     @Override
     public boolean areItemsTheSame(int oldItemPosition, int newItemPosition) {
-        return (old.get(oldItemPosition).getCardGoal() == newList.get(newItemPosition).getCardGoal() && old.get(oldItemPosition).getClass() == newList.get(newItemPosition).getClass());
+        return (old.get(oldItemPosition).getId() == newList.get(newItemPosition).getId() && old.get(oldItemPosition).getClass() == newList.get(newItemPosition).getClass());
     }
 
     @Override
