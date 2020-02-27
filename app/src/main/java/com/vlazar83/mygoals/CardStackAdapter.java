@@ -3,10 +3,14 @@ package com.vlazar83.mygoals;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.bumptech.glide.Glide;
+
 import java.util.List;
 import static java.util.Collections.emptyList;
 
@@ -42,10 +46,10 @@ public class CardStackAdapter extends RecyclerView.Adapter<CardStackAdapter.View
     public void onBindViewHolder(@NonNull CardStackAdapter.ViewHolder holder, int position) {
         CardShape card = cards.get(position);
         holder.name.setText(card.getCardGoal());
-        //holder.city.setText(card.getCity());
-        //Glide.with(holder.image)
-        //        .load(card.getUrl())
-        //         .into(holder.image);
+        holder.city.setText(card.getCardCity());
+        Glide.with(holder.image)
+                .load(card.getCardUrl())
+                 .into(holder.image);
         holder.itemView.setOnClickListener(v ->
                 Toast.makeText(v.getContext(), card.getCardGoal(), Toast.LENGTH_SHORT).show());
     }
@@ -62,8 +66,8 @@ public class CardStackAdapter extends RecyclerView.Adapter<CardStackAdapter.View
         }
 
         TextView name = super.itemView.findViewById(R.id.item_name);
-        //TextView city = super.itemView.findViewById(R.id.item_city);
-        //ImageView image = super.itemView.findViewById(R.id.item_image);
+        TextView city = super.itemView.findViewById(R.id.item_city);
+        ImageView image = super.itemView.findViewById(R.id.item_image);
     }
 
 }

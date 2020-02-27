@@ -208,12 +208,12 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
 
         cardFactory = new CardFactory();
         ArrayList<CardShape> cardShapesList = new ArrayList<CardShape>();
-        cardShapesList.add(cardFactory.getCardShape("RedCard", "put the trash out"));
+        /*cardShapesList.add(cardFactory.getCardShape("RedCard", "put the trash out"));
         cardShapesList.add(cardFactory.getCardShape("BlueCard", "put the trash out2"));
         cardShapesList.add(cardFactory.getCardShape("RedCard", "put the trash out3"));
         cardShapesList.add(cardFactory.getCardShape("BlueCard", "put the trash out4"));
         cardShapesList.add(cardFactory.getCardShape("GreenCard", "put the trash out5"));
-
+*/
         return cardShapesList;
 
     }

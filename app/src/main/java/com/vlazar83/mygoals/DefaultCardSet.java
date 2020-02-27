@@ -25,11 +25,11 @@ public class DefaultCardSet {
 
     private void fillWithDefaultSet(){
         CardFactory cardFactory = new CardFactory();
-        addCard(cardFactory.getCardShape("RedCard", "put the trash out"));
-        addCard(cardFactory.getCardShape("BlueCard", "put the trash out2"));
-        addCard(cardFactory.getCardShape("GreenCard", "put the trash out3"));
-        addCard(cardFactory.getCardShape("RedCard", "put the trash out4"));
-        addCard(cardFactory.getCardShape("GreenCard", "put the trash out5"));
+        addCard(cardFactory.getCardShape("RedCard", "put the trash out", "Kyoto", "https://source.unsplash.com/Xq1ntWruZQI/600x800"));
+        addCard(cardFactory.getCardShape("BlueCard", "put the trash out2", "Kyoto", "https://source.unsplash.com/NYyCqdBOKwc/600x800"));
+        addCard(cardFactory.getCardShape("GreenCard", "put the trash out3", "Kyoto", "https://source.unsplash.com/buF62ewDLcQ/600x800"));
+        addCard(cardFactory.getCardShape("RedCard", "put the trash out4", "New York", "https://source.unsplash.com/THozNzxEP3g/600x800"));
+        addCard(cardFactory.getCardShape("GreenCard", "put the trash out5", "New York", "https://source.unsplash.com/USrZRcRS2Lw/600x800"));
     }
 
     public void addCard(CardShape cardShape){
