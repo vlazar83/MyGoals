@@ -90,7 +90,7 @@ public class PlanTheCardSetActivity extends AppCompatActivity implements CardSta
     private void setupButton(){
         FloatingActionButton skip = findViewById(R.id.skip_button);
         skip.setOnClickListener(v -> {
-            //CardShape firstCard = adapter.getFirstCard();
+
             removeFirst();
             SwipeAnimationSetting.Builder builder = new SwipeAnimationSetting.Builder();
             SwipeAnimationSetting setting = builder.setDirection(Direction.Left)
@@ -99,7 +99,6 @@ public class PlanTheCardSetActivity extends AppCompatActivity implements CardSta
                     .build();
             manager.setSwipeAnimationSetting(setting);
             cardStackView.swipe();
-            //cardSetHolder.removeCard(firstCard);
         });
 
         FloatingActionButton rewind = findViewById(R.id.rewind_button);
@@ -168,18 +167,8 @@ public class PlanTheCardSetActivity extends AppCompatActivity implements CardSta
     }
 
     private List<CardShape> generateCards(){
-
-        cardFactory = new CardFactory();
         cardSetHolder = CardSetHolder.getInstance();
-        cardSetHolder.emptyCardList();
-        cardSetHolder.addCard(cardFactory.getCardShape("RedCard", "put the trash out"));
-        cardSetHolder.addCard(cardFactory.getCardShape("BlueCard", "put the trash out2"));
-        cardSetHolder.addCard(cardFactory.getCardShape("GreenCard", "put the trash out3"));
-        cardSetHolder.addCard(cardFactory.getCardShape("RedCard", "put the trash out4"));
-        cardSetHolder.addCard(cardFactory.getCardShape("GreenCard", "put the trash out5"));
-
         return cardSetHolder.getCardShapeList();
-
     }
 
 }

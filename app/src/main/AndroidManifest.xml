@@ -13,7 +13,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".PlanTheCardSetActivity"
-            android:label="@string/title_activity_plan_the_week"
+            android:label="@string/title_activity_plan_the_card_set"
             android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data

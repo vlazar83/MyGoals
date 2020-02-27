@@ -11,6 +11,8 @@ public class CardSetHolder {
 
     private CardSetHolder(){
         cardShapesList = new ArrayList<CardShape>();
+        DefaultCardSet defaultCardSet = DefaultCardSet.getInstance();
+        cardShapesList.addAll(defaultCardSet.getCardShapeList());
     }
 
     public static synchronized CardSetHolder getInstance(){

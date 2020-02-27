@@ -2,7 +2,6 @@ package com.vlazar83.mygoals;
 
 import androidx.recyclerview.widget.DiffUtil;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class SpotDiffCallback extends DiffUtil.Callback {
@@ -27,7 +26,7 @@ public class SpotDiffCallback extends DiffUtil.Callback {
 
     @Override
     public boolean areItemsTheSame(int oldItemPosition, int newItemPosition) {
-        return old.get(oldItemPosition).getCardGoal() == newList.get(newItemPosition).getCardGoal();
+        return (old.get(oldItemPosition).getCardGoal() == newList.get(newItemPosition).getCardGoal() && old.get(oldItemPosition).getClass() == newList.get(newItemPosition).getClass());
     }
 
     @Override

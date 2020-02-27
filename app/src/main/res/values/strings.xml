@@ -14,5 +14,5 @@
     <string name="replace_first_spot">Replace first spot</string>
     <string name="swap_first_for_last">Swap first for last</string>
     <string name="plan_the_card_set">Plan the Card Set</string>
-    <string name="title_activity_plan_the_week">PlanTheWeekActivity</string>
+    <string name="title_activity_plan_the_card_set">PlanTheCardSet</string>
 </resources>
