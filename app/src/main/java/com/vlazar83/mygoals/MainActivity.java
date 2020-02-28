@@ -5,20 +5,20 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.recyclerview.widget.DiffUtil;
-
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.AccelerateInterpolator;
-import android.view.animation.DecelerateInterpolator;
 import android.view.animation.LinearInterpolator;
-
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
 import com.yuyakaido.android.cardstackview.CardStackLayoutManager;
 import com.yuyakaido.android.cardstackview.CardStackListener;
 import com.yuyakaido.android.cardstackview.CardStackView;
@@ -28,12 +28,13 @@ import com.yuyakaido.android.cardstackview.StackFrom;
 import com.yuyakaido.android.cardstackview.SwipeAnimationSetting;
 import com.yuyakaido.android.cardstackview.SwipeableMethod;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements CardStackListener {
 
-    private CardFactory cardFactory;
     private CardStackLayoutManager manager;
     private CardStackView cardStackView;
     private CardStackAdapter adapter;
@@ -66,6 +67,21 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
         setupNavigation();
         setupCardStackView();
         setupButton();
+
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        //Create our gson instance
+        GsonBuilder builder = new GsonBuilder();
+        builder.registerTypeAdapter(CardShape.class, new InterfaceAdapter());
+        Gson gson = builder.create();
+        //Let's serialize our array
+        Type typeOfSrc = new TypeToken<Collection<CardShape>>(){}.getType();
+        String cardsJsonFormat = gson.toJson(ActualCardSet.getInstance().getCardShapeList(), typeOfSrc);
+        Log.w("Cards in Json Format:", cardsJsonFormat);
 
     }
 
@@ -211,7 +227,6 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
 
     private List<CardShape> generateCards(){
 
-        cardFactory = new CardFactory();
         ArrayList<CardShape> cardShapesList = new ArrayList<CardShape>();
         cardShapesList.addAll(ActualCardSet.getInstance().getCardShapeList());
         return cardShapesList;
