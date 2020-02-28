@@ -57,7 +57,6 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
 
         setContentView(R.layout.activity_main);
 
-
         manager = new CardStackLayoutManager(this, this);
         cardStackView = findViewById(R.id.card_stack_view);
         adapter = new CardStackAdapter();
@@ -67,12 +66,13 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
         setupNavigation();
         setupCardStackView();
         setupButton();
+        reloadCardsFromSharedPreferences();
 
     }
 
     @Override
-    protected void onPause() {
-        super.onPause();
+    protected void onStop() {
+        super.onStop();
 
         //Create our gson instance
         GsonBuilder builder = new GsonBuilder();
@@ -82,6 +82,9 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
         Type typeOfSrc = new TypeToken<Collection<CardShape>>(){}.getType();
         String cardsJsonFormat = gson.toJson(ActualCardSet.getInstance().getCardShapeList(), typeOfSrc);
         Log.w("Cards in Json Format:", cardsJsonFormat);
+
+        // save it to SharedPreferences
+        Utils.saveSharedPreferences(cardsJsonFormat);
 
     }
 
@@ -238,6 +241,25 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
         List<CardShape> newList = ActualCardSet.getInstance().getCardShapeList();
         adapter.setCards(newList);
         adapter.notifyDataSetChanged();
+    }
+
+    private void reloadCardsFromSharedPreferences(){
+
+        String cardsJsonFormat = Utils.loadSharedPreferences();
+        if(!cardsJsonFormat.equalsIgnoreCase("[]") && !cardsJsonFormat.equalsIgnoreCase("") ){
+            //Create our gson instance
+            GsonBuilder builder = new GsonBuilder();
+            builder.registerTypeAdapter(CardShape.class, new InterfaceAdapter());
+            Gson gson = builder.create();
+
+            Type typeOfSrc = new TypeToken<Collection<CardShape>>(){}.getType();
+            ArrayList<CardShape> carJsonArray = gson.fromJson(cardsJsonFormat, typeOfSrc);
+            adapter.setCards(carJsonArray);
+            adapter.notifyDataSetChanged();
+
+            ActualCardSet.getInstance().setCardShapeList(carJsonArray);
+
+        }
     }
 
 }

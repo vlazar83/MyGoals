@@ -16,7 +16,7 @@ public class InterfaceAdapter implements JsonSerializer, JsonDeserializer {
     private static final String CLASSNAME = "CLASSNAME";
     private static final String DATA = "DATA";
 
-    public JsonElement deserialize(JsonElement jsonElement, Type type,
+    public CardShape deserialize(JsonElement jsonElement, Type type,
                                    JsonDeserializationContext jsonDeserializationContext) throws JsonParseException {
 
         JsonObject jsonObject = jsonElement.getAsJsonObject();
