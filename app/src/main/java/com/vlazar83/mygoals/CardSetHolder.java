@@ -41,7 +41,7 @@ public class CardSetHolder {
         cardShapesList = new ArrayList<CardShape>();
     }
 
-    public List<CardShape> getCardShapeList(){
+    public ArrayList<CardShape> getCardShapeList(){
         return cardShapesList;
     }
 

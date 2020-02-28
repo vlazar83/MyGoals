@@ -6,7 +6,7 @@ import java.util.List;
 public class ActualCardSet {
 
     private static ActualCardSet uniqueInstance = null;
-    private ArrayList<CardShape> cardShapesList;
+    private List<CardShape> cardShapesList;
 
     private ActualCardSet(){
         cardShapesList = new ArrayList<CardShape>();
@@ -26,8 +26,14 @@ public class ActualCardSet {
         cardShapesList.add(cardShape);
     }
 
+    public void setCardShapeList(List<CardShape> list){
+        this.cardShapesList = list;
+    }
+
     public List<CardShape> getCardShapeList(){
         return cardShapesList;
     }
+
+    public void emptyList(){ cardShapesList.clear();}
 
 }

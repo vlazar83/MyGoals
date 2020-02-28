@@ -30,6 +30,10 @@ public class CardStackAdapter extends RecyclerView.Adapter<CardStackAdapter.View
         return this.cards;
     }
 
+    public CardShape getCard(int position){
+        return this.cards.get(position);
+    }
+
     public CardShape getFirstCard(){
         return this.cards.get(0);
     }

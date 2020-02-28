@@ -5,6 +5,7 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.DiffUtil;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -112,13 +113,17 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
 
         FloatingActionButton rewind = findViewById(R.id.rewind_button);
         rewind.setOnClickListener(v -> {
+
+            reloadCardsFromActualSet();
+
+            /*
             SwipeAnimationSetting.Builder builder = new SwipeAnimationSetting.Builder();
             SwipeAnimationSetting setting = builder.setDirection(Direction.Bottom)
                     .setDuration(Duration.Normal.duration)
                     .setInterpolator(new DecelerateInterpolator())
                     .build();
             manager.setSwipeAnimationSetting(setting);
-            cardStackView.swipe();
+            cardStackView.swipe();*/
         });
 
         FloatingActionButton like = findViewById(R.id.like_button);
@@ -162,7 +167,7 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
                         break;
 
                     case R.id.plan_the_card_set:
-                        planTheWeek();
+                        planTheCardSet();
                         break;
                 }
 
@@ -175,7 +180,7 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
         });
     }
 
-    private void planTheWeek(){
+    private void planTheCardSet(){
         Intent planTheWeekIntent = new Intent(MainActivity.this, PlanTheCardSetActivity.class);
         startActivity(planTheWeekIntent);
 
@@ -208,14 +213,16 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
 
         cardFactory = new CardFactory();
         ArrayList<CardShape> cardShapesList = new ArrayList<CardShape>();
-        /*cardShapesList.add(cardFactory.getCardShape("RedCard", "put the trash out"));
-        cardShapesList.add(cardFactory.getCardShape("BlueCard", "put the trash out2"));
-        cardShapesList.add(cardFactory.getCardShape("RedCard", "put the trash out3"));
-        cardShapesList.add(cardFactory.getCardShape("BlueCard", "put the trash out4"));
-        cardShapesList.add(cardFactory.getCardShape("GreenCard", "put the trash out5"));
-*/
+        cardShapesList.addAll(ActualCardSet.getInstance().getCardShapeList());
         return cardShapesList;
 
+    }
+
+    private void reloadCardsFromActualSet(){
+
+        List<CardShape> newList = ActualCardSet.getInstance().getCardShapeList();
+        adapter.setCards(newList);
+        adapter.notifyDataSetChanged();
     }
 
 }

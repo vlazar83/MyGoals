@@ -1,10 +1,9 @@
 package com.vlazar83.mygoals;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.navigation.NavigationView;
-import com.google.android.material.snackbar.Snackbar;
 import com.yuyakaido.android.cardstackview.CardStackLayoutManager;
 import com.yuyakaido.android.cardstackview.CardStackListener;
 import com.yuyakaido.android.cardstackview.CardStackView;
@@ -14,15 +13,10 @@ import com.yuyakaido.android.cardstackview.StackFrom;
 import com.yuyakaido.android.cardstackview.SwipeAnimationSetting;
 import com.yuyakaido.android.cardstackview.SwipeableMethod;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.DiffUtil;
 
-import android.os.SystemClock;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
@@ -33,16 +27,16 @@ import java.util.List;
 
 public class PlanTheCardSetActivity extends AppCompatActivity implements CardStackListener {
 
-    private CardFactory cardFactory;
     private CardStackLayoutManager manager;
     private CardStackView cardStackView;
     private CardStackAdapter adapter;
     private CardSetHolder cardSetHolder;
+    private ActualCardSet actualCardSet;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_plan_the_week);
+        setContentView(R.layout.activity_plan_the_card_set);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -54,6 +48,8 @@ public class PlanTheCardSetActivity extends AppCompatActivity implements CardSta
 
         setupCardStackView();
         setupButton();
+
+        setupActualCardSet();
 
     }
 
@@ -91,7 +87,8 @@ public class PlanTheCardSetActivity extends AppCompatActivity implements CardSta
         FloatingActionButton skip = findViewById(R.id.skip_button);
         skip.setOnClickListener(v -> {
 
-            removeFirst();
+            //removeFirst();
+
             SwipeAnimationSetting.Builder builder = new SwipeAnimationSetting.Builder();
             SwipeAnimationSetting setting = builder.setDirection(Direction.Left)
                     .setDuration(Duration.Normal.duration)
@@ -103,17 +100,22 @@ public class PlanTheCardSetActivity extends AppCompatActivity implements CardSta
 
         FloatingActionButton rewind = findViewById(R.id.rewind_button);
         rewind.setOnClickListener(v -> {
+            /*
             SwipeAnimationSetting.Builder builder = new SwipeAnimationSetting.Builder();
             SwipeAnimationSetting setting = builder.setDirection(Direction.Bottom)
                     .setDuration(Duration.Normal.duration)
                     .setInterpolator(new DecelerateInterpolator())
                     .build();
             manager.setSwipeAnimationSetting(setting);
-            cardStackView.swipe();
+            cardStackView.swipe();*/
+            backToMain();
         });
 
         FloatingActionButton like = findViewById(R.id.like_button);
         like.setOnClickListener(v -> {
+
+            addFirst();
+
             SwipeAnimationSetting.Builder builder = new SwipeAnimationSetting.Builder();
             SwipeAnimationSetting setting = builder.setDirection(Direction.Right)
                     .setDuration(Duration.Normal.duration)
@@ -125,6 +127,19 @@ public class PlanTheCardSetActivity extends AppCompatActivity implements CardSta
 
     }
 
+    private void addFirst(){
+        if (adapter.getCards().isEmpty()) {
+            return;
+        }
+
+        if(manager.getTopView() == null){
+            return;
+        }
+
+        // manager.getTopPosition() provides the card on the top
+        actualCardSet.addCard(adapter.getCard(manager.getTopPosition()));
+
+    }
     private void removeFirst(){
         if (adapter.getCards().isEmpty()) {
             return;
@@ -144,8 +159,21 @@ public class PlanTheCardSetActivity extends AppCompatActivity implements CardSta
 
     }
 
+    private void setupActualCardSet(){
+        actualCardSet = ActualCardSet.getInstance();
+        actualCardSet.emptyList();
+        //actualCardSet.setCardShapeList(adapter.getCards());
+
+    }
+
     private void setupCardStackView(){
         initialize();
+    }
+
+    private void backToMain(){
+        Intent backToMainIntent = new Intent(PlanTheCardSetActivity.this, MainActivity.class);
+        startActivity(backToMainIntent);
+
     }
 
     private void initialize(){
