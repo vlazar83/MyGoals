@@ -6,7 +6,7 @@
     <!-- NavigationView -->
     <string name="open_drawer">Open drawer</string>
     <string name="close_drawer">Close drawer</string>
-    <string name="reload">Reload</string>
+    <string name="checkStatistics">Statistics</string>
     <string name="add_spot_to_first">Add spot to first</string>
     <string name="add_spot_to_last">Add spot to last</string>
     <string name="remove_spot_from_first">Remove spot from first</string>

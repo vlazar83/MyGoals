@@ -8,8 +8,8 @@
         />
 
     <item
-        android:id="@+id/reload"
-        android:title="@string/reload"
+        android:id="@+id/checkStatistics"
+        android:title="@string/checkStatistics"
         />
 
     <item

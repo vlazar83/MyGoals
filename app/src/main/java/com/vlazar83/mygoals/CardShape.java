@@ -7,6 +7,7 @@ public interface CardShape {
     String getCardCity();
     String getCardUrl();
     int getId();
+    String getCardClass();
 
 }
 
@@ -42,6 +43,10 @@ class BlueCard implements CardShape{
 
     public void setCardGoal(String cardGoal) {
         this.cardGoal = cardGoal;
+    }
+
+    public String getCardClass(){
+        return "BlueCard";
     }
 
     @Override
@@ -83,6 +88,10 @@ class RedCard implements CardShape{
         this.cardGoal = cardGoal;
     }
 
+    public String getCardClass(){
+        return "RedCard";
+    }
+
     @Override
     public void draw() {
         System.out.println("Inside RedCard draw() method");
@@ -122,6 +131,10 @@ class GreenCard implements CardShape{
 
     public void setCardGoal(String cardGoal) {
         this.cardGoal = cardGoal;
+    }
+
+    public String getCardClass(){
+        return "GreenCard";
     }
 
     @Override

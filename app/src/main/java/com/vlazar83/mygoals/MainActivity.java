@@ -29,6 +29,7 @@ import com.yuyakaido.android.cardstackview.SwipeAnimationSetting;
 import com.yuyakaido.android.cardstackview.SwipeableMethod;
 
 import java.lang.reflect.Type;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -39,6 +40,7 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
     private CardStackView cardStackView;
     private CardStackAdapter adapter;
     private DrawerLayout drawerLayout;
+    private StatisticsHolder statisticsHolder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +69,7 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
         setupCardStackView();
         setupButton();
         reloadCardsFromSharedPreferences();
+        setupStatistics();
 
     }
 
@@ -147,6 +150,9 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
 
         FloatingActionButton like = findViewById(R.id.like_button);
         like.setOnClickListener(v -> {
+
+            addToStatistics(adapter.getCard(manager.getTopPosition()));
+
             SwipeAnimationSetting.Builder builder = new SwipeAnimationSetting.Builder();
             SwipeAnimationSetting setting = builder.setDirection(Direction.Right)
                     .setDuration(Duration.Normal.duration)
@@ -179,7 +185,8 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
                 int id = item.getItemId();
 
                 switch(id){
-                    case R.id.reload:
+                    case R.id.checkStatistics:
+                        checkStatistics();
                         break;
 
                     case R.id.add_spot_to_first:
@@ -202,7 +209,11 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
     private void planTheCardSet(){
         Intent planTheWeekIntent = new Intent(MainActivity.this, PlanTheCardSetActivity.class);
         startActivity(planTheWeekIntent);
+    }
 
+    private void checkStatistics(){
+        Intent statisticsIntent = new Intent(MainActivity.this, StatisticsActivity.class);
+        startActivity(statisticsIntent);
     }
 
     private void setupCardStackView(){
@@ -261,5 +272,34 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
 
         }
     }
+
+    private void setupStatistics(){
+        statisticsHolder = StatisticsHolder.getInstance();
+        Statistics today = new Day(LocalDate.now().getDayOfYear());
+        statisticsHolder.addStatistic(today);
+    }
+
+    private void addToStatistics(CardShape card){
+
+        // get the statistic for today
+        int today = LocalDate.now().getDayOfYear();
+        Statistics todayStatistics = statisticsHolder.getStatistic(today);
+
+        switch (card.getCardClass()){
+            case "BlueCard":
+                todayStatistics.incrementBlueCardCount();
+                break;
+            case "GreenCard":
+                todayStatistics.incrementGreenCardCount();
+                break;
+            case "RedCard":
+                todayStatistics.incrementRedCardCount();
+                break;
+        }
+
+        statisticsHolder.addStatistic(todayStatistics);
+
+    }
+
 
 }
