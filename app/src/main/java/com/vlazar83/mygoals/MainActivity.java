@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
         setupButton();
         reloadCardsFromSharedPreferences();
         setupStatistics();
-
+        reloadStatisticsFromSharedPreferences();
     }
 
     @Override
@@ -86,9 +86,18 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
         String cardsJsonFormat = gson.toJson(ActualCardSet.getInstance().getCardShapeList(), typeOfSrc);
         Log.w("Cards in Json Format:", cardsJsonFormat);
 
-        // save it to SharedPreferences
+        // save actual card set to SharedPreferences
         Utils.saveSharedPreferences(cardsJsonFormat);
 
+        // save statistics to SharedPreferences
+        builder = new GsonBuilder();
+        builder.registerTypeAdapter(Statistics.class, new StatisticsAdapter());
+        gson = builder.create();
+        //Let's serialize our array
+        typeOfSrc = new TypeToken<Collection<Statistics>>(){}.getType();
+        String statisticsJsonFormat = gson.toJson(StatisticsHolder.getInstance().getStatisticsList(), typeOfSrc);
+        Log.w("Statistics in Json Format:", statisticsJsonFormat);
+        Utils.saveStatisticsToSharedPreferences(statisticsJsonFormat);
     }
 
     @Override
@@ -151,7 +160,10 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
         FloatingActionButton like = findViewById(R.id.like_button);
         like.setOnClickListener(v -> {
 
-            addToStatistics(adapter.getCard(manager.getTopPosition()));
+            // if there is a card left
+            if(adapter.getCard(manager.getTopPosition()) != null){
+                addToStatistics(adapter.getCard(manager.getTopPosition()));
+            }
 
             SwipeAnimationSetting.Builder builder = new SwipeAnimationSetting.Builder();
             SwipeAnimationSetting setting = builder.setDirection(Direction.Right)
@@ -273,10 +285,24 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
         }
     }
 
+    private void reloadStatisticsFromSharedPreferences(){
+
+        String statisticsJsonFormat = Utils.loadStatisticsFromSharedPreferences();
+        if(!statisticsJsonFormat.equalsIgnoreCase("{\"CLASSNAME_FOR_STATISTICS\":\"java.util.ArrayList\",\"DATA_FOR_STATISTICS\":[]}") && !statisticsJsonFormat.equalsIgnoreCase("") ){
+            //Create our gson instance
+            GsonBuilder builder = new GsonBuilder();
+            builder.registerTypeAdapter(Statistics.class, new StatisticsAdapter());
+            Gson gson = builder.create();
+
+            Type typeOfSrc = new TypeToken<Collection<Statistics>>(){}.getType();
+            ArrayList<Statistics> statisticsArray = gson.fromJson(statisticsJsonFormat, typeOfSrc);
+            StatisticsHolder.getInstance().setStatisticsArray(statisticsArray);
+
+        }
+    }
+
     private void setupStatistics(){
         statisticsHolder = StatisticsHolder.getInstance();
-        Statistics today = new Day(LocalDate.now().getDayOfYear());
-        statisticsHolder.addStatistic(today);
     }
 
     private void addToStatistics(CardShape card){
@@ -297,8 +323,7 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
                 break;
         }
 
-        statisticsHolder.addStatistic(todayStatistics);
-
+        statisticsHolder.addStatistic(todayStatistics, today);
     }
 
 

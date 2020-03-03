@@ -10,6 +10,7 @@ import static android.content.Context.MODE_PRIVATE;
 public class Utils {
 
     private static final String ACTUAL_CARDS = "ACTUAL_CARDS";
+    private static final String STATISTICS = "STATISTICS";
 
     public static ArrayList<String> getCardGoalList(ArrayList<CardShape> cardShapesList){
 
@@ -36,6 +37,24 @@ public class Utils {
         Context context = MyGoals.getAppContext();
         SharedPreferences preferences =  context.getSharedPreferences(ACTUAL_CARDS, MODE_PRIVATE);
         String cardsJsonFormat = preferences.getString(ACTUAL_CARDS, "");
+
+        return cardsJsonFormat;
+
+    }
+
+    public static void saveStatisticsToSharedPreferences(String data){
+        Context context = MyGoals.getAppContext();
+        SharedPreferences preferences =  context.getSharedPreferences(STATISTICS, MODE_PRIVATE);
+        SharedPreferences.Editor edit = preferences.edit();
+        edit.putString(STATISTICS, data);
+        edit.apply();
+
+    }
+
+    public static String loadStatisticsFromSharedPreferences(){
+        Context context = MyGoals.getAppContext();
+        SharedPreferences preferences =  context.getSharedPreferences(STATISTICS, MODE_PRIVATE);
+        String cardsJsonFormat = preferences.getString(STATISTICS, "");
 
         return cardsJsonFormat;
 

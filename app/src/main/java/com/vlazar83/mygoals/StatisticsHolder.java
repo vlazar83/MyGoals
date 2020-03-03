@@ -14,7 +14,11 @@ public class StatisticsHolder {
     private ArrayList<Statistics> statisticsList;
 
     private StatisticsHolder(){
-        statisticsList = new ArrayList<Statistics>();
+        //create the array and initialize it.
+        statisticsList = new ArrayList<>();
+        for(int i = 0; i < 367; i++) {
+            statisticsList.add(i,new Day(i));
+        }
         year = Calendar.getInstance().get(Calendar.YEAR);
     }
 
@@ -28,20 +32,21 @@ public class StatisticsHolder {
 
     }
 
+    public void setStatisticsArray(ArrayList<Statistics> statistics){
+        this.statisticsList = statistics;
+    }
+
     public ArrayList<Statistics> getStatisticsList(){
         return statisticsList;
     }
 
-    public void addStatistic(Statistics statistic){
-        statisticsList.add(statistic);
+    public void addStatistic(Statistics statistic, int position){
+        statisticsList.remove(position);
+        statisticsList.add(position, statistic);
     }
 
     public Statistics getStatistic(int day){
         return statisticsList.get(day);
-    }
-
-    public void removeStatistic(int day){
-        statisticsList.remove(day);
     }
 
 }
