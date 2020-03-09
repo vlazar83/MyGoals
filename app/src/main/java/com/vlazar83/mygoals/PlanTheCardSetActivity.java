@@ -19,8 +19,8 @@ import androidx.recyclerview.widget.DiffUtil;
 
 import android.view.View;
 import android.view.animation.AccelerateInterpolator;
-import android.view.animation.DecelerateInterpolator;
 import android.view.animation.LinearInterpolator;
+import android.widget.ImageView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,6 +32,7 @@ public class PlanTheCardSetActivity extends AppCompatActivity implements CardSta
     private CardStackAdapter adapter;
     private CardSetHolder cardSetHolder;
     private ActualCardSet actualCardSet;
+    private ImageView createNewCard;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +46,8 @@ public class PlanTheCardSetActivity extends AppCompatActivity implements CardSta
         cardStackView = findViewById(R.id.card_stack_view);
         adapter = new CardStackAdapter();
         adapter.setCards(generateCards());
+
+        createNewCard = findViewById(R.id.create_new_card);
 
         setupCardStackView();
         setupButton();
@@ -84,6 +87,17 @@ public class PlanTheCardSetActivity extends AppCompatActivity implements CardSta
     }
 
     private void setupButton(){
+
+        createNewCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent createNewCardIntent = new Intent(PlanTheCardSetActivity.this, CreateNewCardActivity.class);
+                startActivity(createNewCardIntent);
+
+            }
+        });
+
         FloatingActionButton skip = findViewById(R.id.skip_button);
         skip.setOnClickListener(v -> {
 
