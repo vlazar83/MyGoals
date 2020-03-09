@@ -36,6 +36,17 @@
             custom:layout_constraintStart_toStartOf="parent"
             custom:layout_constraintTop_toTopOf="parent" />
 
+        <TextView
+            android:id="@+id/textView_blue_cards_count"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/statistics_activity_blue_cards_count"
+            android:gravity="center"
+            custom:layout_constraintEnd_toEndOf="parent"
+            custom:layout_constraintStart_toStartOf="parent"
+            custom:layout_constraintTop_toTopOf="parent" />
+
         <com.github.lzyzsd.circleprogress.CircleProgress
             android:id="@+id/circle_progress_blue"
             android:layout_width="100dp"
@@ -59,6 +70,16 @@
             custom:layout_constraintStart_toStartOf="parent"
             custom:layout_constraintTop_toBottomOf="@+id/circle_progress_red" />
 
+        <TextView
+            android:id="@+id/textView_red_cards_count"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/statistics_activity_red_cards_count"
+            android:gravity="center"
+            custom:layout_constraintEnd_toEndOf="parent"
+            custom:layout_constraintStart_toStartOf="parent"
+            custom:layout_constraintTop_toTopOf="parent" />
 
         <com.github.lzyzsd.circleprogress.CircleProgress
             android:id="@+id/circle_progress_red"
@@ -83,6 +104,17 @@
             custom:layout_constraintBottom_toTopOf="@+id/circle_progress_green"
             custom:layout_constraintEnd_toEndOf="parent"
             custom:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/textView_green_cards_count"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/statistics_activity_green_cards_count"
+            android:gravity="center"
+            custom:layout_constraintEnd_toEndOf="parent"
+            custom:layout_constraintStart_toStartOf="parent"
+            custom:layout_constraintTop_toTopOf="parent" />
 
         <com.github.lzyzsd.circleprogress.CircleProgress
             android:id="@+id/circle_progress_green"

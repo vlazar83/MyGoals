@@ -7,13 +7,18 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.DecelerateInterpolator;
+import android.widget.TextView;
+
 import com.github.lzyzsd.circleprogress.CircleProgress;
+
+import java.util.Calendar;
 import java.util.Timer;
 import java.util.TimerTask;
 
 public class StatisticsActivity extends AppCompatActivity{
 
     private Timer timer;
+    private StatisticsHolder statisticsHolder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +33,17 @@ public class StatisticsActivity extends AppCompatActivity{
         CircleProgress circleProgressBlue = findViewById(R.id.circle_progress_blue);
         CircleProgress circleProgressGreen = findViewById(R.id.circle_progress_green);
         CircleProgress circleProgressRed = findViewById(R.id.circle_progress_red);
+
+        TextView blueCardsCountTextView = findViewById(R.id.textView_blue_cards_count);
+        TextView redCardsCountTextView = findViewById(R.id.textView_red_cards_count);
+        TextView greenCardsCountTextView = findViewById(R.id.textView_green_cards_count);
+
+        statisticsHolder = StatisticsHolder.getInstance();
+        int today = Calendar.getInstance().get(Calendar.DAY_OF_YEAR);
+
+        blueCardsCountTextView.setText(String.valueOf(statisticsHolder.getStatistic(today).getBlueCardCount()) + "/" + Utils.getBlueCardsCountFromWeek(statisticsHolder));
+        redCardsCountTextView.setText(String.valueOf(statisticsHolder.getStatistic(today).getRedCardCount()) + "/" + Utils.getRedCardsCountFromWeek(statisticsHolder));
+        greenCardsCountTextView.setText(String.valueOf(statisticsHolder.getStatistic(today).getGreenCardCount()) + "/" + Utils.getGreenCardsCountFromWeek(statisticsHolder));
 
         circleProgressBlue.setFinishedColor(Color.BLUE);
         circleProgressGreen.setFinishedColor(Color.GREEN);
