@@ -22,4 +22,7 @@
     <string name="statistics_activity_green_cards_count">0</string>
     <string name="statistics_activity_red_cards_count">0</string>
     <string name="title_activity_create_new_card">Create New Card</string>
+    <string name="finalize_new_card_activity_first_details_above">Enter First Details:</string>
+    <string name="finalize_new_card_activity_second_details_above">Enter Second Details:</string>
+    <string name="title_activity_finalize_new_card">Finalize New Card</string>
 </resources>
