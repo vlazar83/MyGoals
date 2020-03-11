@@ -1,7 +1,15 @@
 package com.vlazar83.mygoals;
 
-import android.content.Intent;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.DiffUtil;
+
 import android.os.Bundle;
+import android.view.View;
+import android.view.animation.AccelerateInterpolator;
+import android.view.animation.LinearInterpolator;
+import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.yuyakaido.android.cardstackview.CardStackLayoutManager;
@@ -13,47 +21,34 @@ import com.yuyakaido.android.cardstackview.StackFrom;
 import com.yuyakaido.android.cardstackview.SwipeAnimationSetting;
 import com.yuyakaido.android.cardstackview.SwipeableMethod;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.recyclerview.widget.DiffUtil;
-
-import android.view.View;
-import android.view.animation.AccelerateInterpolator;
-import android.view.animation.LinearInterpolator;
-import android.widget.ImageView;
-
 import java.util.ArrayList;
 import java.util.List;
 
-public class PlanTheCardSetActivity extends AppCompatActivity implements CardStackListener {
+public class CreatedCardsActivity extends AppCompatActivity implements CardStackListener {
 
     private CardStackLayoutManager manager;
     private CardStackView cardStackView;
     private CardStackAdapter adapter;
-    private CardSetHolder cardSetHolder;
-    private ActualCardSet actualCardSet;
-    private ImageView createNewCard;
+    private ImageView deleteCard;
     private CreatedCardSet createdCardSet;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_plan_the_card_set);
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        setContentView(R.layout.activity_created_cards);
+        Toolbar toolbar = findViewById(R.id.toolbar_on_own_cards_activity);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        deleteCard = findViewById(R.id.delete_card);
 
         manager = new CardStackLayoutManager(this, this);
         cardStackView = findViewById(R.id.card_stack_view);
         adapter = new CardStackAdapter();
         adapter.setCards(generateCards());
 
-        createNewCard = findViewById(R.id.create_new_card);
-
         setupCardStackView();
         setupButton();
-
-        setupActualCardSet();
 
     }
 
@@ -89,20 +84,17 @@ public class PlanTheCardSetActivity extends AppCompatActivity implements CardSta
 
     private void setupButton(){
 
-        createNewCard.setOnClickListener(new View.OnClickListener() {
+        deleteCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                Intent createNewCardIntent = new Intent(PlanTheCardSetActivity.this, CreateNewCardActivity.class);
-                startActivity(createNewCardIntent);
+                removeFirst();
 
             }
         });
 
         FloatingActionButton skip = findViewById(R.id.skip_button);
         skip.setOnClickListener(v -> {
-
-            //removeFirst();
 
             SwipeAnimationSetting.Builder builder = new SwipeAnimationSetting.Builder();
             SwipeAnimationSetting setting = builder.setDirection(Direction.Left)
@@ -115,21 +107,13 @@ public class PlanTheCardSetActivity extends AppCompatActivity implements CardSta
 
         FloatingActionButton rewind = findViewById(R.id.rewind_button);
         rewind.setOnClickListener(v -> {
-            /*
-            SwipeAnimationSetting.Builder builder = new SwipeAnimationSetting.Builder();
-            SwipeAnimationSetting setting = builder.setDirection(Direction.Bottom)
-                    .setDuration(Duration.Normal.duration)
-                    .setInterpolator(new DecelerateInterpolator())
-                    .build();
-            manager.setSwipeAnimationSetting(setting);
-            cardStackView.swipe();*/
-            backToMain();
+
+            reloadCardsFromCreatedCardSet();
+
         });
 
         FloatingActionButton like = findViewById(R.id.like_button);
         like.setOnClickListener(v -> {
-
-            addFirst();
 
             SwipeAnimationSetting.Builder builder = new SwipeAnimationSetting.Builder();
             SwipeAnimationSetting setting = builder.setDirection(Direction.Right)
@@ -142,53 +126,8 @@ public class PlanTheCardSetActivity extends AppCompatActivity implements CardSta
 
     }
 
-    private void addFirst(){
-        if (adapter.getCards().isEmpty()) {
-            return;
-        }
-
-        if(manager.getTopView() == null){
-            return;
-        }
-
-        // manager.getTopPosition() provides the card on the top
-        actualCardSet.addCard(adapter.getCard(manager.getTopPosition()));
-
-    }
-    private void removeFirst(){
-        if (adapter.getCards().isEmpty()) {
-            return;
-        }
-
-        List<CardShape> old = adapter.getCards();
-        List<CardShape> newList = new ArrayList<CardShape>();
-
-        newList.addAll(old);
-        newList.remove(0);
-
-        DiffUtil.Callback callback = new SpotDiffCallback(old,newList);
-        DiffUtil.DiffResult diffResult = DiffUtil.calculateDiff(callback);
-        adapter.setCards(newList);
-        diffResult.dispatchUpdatesTo(adapter);
-
-
-    }
-
-    private void setupActualCardSet(){
-        actualCardSet = ActualCardSet.getInstance();
-        actualCardSet.emptyList();
-        //actualCardSet.setCardShapeList(adapter.getCards());
-
-    }
-
     private void setupCardStackView(){
         initialize();
-    }
-
-    private void backToMain(){
-        Intent backToMainIntent = new Intent(PlanTheCardSetActivity.this, MainActivity.class);
-        startActivity(backToMainIntent);
-
     }
 
     private void initialize(){
@@ -210,18 +149,39 @@ public class PlanTheCardSetActivity extends AppCompatActivity implements CardSta
     }
 
     private List<CardShape> generateCards(){
-        cardSetHolder = CardSetHolder.getInstance();
+        createdCardSet = CreatedCardSet.getInstance();
+        return createdCardSet.getCardShapeList();
+    }
 
-        // add manually created cards to the list
+    private void reloadCardsFromCreatedCardSet(){
 
-        CreatedCardSet.getInstance().getCardShapeList().forEach((cardShape) -> {
+        List<CardShape> newList = CreatedCardSet.getInstance().getCardShapeList();
+        adapter.setCards(newList);
+        adapter.notifyDataSetChanged();
+    }
 
-            // only add if it is not added before
-            if(!cardSetHolder.hasCard(cardShape)) cardSetHolder.addCard(cardShape);
+    private void removeFirst(){
+        if (adapter.getCards().isEmpty()) {
+            return;
+        }
 
-        });
+        List<CardShape> old = adapter.getCards();
+        List<CardShape> newList = new ArrayList<CardShape>();
 
-        return cardSetHolder.getCardShapeList();
+        newList.addAll(old);
+        newList.remove(0);
+
+        DiffUtil.Callback callback = new SpotDiffCallback(old,newList);
+        DiffUtil.DiffResult diffResult = DiffUtil.calculateDiff(callback);
+        adapter.setCards(newList);
+        diffResult.dispatchUpdatesTo(adapter);
+
+        createdCardSet.setCardShapeList(newList);
+
+        // the card might still be in planning, it has to be removed from there as well - save in shared preferences TODO
+
+        Toast.makeText(CreatedCardsActivity.this, "Card deleted!", Toast.LENGTH_LONG).show();
+
     }
 
 }

@@ -7,7 +7,7 @@
     <string name="open_drawer">Open drawer</string>
     <string name="close_drawer">Close drawer</string>
     <string name="checkStatistics">Statistics</string>
-    <string name="add_spot_to_first">Add spot to first</string>
+    <string name="own_cards">Own cards</string>
     <string name="add_spot_to_last">Add spot to last</string>
     <string name="remove_spot_from_first">Remove spot from first</string>
     <string name="remove_spot_from_last">Remove spot from last</string>
@@ -25,4 +25,5 @@
     <string name="finalize_new_card_activity_first_details_above">Enter First Details:</string>
     <string name="finalize_new_card_activity_second_details_above">Enter Second Details:</string>
     <string name="title_activity_finalize_new_card">Finalize New Card</string>
+    <string name="title_activity_created_cards">Created Cards</string>
 </resources>

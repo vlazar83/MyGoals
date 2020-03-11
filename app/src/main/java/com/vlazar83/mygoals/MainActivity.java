@@ -201,7 +201,8 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
                         checkStatistics();
                         break;
 
-                    case R.id.add_spot_to_first:
+                    case R.id.own_cards:
+                        checkOwnCards();
                         break;
 
                     case R.id.plan_the_card_set:
@@ -226,6 +227,11 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
     private void checkStatistics(){
         Intent statisticsIntent = new Intent(MainActivity.this, StatisticsActivity.class);
         startActivity(statisticsIntent);
+    }
+
+    private void checkOwnCards(){
+        Intent ownCardsIntent = new Intent(MainActivity.this, CreatedCardsActivity.class);
+        startActivity(ownCardsIntent);
     }
 
     private void setupCardStackView(){

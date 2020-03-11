@@ -49,4 +49,8 @@ public class CardSetHolder {
         return cardShapesList.size();
     }
 
+    public boolean hasCard(CardShape cardShape){
+        return cardShapesList.contains(cardShape);
+    }
+
 }

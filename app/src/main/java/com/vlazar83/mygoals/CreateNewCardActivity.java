@@ -27,7 +27,7 @@ public class CreateNewCardActivity extends AppCompatActivity implements CardStac
     private CardStackView cardStackView;
     private CardStackAdapter adapter;
     private CreationCardSetHolder creationCardSetHolder;
-    private CreatedCardSet createdCardSet;
+    public static CardShape cardToPassOnForCreation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,8 +51,6 @@ public class CreateNewCardActivity extends AppCompatActivity implements CardStac
 
         setupCardStackView();
         setupButton();
-
-        setupCreatedCardSet();
 
     }
 
@@ -139,13 +137,10 @@ public class CreateNewCardActivity extends AppCompatActivity implements CardStac
         // only after that can we create the actual card.
 
         Intent goToFinalizeIntent = new Intent(CreateNewCardActivity.this, FinalizeNewCardActivity.class);
+        // forward the card to the next step
+        cardToPassOnForCreation = adapter.getCard(manager.getTopPosition());
         startActivity(goToFinalizeIntent);
 
-    }
-
-    private void setupCreatedCardSet(){
-        createdCardSet = CreatedCardSet.getInstance();
-        //createdCardSet.emptyList();
     }
 
     private void setupCardStackView(){

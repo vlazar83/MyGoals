@@ -12,14 +12,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".FinalizeNewCardActivity"
+        <activity android:name=".CreatedCardsActivity"
+            android:label="@string/title_activity_created_cards"
+            android:parentActivityName=".MainActivity"></activity>
+        <activity
+            android:name=".FinalizeNewCardActivity"
             android:label="@string/title_activity_finalize_new_card"
-            android:parentActivityName=".CreateNewCardActivity">
-        </activity>
+            android:parentActivityName=".CreateNewCardActivity"></activity>
         <activity
             android:name=".CreateNewCardActivity"
             android:label="@string/title_activity_create_new_card"
-            android:parentActivityName=".PlanTheCardSetActivity"></activity>
+            android:parentActivityName=".PlanTheCardSetActivity" />
         <activity android:name=".StatisticsActivity" />
         <activity
             android:name=".PlanTheCardSetActivity"
