@@ -208,6 +208,10 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
                     case R.id.plan_the_card_set:
                         planTheCardSet();
                         break;
+
+                    case R.id.settings:
+                        settings();
+                        break;
                 }
 
                     drawerLayout.closeDrawers();
@@ -232,6 +236,11 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
     private void checkOwnCards(){
         Intent ownCardsIntent = new Intent(MainActivity.this, CreatedCardsActivity.class);
         startActivity(ownCardsIntent);
+    }
+
+    private void settings(){
+        Intent settingsIntent = new Intent(MainActivity.this, SettingsActivity.class);
+        startActivity(settingsIntent);
     }
 
     private void setupCardStackView(){

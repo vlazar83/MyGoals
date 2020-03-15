@@ -13,6 +13,7 @@ public class Utils {
     private static final String ACTUAL_CARDS = "ACTUAL_CARDS";
     private static final String STATISTICS = "STATISTICS";
     private static final String CREATED_CARDS = "CREATED_CARDS";
+    private static final String SETTINGS = "SETTINGS";
 
     public static ArrayList<String> getCardGoalList(ArrayList<CardShape> cardShapesList){
 
@@ -77,6 +78,24 @@ public class Utils {
         String cardsJsonFormat = preferences.getString(CREATED_CARDS, "");
 
         return cardsJsonFormat;
+
+    }
+
+    public static void saveSettingsToSharedPreferences(String data){
+        Context context = MyGoals.getAppContext();
+        SharedPreferences preferences =  context.getSharedPreferences(SETTINGS, MODE_PRIVATE);
+        SharedPreferences.Editor edit = preferences.edit();
+        edit.putString(SETTINGS, data);
+        edit.apply();
+
+    }
+
+    public static String loadSettingsFromSharedPreferences(){
+        Context context = MyGoals.getAppContext();
+        SharedPreferences preferences =  context.getSharedPreferences(SETTINGS, MODE_PRIVATE);
+        String settingsJsonFormat = preferences.getString(SETTINGS, "");
+
+        return settingsJsonFormat;
 
     }
 
