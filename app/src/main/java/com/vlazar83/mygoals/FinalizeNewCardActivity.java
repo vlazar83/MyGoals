@@ -7,10 +7,17 @@ import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
+import java.util.Collection;
 
 public class FinalizeNewCardActivity extends AppCompatActivity {
 
@@ -41,6 +48,7 @@ public class FinalizeNewCardActivity extends AppCompatActivity {
                     CardShape selectedSampleCard = CreateNewCardActivity.cardToPassOnForCreation;
                     CardShape newCard = createTheNewCard(selectedSampleCard.getCardClass(), firstDetails.getText().toString(), secondDetails.getText().toString(), selectedSampleCard.getCardUrl());
                     createdCardSet.addCard(newCard);
+                    saveCreatedCardsToSharedPreferences();
                 }
 
                 backToNewCardCreation();
@@ -82,6 +90,20 @@ public class FinalizeNewCardActivity extends AppCompatActivity {
         CardFactory cardFactory = new CardFactory();
         return cardFactory.getCardShape(cardClass, cardGoal, cardCity, cardUrl);
 
+    }
+
+    private void saveCreatedCardsToSharedPreferences(){
+        //Create our gson instance
+        GsonBuilder builder = new GsonBuilder();
+        builder.registerTypeAdapter(CardShape.class, new InterfaceAdapter());
+        Gson gson = builder.create();
+        //Let's serialize our array
+        Type typeOfSrc = new TypeToken<Collection<CardShape>>(){}.getType();
+        String cardsJsonFormat = gson.toJson(CreatedCardSet.getInstance().getCardShapeList(), typeOfSrc);
+        Log.w("Cards in Json Format:", cardsJsonFormat);
+
+        // save actual card set to SharedPreferences
+        Utils.saveCreatedCardsToSharedPreferences(cardsJsonFormat);
     }
 
 

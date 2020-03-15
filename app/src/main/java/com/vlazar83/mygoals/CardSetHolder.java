@@ -7,7 +7,7 @@ import java.util.List;
 public class CardSetHolder {
 
     private static CardSetHolder uniqueInstance = null;
-    private ArrayList<CardShape> cardShapesList;
+    private List<CardShape> cardShapesList;
 
     private CardSetHolder(){
         cardShapesList = new ArrayList<CardShape>();
@@ -33,7 +33,7 @@ public class CardSetHolder {
         cardShapesList.remove(cardShape);
     }
 
-    public void setupCardList(ArrayList<CardShape> cardShapeList){
+    public void setupCardList(List<CardShape> cardShapeList){
         cardShapesList = cardShapeList;
     }
 
@@ -41,7 +41,7 @@ public class CardSetHolder {
         cardShapesList = new ArrayList<CardShape>();
     }
 
-    public ArrayList<CardShape> getCardShapeList(){
+    public List<CardShape> getCardShapeList(){
         return cardShapesList;
     }
 

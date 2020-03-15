@@ -282,11 +282,11 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
             Gson gson = builder.create();
 
             Type typeOfSrc = new TypeToken<Collection<CardShape>>(){}.getType();
-            ArrayList<CardShape> carJsonArray = gson.fromJson(cardsJsonFormat, typeOfSrc);
-            adapter.setCards(carJsonArray);
+            ArrayList<CardShape> cardJsonArray = gson.fromJson(cardsJsonFormat, typeOfSrc);
+            adapter.setCards(cardJsonArray);
             adapter.notifyDataSetChanged();
 
-            ActualCardSet.getInstance().setCardShapeList(carJsonArray);
+            ActualCardSet.getInstance().setCardShapeList(cardJsonArray);
 
         }
     }

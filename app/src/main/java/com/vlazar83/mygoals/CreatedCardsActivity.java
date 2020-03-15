@@ -5,6 +5,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.DiffUtil;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.LinearInterpolator;
@@ -12,6 +13,9 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
 import com.yuyakaido.android.cardstackview.CardStackLayoutManager;
 import com.yuyakaido.android.cardstackview.CardStackListener;
 import com.yuyakaido.android.cardstackview.CardStackView;
@@ -21,7 +25,9 @@ import com.yuyakaido.android.cardstackview.StackFrom;
 import com.yuyakaido.android.cardstackview.SwipeAnimationSetting;
 import com.yuyakaido.android.cardstackview.SwipeableMethod;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 public class CreatedCardsActivity extends AppCompatActivity implements CardStackListener {
@@ -49,6 +55,7 @@ public class CreatedCardsActivity extends AppCompatActivity implements CardStack
 
         setupCardStackView();
         setupButton();
+        loadCreatedCardsFromSharedPreferences();
 
     }
 
@@ -165,9 +172,15 @@ public class CreatedCardsActivity extends AppCompatActivity implements CardStack
             return;
         }
 
+        // if there is nothing on top, do nothing.
+        if(adapter.getCard(manager.getTopPosition()) == null){
+            return;
+        }
+
         List<CardShape> old = adapter.getCards();
         List<CardShape> newList = new ArrayList<CardShape>();
 
+        CardShape cardToBeDeleted = old.get(0);
         newList.addAll(old);
         newList.remove(0);
 
@@ -178,10 +191,118 @@ public class CreatedCardsActivity extends AppCompatActivity implements CardStack
 
         createdCardSet.setCardShapeList(newList);
 
-        // the card might still be in planning, it has to be removed from there as well - save in shared preferences TODO
-
         Toast.makeText(CreatedCardsActivity.this, "Card deleted!", Toast.LENGTH_LONG).show();
 
+        removeCardFromActualCardSet(cardToBeDeleted);
+        removeCardFromPlanTheCardSet(cardToBeDeleted);
+        saveCreatedCardsToSharedPreferences();
+
+    }
+
+    private void removeCardFromActualCardSet(CardShape cardToBeDeleted){
+
+        // reload data from SharedPreferences
+        reloadActualCardsFromSharedPreferences();
+
+        // delete it from list
+        List<CardShape> newList = deleteFromList(cardToBeDeleted, ActualCardSet.getInstance().getCardShapeList());
+        ActualCardSet.getInstance().setCardShapeList(newList);
+
+        //save data to SharedPreferences
+        saveActualCardsToSharedPreferences();
+    }
+
+
+    private void reloadActualCardsFromSharedPreferences(){
+
+        String cardsJsonFormat = Utils.loadSharedPreferences();
+        if(!cardsJsonFormat.equalsIgnoreCase("[]") && !cardsJsonFormat.equalsIgnoreCase("") ){
+            //Create our gson instance
+            GsonBuilder builder = new GsonBuilder();
+            builder.registerTypeAdapter(CardShape.class, new InterfaceAdapter());
+            Gson gson = builder.create();
+
+            Type typeOfSrc = new TypeToken<Collection<CardShape>>(){}.getType();
+            ArrayList<CardShape> cardJsonArray = gson.fromJson(cardsJsonFormat, typeOfSrc);
+
+            ActualCardSet.getInstance().setCardShapeList(cardJsonArray);
+
+        }
+    }
+
+    private void saveActualCardsToSharedPreferences(){
+        //Create our gson instance
+        GsonBuilder builder = new GsonBuilder();
+        builder.registerTypeAdapter(CardShape.class, new InterfaceAdapter());
+        Gson gson = builder.create();
+        //Let's serialize our array
+        Type typeOfSrc = new TypeToken<Collection<CardShape>>(){}.getType();
+        String cardsJsonFormat = gson.toJson(ActualCardSet.getInstance().getCardShapeList(), typeOfSrc);
+            Log.w("Cards in Json Format:", cardsJsonFormat);
+
+        // save actual card set to SharedPreferences
+        Utils.saveSharedPreferences(cardsJsonFormat);
+    }
+
+    private void removeCardFromPlanTheCardSet(CardShape cardToBeDeleted){
+
+        // delete it from list
+        List<CardShape> newList = deleteFromList(cardToBeDeleted, CardSetHolder.getInstance().getCardShapeList());
+        CardSetHolder.getInstance().setupCardList(newList);
+
+    }
+
+    private List<CardShape> deleteFromList(CardShape cardToBeDeleted, List<CardShape> old){
+
+        List<CardShape> newList = new ArrayList<CardShape>();
+        newList.addAll(old);
+
+        int indexOfDeletedCard = 0;
+        boolean foundIt = false;
+        for (CardShape cardShape : newList) {
+            if(cardShape.getCardClass().equalsIgnoreCase(cardToBeDeleted.getCardClass()) && cardShape.getId() == cardToBeDeleted.getId()){
+                foundIt = true;
+                break;
+            }
+            indexOfDeletedCard += 1;
+        }
+
+        if (foundIt) newList.remove(indexOfDeletedCard);
+
+        return newList;
+    }
+
+    private void loadCreatedCardsFromSharedPreferences(){
+
+        String cardsJsonFormat = Utils.loadCreatedCardsFromSharedPreferences();
+        if(!cardsJsonFormat.equalsIgnoreCase("[]") && !cardsJsonFormat.equalsIgnoreCase("") ){
+            //Create our gson instance
+            GsonBuilder builder = new GsonBuilder();
+            builder.registerTypeAdapter(CardShape.class, new InterfaceAdapter());
+            Gson gson = builder.create();
+
+            Type typeOfSrc = new TypeToken<Collection<CardShape>>(){}.getType();
+            ArrayList<CardShape> cardJsonArray = gson.fromJson(cardsJsonFormat, typeOfSrc);
+            adapter.setCards(cardJsonArray);
+            adapter.notifyDataSetChanged();
+
+            CreatedCardSet.getInstance().setCardShapeList(cardJsonArray);
+
+        }
+    }
+
+    private void saveCreatedCardsToSharedPreferences(){
+        //Create our gson instance
+        GsonBuilder builder = new GsonBuilder();
+        builder.registerTypeAdapter(CardShape.class, new InterfaceAdapter());
+        Gson gson = builder.create();
+        //Let's serialize our array
+        Type typeOfSrc = new TypeToken<Collection<CardShape>>(){}.getType();
+        String cardsJsonFormat = gson.toJson(CreatedCardSet.getInstance().getCardShapeList(), typeOfSrc);
+        Log.w("Cards in Json Format:", cardsJsonFormat);
+
+        // save actual card set to SharedPreferences
+        Utils.saveCreatedCardsToSharedPreferences(cardsJsonFormat);
     }
 
 }
