@@ -12,6 +12,8 @@ public class Utils {
 
     private static final String ACTUAL_CARDS = "ACTUAL_CARDS";
     private static final String STATISTICS = "STATISTICS";
+    private static final String STATISTICS_YEAR = "STATISTICS_YEAR";
+    public static final int STATISTICS_YEAR_DEFAULT = 1990;
     private static final String CREATED_CARDS = "CREATED_CARDS";
     private static final String SETTINGS = "SETTINGS";
 
@@ -52,6 +54,8 @@ public class Utils {
         edit.putString(STATISTICS, data);
         edit.apply();
 
+        saveStatisticsYearToSharedPreferences();
+
     }
 
     public static String loadStatisticsFromSharedPreferences(){
@@ -60,6 +64,24 @@ public class Utils {
         String cardsJsonFormat = preferences.getString(STATISTICS, "");
 
         return cardsJsonFormat;
+
+    }
+
+    public static void saveStatisticsYearToSharedPreferences(){
+        Context context = MyGoals.getAppContext();
+        SharedPreferences preferences =  context.getSharedPreferences(STATISTICS_YEAR, MODE_PRIVATE);
+        SharedPreferences.Editor edit = preferences.edit();
+        edit.putInt(STATISTICS_YEAR, StatisticsHolder.getInstance().getYear());
+        edit.apply();
+
+    }
+
+    public static int loadStatisticsYearFromSharedPreferences(){
+        Context context = MyGoals.getAppContext();
+        SharedPreferences preferences =  context.getSharedPreferences(STATISTICS_YEAR, MODE_PRIVATE);
+        int statisticsYear = preferences.getInt(STATISTICS_YEAR, STATISTICS_YEAR_DEFAULT);
+
+        return statisticsYear;
 
     }
 

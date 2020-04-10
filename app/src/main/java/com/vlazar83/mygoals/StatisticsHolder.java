@@ -7,7 +7,7 @@ import java.util.Calendar;
 public class StatisticsHolder {
 
     // To keep track about which year we are collecting data.
-    // After each year we drop the earlier and start a new collection.
+    // After each year we drop the earlier and start a new collection. This is done in MainActivity in setupStatistics() .
     private static int year;
 
     private static StatisticsHolder uniqueInstance = null;
@@ -47,6 +47,16 @@ public class StatisticsHolder {
 
     public Statistics getStatistic(int day){
         return statisticsList.get(day);
+    }
+
+    public int getYear(){
+        return this.year;
+    }
+
+    public static void resetStatisticsHolder(){
+
+        uniqueInstance = null;
+
     }
 
 }
