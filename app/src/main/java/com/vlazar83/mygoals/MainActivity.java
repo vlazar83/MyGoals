@@ -71,7 +71,6 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
         setupButton();
         reloadCardsFromSharedPreferences();
         setupStatistics();
-        reloadStatisticsFromSharedPreferences();
     }
 
     @Override
@@ -328,7 +327,9 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
             StatisticsHolder.resetStatisticsHolder();
             statisticsHolder = StatisticsHolder.getInstance();
         } else {
+            // we are still in the same year, reload data from SharedPreferences
             statisticsHolder = StatisticsHolder.getInstance();
+            reloadStatisticsFromSharedPreferences();
         }
 
     }
