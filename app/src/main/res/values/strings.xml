@@ -28,10 +28,19 @@
     <string name="title_activity_finalize_new_card">Finalize New Card</string>
     <string name="title_activity_created_cards">Created Cards</string>
     <string name="title_activity_settings">Settings</string>
-    <string name="toggle_button_default_activity_settings">Male</string>
-    <string name="toggle_button_male_activity_settings">Male</string>
-    <string name="toggle_button_female_activity_settings">Female</string>
-    <string name="toggle_button_text_view_caption_activity_settings">Male/Female</string>
+    <string name="toggle_button_default_activity_settings">In Family</string>
+    <string name="toggle_button_family_status_alone_activity_settings">Alone</string>
+    <string name="toggle_button_family_status_in_family_activity_settings">In Family</string>
+    <string name="toggle_button_text_view_caption_activity_settings">Alone/In Family</string>
     <string name="edit_text_age_text_view_caption_activity_settings">Age</string>
+    <string name="TextView_introvert_or_extrovert_caption_activity_settings">Introvert/Extrovert</string>
+    <string name="toggle_button_introvert_or_extrovert_default_activity_settings">Extrovert</string>
+    <string name="toggle_button_introvert_or_extrovert_status_introvert_activity_settings">Introvert</string>
+    <string name="toggle_button_introvert_or_extrovert_status_extrovert_activity_settings">Extrovert</string>
+    <string name="TextView_owl_or_lark_caption_activity_settings">Owl/Lark</string>
+    <string name="toggle_button_owl_or_lark_default_activity_settings">Owl</string>
+    <string name="toggle_button_owl_or_lark_status_owl_activity_settings">Owl</string>
+    <string name="toggle_button_owl_or_lark_status_lark_activity_settings">Lark</string>
+    <string name="TextView_golden_sentences_caption_activity_settings">Golden Sentences</string>
 
 </resources>

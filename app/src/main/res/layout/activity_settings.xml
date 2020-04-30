@@ -26,11 +26,11 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/button_container"
-            android:orientation="horizontal"
             android:layout_width="match_parent"
+            android:layout_height="350dp"
             android:layout_marginBottom="8dp"
-            android:layout_height="300dp"
-            android:clipChildren="false">
+            android:clipChildren="false"
+            android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/male_or_female"
@@ -49,11 +49,35 @@
                 android:layout_marginTop="24dp"
                 android:layout_marginEnd="16dp"
                 android:text="@string/toggle_button_default_activity_settings"
-                android:textOff="@string/toggle_button_female_activity_settings"
-                android:textOn="@string/toggle_button_male_activity_settings"
+                android:textOff="@string/toggle_button_family_status_in_family_activity_settings"
+                android:textOn="@string/toggle_button_family_status_alone_activity_settings"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
+
+            <ToggleButton
+                android:id="@+id/toggle_button_introvert_or_extrovert"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="16dp"
+                android:text="@string/toggle_button_introvert_or_extrovert_default_activity_settings"
+                android:textOff="@string/toggle_button_introvert_or_extrovert_status_introvert_activity_settings"
+                android:textOn="@string/toggle_button_introvert_or_extrovert_status_extrovert_activity_settings"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/age_number" />
+
+            <ToggleButton
+                android:id="@+id/toggle_button_owl_or_lark"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="28dp"
+                android:text="@string/toggle_button_owl_or_lark_default_activity_settings"
+                android:textOff="@string/toggle_button_owl_or_lark_status_lark_activity_settings"
+                android:textOn="@string/toggle_button_owl_or_lark_status_owl_activity_settings"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/toggle_button_introvert_or_extrovert" />
 
             <TextView
                 android:id="@+id/age"
@@ -77,8 +101,46 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/toggle_button" />
 
+            <TextView
+                android:id="@+id/TextView_introvert_or_extrovert"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="32dp"
+                android:text="@string/TextView_introvert_or_extrovert_caption_activity_settings"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/age_number" />
+
+            <TextView
+                android:id="@+id/textView_owl_or_lark"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="32dp"
+                android:text="@string/TextView_owl_or_lark_caption_activity_settings"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/toggle_button_introvert_or_extrovert" />
+
+            <TextView
+                android:id="@+id/textView_golden_sentences"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="@string/TextView_golden_sentences_caption_activity_settings"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/toggle_button_owl_or_lark" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ListView
+            android:id="@+id/listView_for_goldenSentences"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="32dp"
+            app:layout_constraintTop_toBottomOf="parent">
+
+        </ListView>
 
     </LinearLayout>
 

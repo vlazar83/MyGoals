@@ -1,17 +1,26 @@
 package com.vlazar83.mygoals;
 
+import java.util.ArrayList;
+
 public class Settings {
 
     private static Settings uniqueInstance = null;
     public static final int default_age = 40;
     public static final int max_age = 100;
     public static final int min_age = 18;
-    private boolean male;
+    private boolean inFamily;
     private int age;
+    private boolean isExtrovert;
+    private boolean isOwl;
+    private ArrayList<String> goldenSentences;
 
     private Settings() {
-        this.male = true;
+        this.inFamily = true;
         this.age = 20;
+        this.isExtrovert = true;
+        this.isOwl = true;
+        this.goldenSentences = new ArrayList<String>();
+        setDefaultGoldenSentences();
     }
 
     public static synchronized Settings getInstance(){
@@ -24,12 +33,12 @@ public class Settings {
 
     }
 
-    public boolean isMale() {
-        return male;
+    public boolean isInFamily() {
+        return inFamily;
     }
 
-    public void setMale(boolean male) {
-        this.male = male;
+    public void setInFamily(boolean inFamily) {
+        this.inFamily = inFamily;
     }
 
     public int getAge() {
@@ -45,4 +54,44 @@ public class Settings {
             this.age = age;
         }
     }
+
+    public void setIsExtrovert(boolean status){
+        this.isExtrovert = status;
+    }
+
+    public boolean getIsExtrovert(){
+        return this.isExtrovert;
+    }
+
+    public void setIsOwl(boolean status){
+        this.isOwl = status;
+    }
+
+    public boolean getIsOwl(){
+        return this.isOwl;
+    }
+
+    private void setDefaultGoldenSentences(){
+
+        this.goldenSentences.add("Sok lud disznot gyöz");
+        this.goldenSentences.add("Ki koran kel aranyat lel");
+        this.goldenSentences.add("TBDL...");
+        this.goldenSentences.add("TBDL...");
+        this.goldenSentences.add("TBDL...");
+        this.goldenSentences.add("TBDL...");
+        this.goldenSentences.add("TBDL...");
+        this.goldenSentences.add("TBDL...");
+        this.goldenSentences.add("TBDL...");
+        this.goldenSentences.add("TBDL...");
+
+    }
+
+    public void addGoldenSentence(String newSentence){
+        this.goldenSentences.add(newSentence);
+    }
+
+    public ArrayList<String> getGoldenSentences(){
+        return this.goldenSentences;
+    }
+
 }
