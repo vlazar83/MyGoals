@@ -31,6 +31,7 @@ import com.yuyakaido.android.cardstackview.SwipeableMethod;
 import java.lang.reflect.Type;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collection;
 import java.util.List;
 
@@ -70,7 +71,6 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
         setupButton();
         reloadCardsFromSharedPreferences();
         setupStatistics();
-        reloadStatisticsFromSharedPreferences();
     }
 
     @Override
@@ -317,7 +317,21 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
     }
 
     private void setupStatistics(){
-        statisticsHolder = StatisticsHolder.getInstance();
+        int statisticsYear = Utils.loadStatisticsYearFromSharedPreferences();
+
+        // meaning no previous saving was done.
+        if(statisticsYear == Utils.STATISTICS_YEAR_DEFAULT){
+            statisticsHolder = StatisticsHolder.getInstance();
+        } else if (statisticsYear != Calendar.getInstance().get(Calendar.YEAR)){
+            // start new yer
+            StatisticsHolder.resetStatisticsHolder();
+            statisticsHolder = StatisticsHolder.getInstance();
+        } else {
+            // we are still in the same year, reload data from SharedPreferences
+            statisticsHolder = StatisticsHolder.getInstance();
+            reloadStatisticsFromSharedPreferences();
+        }
+
     }
 
     private void addToStatistics(CardShape card){
