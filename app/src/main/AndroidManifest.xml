@@ -12,9 +12,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SettingsActivity"
+        <activity
+            android:name=".NotificationResultActivity"
+            android:launchMode="singleTask"
+            android:taskAffinity=""
+            android:excludeFromRecents="true">
+        </activity>
+        <activity
+            android:name=".SettingsActivity"
             android:label="@string/title_activity_settings"
-            android:parentActivityName=".MainActivity"/>
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".CreatedCardsActivity"
             android:label="@string/title_activity_created_cards"
@@ -45,6 +52,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".IntroActivity" />
+
+        <receiver android:name=".ReminderBroadcast" />
     </application>
 
 </manifest>
