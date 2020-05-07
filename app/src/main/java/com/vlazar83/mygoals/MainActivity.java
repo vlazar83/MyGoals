@@ -179,7 +179,14 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
 
             // if there is a card left
             if(adapter.getCard(manager.getTopPosition()) != null){
-                addToStatistics(adapter.getCard(manager.getTopPosition()));
+                // only then add it to statistics if it is not the Leading Idea card
+
+                CardShape cardShape = adapter.getCard(manager.getTopPosition());
+
+                if(!(cardShape.getCardClass().equalsIgnoreCase("RedCard") && cardShape.getCardGoal().equalsIgnoreCase(getString(R.string.LeadingIdea_cardLabel)))){
+                    addToStatistics(adapter.getCard(manager.getTopPosition()));
+                }
+
             }
 
             SwipeAnimationSetting.Builder builder = new SwipeAnimationSetting.Builder();
