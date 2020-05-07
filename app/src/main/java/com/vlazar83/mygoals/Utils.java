@@ -3,8 +3,14 @@ package com.vlazar83.mygoals;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collection;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -101,6 +107,24 @@ public class Utils {
 
         return cardsJsonFormat;
 
+    }
+
+    public static void loadCreatedCardsFromSharedPreferencesNew(){
+        Context context = MyGoals.getAppContext();
+        SharedPreferences preferences =  context.getSharedPreferences(CREATED_CARDS, MODE_PRIVATE);
+        String cardsJsonFormat = preferences.getString(CREATED_CARDS, "");
+        if(!cardsJsonFormat.equalsIgnoreCase("[]") && !cardsJsonFormat.equalsIgnoreCase("") ){
+            //Create our gson instance
+            GsonBuilder builder = new GsonBuilder();
+            builder.registerTypeAdapter(CardShape.class, new InterfaceAdapter());
+            Gson gson = builder.create();
+
+            Type typeOfSrc = new TypeToken<Collection<CardShape>>(){}.getType();
+            ArrayList<CardShape> cardJsonArray = gson.fromJson(cardsJsonFormat, typeOfSrc);
+
+            CreatedCardSet.getInstance().setCardShapeList(cardJsonArray);
+
+        }
     }
 
     public static void saveSettingsToSharedPreferences(String data){

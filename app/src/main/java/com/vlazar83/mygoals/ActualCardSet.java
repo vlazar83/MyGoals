@@ -26,6 +26,16 @@ public class ActualCardSet {
         cardShapesList.add(cardShape);
     }
 
+    public void addCardToFront(CardShape cardShape){
+        cardShapesList.add(0,cardShape);
+    }
+
+    public void removeCardAtFront(){
+        if(cardShapesList.size()!=0){
+            cardShapesList.remove(0);
+        }
+    }
+
     public void setCardShapeList(List<CardShape> list){
         this.cardShapesList = list;
     }

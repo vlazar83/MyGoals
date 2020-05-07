@@ -12,12 +12,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".LeadingIdeaActivity"></activity>
         <activity
             android:name=".NotificationResultActivity"
+            android:excludeFromRecents="true"
             android:launchMode="singleTask"
-            android:taskAffinity=""
-            android:excludeFromRecents="true">
-        </activity>
+            android:taskAffinity=""></activity>
         <activity
             android:name=".SettingsActivity"
             android:label="@string/title_activity_settings"

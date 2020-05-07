@@ -51,6 +51,12 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
     private StatisticsHolder statisticsHolder;
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        reloadCardsFromActualSet();
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
@@ -77,9 +83,11 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
         setupCardStackView();
         setupButton();
         reloadCardsFromSharedPreferences();
+        reloadCreatedCardsFromSharedPreferences();
         setupStatistics();
         createNotificationChannel();
         scheduleAlarm();
+
     }
 
     @Override
@@ -218,6 +226,10 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
                         planTheCardSet();
                         break;
 
+                    case R.id.leadingIdea:
+                        planTheLeadingIdea();
+                        break;
+
                     case R.id.settings:
                         settings();
                         break;
@@ -230,6 +242,11 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
                 return true;
             }
         });
+    }
+
+    private void planTheLeadingIdea(){
+        Intent planTheLeadingIdea = new Intent(MainActivity.this, LeadingIdeaActivity.class);
+        startActivity(planTheLeadingIdea);
     }
 
     private void planTheCardSet(){
@@ -278,8 +295,16 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
     private List<CardShape> generateCards(){
 
         ArrayList<CardShape> cardShapesList = new ArrayList<CardShape>();
+        //The leading Idea card comes always to the front
+        ActualCardSet.getInstance().addCardToFront(generateLeadingIdeaCard());
         cardShapesList.addAll(ActualCardSet.getInstance().getCardShapeList());
         return cardShapesList;
+
+    }
+
+    private CardShape generateLeadingIdeaCard(){
+        CardFactory cardFactory = new CardFactory();
+        return cardFactory.getCardShape("RedCard", getString(R.string.LeadingIdea_cardLabel), getString(R.string.LeadingIdeaActivity_default_entry), "https://source.unsplash.com/Xq1ntWruZQI/600x800");
 
     }
 
@@ -307,6 +332,10 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
             ActualCardSet.getInstance().setCardShapeList(cardJsonArray);
 
         }
+    }
+
+    private void reloadCreatedCardsFromSharedPreferences(){
+        Utils.loadCreatedCardsFromSharedPreferencesNew();
     }
 
     private void reloadStatisticsFromSharedPreferences(){

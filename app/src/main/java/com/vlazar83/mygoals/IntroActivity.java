@@ -18,8 +18,8 @@ public class IntroActivity extends OnboarderActivity implements OnboarderPageCha
 
         List<OnboarderPage> pages = Arrays.asList(
                 new OnboarderPage.Builder()
-                        .title("Welcome")
-                        .description("nice to see you here")
+                        .title(getString(R.string.IntroActivity_title1))
+                        .description(getString(R.string.IntroActivity_description1))
                         .imageResourceId(R.drawable.church_building_free_icon)
                         .backgroundColorId(R.color.color_church_building)
                         .titleColorId(R.color.primary_text)
@@ -28,18 +28,18 @@ public class IntroActivity extends OnboarderActivity implements OnboarderPageCha
                         .build(),
 
                 new OnboarderPage.Builder()
-                        .title("Faith")
-                        .description("this is what connects us")
-                        .imageResourceId(R.drawable.dove_free_icon)
-                        .backgroundColorId(R.color.color_dove)
+                        .title(getString(R.string.IntroActivity_title2))
+                        .description(getString(R.string.IntroActivity_description2))
+                        .imageResourceId(R.drawable.bible_free_icon)
+                        .backgroundColorId(R.color.color_family)
                         .titleColorId(R.color.primary_text)
                         .descriptionColorId(R.color.secondary_text)
                         .multilineDescriptionCentered(true)
                         .build(),
 
                 new OnboarderPage.Builder()
-                        .title("Grow together")
-                        .description("it!s better with you onboard")
+                        .title(getString(R.string.IntroActivity_title3))
+                        .description(getString(R.string.IntroActivity_description3))
                         .imageResourceId(R.drawable.growth_free_icon)
                         .backgroundColorId(R.color.color_growth)
                         .titleColorId(R.color.primary_text)
@@ -48,10 +48,10 @@ public class IntroActivity extends OnboarderActivity implements OnboarderPageCha
                         .build(),
 
                 new OnboarderPage.Builder()
-                        .title("Get notified")
-                        .description("we are happy to see you at any of our events")
-                        .imageResourceId(R.drawable.family_free_icon)
-                        .backgroundColorId(R.color.color_family)
+                        .title(getString(R.string.IntroActivity_title4))
+                        .description(getString(R.string.IntroActivity_description4))
+                        .imageResourceId(R.drawable.dove_free_icon)
+                        .backgroundColorId(R.color.color_dove)
                         .titleColorId(R.color.primary_text)
                         .descriptionColorId(R.color.secondary_text)
                         .multilineDescriptionCentered(true)

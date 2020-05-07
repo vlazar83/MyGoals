@@ -43,4 +43,20 @@
     <string name="toggle_button_owl_or_lark_status_lark_activity_settings">Lark</string>
     <string name="TextView_golden_sentences_caption_activity_settings">Golden Sentences</string>
 
+    <string name="IntroActivity_title1">App\'s Goal</string>
+    <string name="IntroActivity_description1">To help us capture Kronos in Kairos</string>
+    <string name="IntroActivity_title2">App\'s Method</string>
+    <string name="IntroActivity_description2">"waking up by reminding" - (2Pt 1, 13)</string>
+    <string name="IntroActivity_title3">How it helps?</string>
+    <string name="IntroActivity_description3">Make your own recepie</string>
+    <string name="IntroActivity_title4">The Soul in work</string>
+    <string name="IntroActivity_description4">The app helps us to capture the Soul in our life</string>
+
+
+    <string name="LeadingIdeaActivity_label">Your life\'s leading Idea</string>
+    <string name="LeadingIdeaActivity_default_entry">Leading Idea</string>
+    <string name="LeadingIdeaActivity_button_update_label">Update</string>
+    <string name="LeadingIdea_menuItem">Leading Idea</string>
+    <string name="LeadingIdea_cardLabel">Leading Idea</string>
+
 </resources>

@@ -1,6 +1,7 @@
 package com.vlazar83.mygoals;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 //Singleton class
@@ -50,7 +51,21 @@ public class CardSetHolder {
     }
 
     public boolean hasCard(CardShape cardShape){
-        return cardShapesList.contains(cardShape);
+        // return cardShapesList.contains(cardShape); - this was not working as expected.
+
+        boolean result = false;
+        Iterator<CardShape> iterator = cardShapesList.iterator();
+        while(iterator.hasNext()){
+            CardShape next = iterator.next();
+            if(next.getCardClass().equalsIgnoreCase(cardShape.getCardClass()) && next.getId() == cardShape.getId()){
+                result = true;
+                break;
+
+            }
+        }
+
+        return result;
+
     }
 
 }
