@@ -180,9 +180,9 @@ public class CreatedCardsActivity extends AppCompatActivity implements CardStack
         List<CardShape> old = adapter.getCards();
         List<CardShape> newList = new ArrayList<CardShape>();
 
-        CardShape cardToBeDeleted = old.get(0);
+        CardShape cardToBeDeleted = old.get(manager.getTopPosition());
         newList.addAll(old);
-        newList.remove(0);
+        newList.remove(manager.getTopPosition());
 
         DiffUtil.Callback callback = new SpotDiffCallback(old,newList);
         DiffUtil.DiffResult diffResult = DiffUtil.calculateDiff(callback);

@@ -11,7 +11,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:baselineAligned="false">
 
         <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
@@ -21,6 +22,16 @@
                 android:id="@+id/toolbar_for_finalize_new_card"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/take_picture"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@android:drawable/ic_menu_camera"
+                    android:layout_gravity="right"
+                    android:paddingEnd="16dp"
+                    />
+
             </androidx.appcompat.widget.Toolbar>
 
         </com.google.android.material.appbar.AppBarLayout>
@@ -57,14 +68,26 @@
             android:layout_gravity="center"
             android:gravity="center"/>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/create_new_card_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_add"
-        android:layout_gravity="center_horizontal"
-        app:fabSize="auto"
-        app:rippleColor="#226FE2B3"/>
+
+        <ImageView
+            android:id="@+id/taken_picture"
+            android:layout_width="600px"
+            android:layout_height="800px"
+            android:layout_gravity="center"
+            android:paddingBottom="16dp"
+            android:paddingTop="16dp"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/create_new_card_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center_horizontal"
+            android:layout_weight="2"
+            android:foregroundGravity="bottom"
+            android:src="@drawable/ic_add"
+            app:fabSize="auto"
+            app:rippleColor="#226FE2B3" />
 
     </LinearLayout>
 
