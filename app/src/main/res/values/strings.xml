@@ -59,4 +59,6 @@
     <string name="LeadingIdea_menuItem">Leading Idea</string>
     <string name="LeadingIdea_cardLabel">Leading Idea</string>
 
+    <string name="FinalizeNewCard_Toast_Message">Fill cards details!</string>
+
 </resources>
