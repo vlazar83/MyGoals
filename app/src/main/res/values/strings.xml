@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MyGoals</string>
+    <string name="app_name">Kairosz</string>
     <string name="pref_previously_started">FirstStart</string>
 
 
@@ -9,11 +9,6 @@
     <string name="checkStatistics">Statistics</string>
     <string name="settings">Settings</string>
     <string name="own_cards">Own cards</string>
-    <string name="add_spot_to_last">Add spot to last</string>
-    <string name="remove_spot_from_first">Remove spot from first</string>
-    <string name="remove_spot_from_last">Remove spot from last</string>
-    <string name="replace_first_spot">Replace first spot</string>
-    <string name="swap_first_for_last">Swap first for last</string>
     <string name="plan_the_card_set">Plan the Card Set</string>
     <string name="title_activity_plan_the_card_set">PlanTheCardSet</string>
     <string name="statistics_activity_RedCircle_text_above">Red Cards: Day / Week</string>

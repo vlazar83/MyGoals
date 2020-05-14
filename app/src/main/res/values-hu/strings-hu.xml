@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Kairosz</string>
+    <string name="pref_previously_started">FirstStart</string>
+
+
+    <!-- NavigationView -->
+    <string name="open_drawer">Menü nyitás</string>
+    <string name="close_drawer">Menü zárás</string>
+    <string name="checkStatistics">Statisztika</string>
+    <string name="settings">Beállítások</string>
+    <string name="own_cards">Saját kártyák</string>
+    <string name="plan_the_card_set">Kártya pakli tervezés</string>
+    <string name="title_activity_plan_the_card_set">Kártya pakli tervezés</string>
+    <string name="statistics_activity_RedCircle_text_above">Munka kártya: Nap / Hét</string>
+    <string name="statistics_activity_GreenCircle_text_above">En idö kártya: Nap / Hét</string>
+    <string name="statistics_activity_BlueCircle_text_above">Család kártya: Nap / Hét</string>
+    <string name="statistics_activity_blue_cards_count">0</string>
+    <string name="statistics_activity_green_cards_count">0</string>
+    <string name="statistics_activity_red_cards_count">0</string>
+    <string name="title_activity_create_new_card">Új kártya szerkesztés</string>
+    <string name="finalize_new_card_activity_first_details_above">Kártya cime:</string>
+    <string name="finalize_new_card_activity_second_details_above">Kártya alcime:</string>
+    <string name="title_activity_finalize_new_card">Új kártya véglegesitése</string>
+    <string name="title_activity_created_cards">Saját kártyak</string>
+    <string name="title_activity_settings">Beállítások</string>
+    <string name="toggle_button_default_activity_settings">Családos</string>
+    <string name="toggle_button_family_status_alone_activity_settings">Egyedülallo</string>
+    <string name="toggle_button_family_status_in_family_activity_settings">Családos</string>
+    <string name="toggle_button_text_view_caption_activity_settings">Egyedülállo/Családos</string>
+    <string name="edit_text_age_text_view_caption_activity_settings">Életkor</string>
+    <string name="TextView_introvert_or_extrovert_caption_activity_settings">Introvertált/Extrovertált</string>
+    <string name="toggle_button_introvert_or_extrovert_default_activity_settings">Extrovertált</string>
+    <string name="toggle_button_introvert_or_extrovert_status_introvert_activity_settings">Introvertált</string>
+    <string name="toggle_button_introvert_or_extrovert_status_extrovert_activity_settings">Extrovertált</string>
+    <string name="TextView_owl_or_lark_caption_activity_settings">Bagoly/Pacsirta</string>
+    <string name="toggle_button_owl_or_lark_default_activity_settings">Bagoly</string>
+    <string name="toggle_button_owl_or_lark_status_owl_activity_settings">Bagoly</string>
+    <string name="toggle_button_owl_or_lark_status_lark_activity_settings">Pacsirta</string>
+    <string name="TextView_golden_sentences_caption_activity_settings">Aranymondások</string>
+
+    <string name="IntroActivity_title1">Az applikácio célja</string>
+    <string name="IntroActivity_description1">Abban segíteni, hogy a Kronoszban a Kairoszt megragadhassuk</string>
+    <string name="IntroActivity_title2">Az applikácio módszere</string>
+    <string name="IntroActivity_description2">“emlékeztetéssel ébresztget” - ahogy Péter fogalmaz (2Pt 1, 13)</string>
+    <string name="IntroActivity_title3">Hogyan segít?</string>
+    <string name="IntroActivity_description3">Nem univerzális időmenedzsment receptet nyújt, hanem abban segít, hogy a saját receptet összeállíthassuk</string>
+    <string name="IntroActivity_title4">Nem tudja, nem is akarja a Lélek munkáját helyettesíteni</string>
+    <string name="IntroActivity_description4">Ellenkezőleg: abban szeretne segíteni, hogy azt meg tudjuk ragadni</string>
+
+
+    <string name="LeadingIdeaActivity_label">Életed vezérgondolata</string>
+    <string name="LeadingIdeaActivity_default_entry">Vezérgondolat</string>
+    <string name="LeadingIdeaActivity_button_update_label">Módosítas</string>
+    <string name="LeadingIdea_menuItem">Vezérgondolat</string>
+    <string name="LeadingIdea_cardLabel">Vezérgondolat</string>
+
+    <string name="FinalizeNewCard_Toast_Message">Töltds ki a kártya részleteit!</string>
+
+
+</resources>

@@ -17,6 +17,7 @@ import static android.content.Context.MODE_PRIVATE;
 public class Utils {
 
     private static final String ACTUAL_CARDS = "ACTUAL_CARDS";
+    private static final String LEADING_IDEA = "LEADING_IDEA";
     private static final String STATISTICS = "STATISTICS";
     private static final String STATISTICS_YEAR = "STATISTICS_YEAR";
     public static final int STATISTICS_YEAR_DEFAULT = 1990;
@@ -41,6 +42,24 @@ public class Utils {
         SharedPreferences.Editor edit = preferences.edit();
         edit.putString(ACTUAL_CARDS, data);
         edit.apply();
+
+    }
+
+    public static void saveLeadingIdeaToSharedPreferences(String data){
+        Context context = MyGoals.getAppContext();
+        SharedPreferences preferences =  context.getSharedPreferences(LEADING_IDEA, MODE_PRIVATE);
+        SharedPreferences.Editor edit = preferences.edit();
+        edit.putString(LEADING_IDEA, data);
+        edit.apply();
+
+    }
+
+    public static String loadLeadingIdeaFromSharedPreferences(){
+        Context context = MyGoals.getAppContext();
+        SharedPreferences preferences =  context.getSharedPreferences(LEADING_IDEA, MODE_PRIVATE);
+        String leadingIdea = preferences.getString(LEADING_IDEA, "");
+
+        return leadingIdea;
 
     }
 
