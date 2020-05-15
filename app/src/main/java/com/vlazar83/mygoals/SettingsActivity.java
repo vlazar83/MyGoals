@@ -63,6 +63,18 @@ public class SettingsActivity extends AppCompatActivity {
         saveSettingsToSharedPreferences();
     }
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Utils.cancelAllAlarms();
+        if(Settings.getInstance().getIsOwl()){
+            Utils.scheduleAlarm(19,15,86400000, ReminderBroadcast.class);
+        } else {
+            Utils.scheduleAlarm(10,15,86400000, ReminderBroadcast.class);
+        }
+
+    }
+
     private void loadSettingsFromSharedPreferences(){
 
         Gson gson = new Gson();

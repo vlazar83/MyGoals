@@ -6,6 +6,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 
+import androidx.core.app.NotificationManagerCompat;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
@@ -244,6 +246,11 @@ public class Utils {
 
         alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), interval,pendingIntent);
 
+    }
+
+    public static void cancelAllAlarms(){
+        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(MyGoals.getAppContext());
+        notificationManager.cancelAll();
     }
 
 }

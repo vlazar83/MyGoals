@@ -1,5 +1,7 @@
 package com.vlazar83.mygoals;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.Random;
 

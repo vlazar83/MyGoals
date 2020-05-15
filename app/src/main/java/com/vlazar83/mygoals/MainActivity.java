@@ -68,6 +68,11 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
             edit.putBoolean(getString(R.string.pref_previously_started), Boolean.TRUE);
             edit.commit();
 
+            if(Settings.getInstance().getIsOwl()){
+                Utils.scheduleAlarm(19,15,86400000, ReminderBroadcast.class);
+            } else {
+                Utils.scheduleAlarm(10,15,86400000, ReminderBroadcast.class);
+            }
             startActivity(new Intent(MainActivity.this, IntroActivity.class));
         }
 
@@ -89,7 +94,6 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
 
         setupStatistics();
         createNotificationChannel();
-        Utils.scheduleAlarm(13,15,86400000, ReminderBroadcast.class);
 
     }
 
