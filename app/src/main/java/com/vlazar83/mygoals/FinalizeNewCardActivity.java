@@ -13,6 +13,7 @@ import android.content.res.ColorStateList;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.graphics.Matrix;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -28,7 +29,9 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.text.SimpleDateFormat;
@@ -40,7 +43,7 @@ public class FinalizeNewCardActivity extends AppCompatActivity {
     private CreatedCardSet createdCardSet;
     static final int REQUEST_IMAGE_CAPTURE = 1;
     static final int MY_PERMISSIONS_REQUEST_CAMERA = 10;
-    private ImageView takenPicture;
+    private ImageView takenPicture, rotatePicture;
     private String currentPhotoPath;
     private Boolean pictureTakenFromCamera;
 
@@ -56,6 +59,7 @@ public class FinalizeNewCardActivity extends AppCompatActivity {
         EditText secondDetails = findViewById(R.id.enter_second_details);
         ImageView takePictureButton = findViewById(R.id.take_picture);
         takenPicture = findViewById(R.id.taken_picture);
+        rotatePicture = findViewById(R.id.rotate_picture);
         pictureTakenFromCamera = false;
 
         FloatingActionButton createNewCardFloatingButton = findViewById(R.id.create_new_card_button);
@@ -104,6 +108,41 @@ public class FinalizeNewCardActivity extends AppCompatActivity {
                 } else {
                     // Permission has already been granted
                     dispatchTakePictureIntent();
+                }
+
+            }
+        });
+
+        rotatePicture.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if(pictureTakenFromCamera){
+                    int targetW = takenPicture.getWidth();
+                    int targetH = takenPicture.getHeight();
+                    // Get the dimensions of the bitmap
+                    BitmapFactory.Options bmOptions = new BitmapFactory.Options();
+                    bmOptions.inJustDecodeBounds = true;
+
+                    int photoW = bmOptions.outWidth;
+                    int photoH = bmOptions.outHeight;
+
+                    // Determine how much to scale down the image
+                    int scaleFactor = Math.min(photoW/targetW, photoH/targetH);
+
+                    // Decode the image file into a Bitmap sized to fill the View
+                    bmOptions.inJustDecodeBounds = false;
+                    bmOptions.inSampleSize = scaleFactor;
+                    bmOptions.inPurgeable = true;
+
+                    Bitmap bitmap = BitmapFactory.decodeFile(currentPhotoPath, bmOptions);
+                    // here inside the currentPhotoPath is modified!
+                    fileForBitmap(rotateImage(bitmap, 90));
+
+                    bitmap = BitmapFactory.decodeFile(currentPhotoPath, bmOptions);
+
+                    takenPicture.setImageBitmap(bitmap);
+
                 }
 
             }
@@ -249,6 +288,33 @@ public class FinalizeNewCardActivity extends AppCompatActivity {
 
         // save actual card set to SharedPreferences
         Utils.saveCreatedCardsToSharedPreferences(cardsJsonFormat);
+    }
+
+    private static Bitmap rotateImage(Bitmap img, int degree) {
+        Matrix matrix = new Matrix();
+        matrix.postRotate(degree);
+        Bitmap rotatedImg = Bitmap.createBitmap(img, 0, 0, img.getWidth(), img.getHeight(), matrix, true);
+        img.recycle();
+        return rotatedImg;
+    }
+
+    private void fileForBitmap(Bitmap bitmap) {
+        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
+        File file = null;
+        try {
+            file = createImageFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            FileOutputStream fo = new FileOutputStream(file);
+            fo.write(bytes.toByteArray());
+            fo.flush();
+            fo.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 
