@@ -56,4 +56,7 @@
 
     <string name="FinalizeNewCard_Toast_Message">Fill cards details!</string>
 
+    <string name="NotificationGoldenSentenceTitle1">Daily Golden Sentence for You!</string>
+    <string name="NotificationGoldenSentenceText1">Tap for details!</string>
+
 </resources>

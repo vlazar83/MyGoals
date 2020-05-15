@@ -89,7 +89,7 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
 
         setupStatistics();
         createNotificationChannel();
-        scheduleAlarm();
+        Utils.scheduleAlarm(13,15,86400000, ReminderBroadcast.class);
 
     }
 
@@ -442,21 +442,4 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
         }
 
     }
-
-    private void scheduleAlarm(){
-
-        Intent intent = new Intent(MainActivity.this, ReminderBroadcast.class);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(MainActivity.this, 0, intent, 0);
-        AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
-
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTimeInMillis(System.currentTimeMillis());
-        calendar.set(Calendar.HOUR_OF_DAY, 13);
-        calendar.set(Calendar.MINUTE, 15);
-
-        alarmManager.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
-
-    }
-
-
 }

@@ -58,5 +58,8 @@
 
     <string name="FinalizeNewCard_Toast_Message">Töltds ki a kártya részleteit!</string>
 
+    <string name="NotificationGoldenSentenceTitle1">Napi aranymondás!</string>
+    <string name="NotificationGoldenSentenceText1">Kattints a részletekért!</string>
+
 
 </resources>

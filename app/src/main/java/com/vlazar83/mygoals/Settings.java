@@ -1,6 +1,7 @@
 package com.vlazar83.mygoals;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Settings {
 
@@ -94,4 +95,9 @@ public class Settings {
         return this.goldenSentences;
     }
 
+    public String getRandomGoldenSentence(){
+        Random rand = new Random();
+        int value = rand.nextInt(goldenSentences.size());
+        return goldenSentences.get(value);
+    }
 }

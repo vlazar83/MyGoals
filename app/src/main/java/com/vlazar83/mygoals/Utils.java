@@ -1,6 +1,9 @@
 package com.vlazar83.mygoals;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 
 import com.google.gson.Gson;
@@ -12,6 +15,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collection;
 
+import static android.content.Context.ALARM_SERVICE;
 import static android.content.Context.MODE_PRIVATE;
 
 public class Utils {
@@ -225,6 +229,21 @@ public class Utils {
             total += statisticsHolder.getStatistic(i).getBlueCardCount();
         }
         return String.valueOf(total);
+    }
+
+    public static void scheduleAlarm(int hour, int minute, long interval, Class classOfBroadcast){
+
+        Intent intent = new Intent(MyGoals.getAppContext(), classOfBroadcast);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(MyGoals.getAppContext(), 0, intent, 0);
+        AlarmManager alarmManager = (AlarmManager) MyGoals.getAppContext().getSystemService(ALARM_SERVICE);
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(System.currentTimeMillis());
+        calendar.set(Calendar.HOUR_OF_DAY, hour);
+        calendar.set(Calendar.MINUTE, minute);
+
+        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), interval,pendingIntent);
+
     }
 
 }
