@@ -16,7 +16,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".LeadingIdeaActivity"
-            android:parentActivityName=".MainActivity"/>
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".NotificationResultActivity"
             android:excludeFromRecents="true"
@@ -25,37 +26,45 @@
         <activity
             android:name=".SettingsActivity"
             android:label="@string/title_activity_settings"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".CreatedCardsActivity"
             android:label="@string/title_activity_created_cards"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".FinalizeNewCardActivity"
             android:label="@string/title_activity_finalize_new_card"
-            android:parentActivityName=".CreateNewCardActivity" />
+            android:parentActivityName=".CreateNewCardActivity"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".CreateNewCardActivity"
             android:label="@string/title_activity_create_new_card"
-            android:parentActivityName=".PlanTheCardSetActivity" />
-        <activity android:name=".StatisticsActivity" />
+            android:parentActivityName=".PlanTheCardSetActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".StatisticsActivity"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".PlanTheCardSetActivity"
             android:label="@string/title_activity_plan_the_card_set"
             android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.vlazar83.mygoals.MainActivity" />
         </activity>
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".IntroActivity" />
+        <activity android:name=".IntroActivity"
+            android:screenOrientation="portrait"/>
 
         <receiver android:name=".ReminderBroadcast" />
 

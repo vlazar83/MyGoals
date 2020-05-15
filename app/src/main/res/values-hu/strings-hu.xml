@@ -40,9 +40,9 @@
     <string name="toggle_button_owl_or_lark_status_lark_activity_settings">Pacsirta</string>
     <string name="TextView_golden_sentences_caption_activity_settings">Aranymondások</string>
 
-    <string name="IntroActivity_title1">Az applikácio célja</string>
+    <string name="IntroActivity_title1">Az applikáció célja</string>
     <string name="IntroActivity_description1">Abban segíteni, hogy a Kronoszban a Kairoszt megragadhassuk</string>
-    <string name="IntroActivity_title2">Az applikácio módszere</string>
+    <string name="IntroActivity_title2">Az applikáció módszere</string>
     <string name="IntroActivity_description2">“emlékeztetéssel ébresztget” - ahogy Péter fogalmaz (2Pt 1, 13)</string>
     <string name="IntroActivity_title3">Hogyan segít?</string>
     <string name="IntroActivity_description3">Nem univerzális időmenedzsment receptet nyújt, hanem abban segít, hogy a saját receptet összeállíthassuk</string>
