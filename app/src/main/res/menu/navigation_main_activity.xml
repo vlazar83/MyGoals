@@ -27,4 +27,9 @@
         android:title="@string/settings"
         />
 
+    <item
+        android:id="@+id/about"
+        android:title="@string/about"
+        />
+
 </menu>

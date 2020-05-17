@@ -10,6 +10,7 @@
     <string name="close_drawer">Menü zárás</string>
     <string name="checkStatistics">Statisztika</string>
     <string name="settings">Beállítások</string>
+    <string name="about">Info</string>
     <string name="own_cards">Saját kártyák</string>
     <string name="plan_the_card_set">Kártya pakli tervezés</string>
     <string name="title_activity_plan_the_card_set">Kártya pakli tervezés</string>
@@ -61,5 +62,42 @@
     <string name="NotificationGoldenSentenceTitle1">Napi aranymondás!</string>
     <string name="NotificationGoldenSentenceText1">Kattints a részletekért!</string>
 
+    <string name="InfoActivity_credits_details">
+        Kairosz application credits\n
+        Application version number: 1.0 \n
+        Project Code: https://github.com/vlazar83/MyGoals\n
+        Copyright (c) 2020 Viktor Lázár\n
+        License: MIT License\n\n
+
+        Other libraries used in this application:\n
+        Name: Android-Onboarder\n
+        Project Code: https://github.com/Swisyn/Android-Onboarder\n
+        Copyright (c) 2017 Cuneyt AYYILDIZ\n
+        License: MIT License\n\n
+
+        Name: CardStackView\n
+        Project Code: https://github.com/yuyakaido/CardStackView\n
+        Copyright (c) Copyright 2018 yuyakaido\n
+        License: Apache License, Version 2.0 - http://www.apache.org/licenses/LICENSE-2.0\n\n
+
+        Name: glide\n
+        Project Code: https://github.com/bumptech/glide\n
+        License: BSD, part MIT and Apache 2.0.\n\n
+
+        Name: RoundedImageView\n
+        Project Code: https://github.com/vinc3m1/RoundedImageView\n
+        Copyright 2017 Vincent Mi\n
+        License: Apache License, Version 2.0 - http://www.apache.org/licenses/LICENSE-2.0\n\n
+
+        Name: CircleProgress\n
+        Project Code: https://github.com/lzyzsd/CircleProgress\n
+        Copyright --\n
+        License: --\n\n
+
+        Name: ThreeTenABP\n
+        Project Code: https://github.com/JakeWharton/ThreeTenABP\n
+        Copyright (c) 2015 Jake Wharton\n
+        License: Apache License, Version 2.0 - http://www.apache.org/licenses/LICENSE-2.0\n
+    </string>
 
 </resources>

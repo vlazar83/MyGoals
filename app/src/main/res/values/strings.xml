@@ -8,6 +8,7 @@
     <string name="close_drawer">Close drawer</string>
     <string name="checkStatistics">Statistics</string>
     <string name="settings">Settings</string>
+    <string name="about">About</string>
     <string name="own_cards">Own cards</string>
     <string name="plan_the_card_set">Plan the Card Set</string>
     <string name="title_activity_plan_the_card_set">PlanTheCardSet</string>
@@ -58,5 +59,43 @@
 
     <string name="NotificationGoldenSentenceTitle1">Daily Golden Sentence for You!</string>
     <string name="NotificationGoldenSentenceText1">Tap for details!</string>
+
+    <string name="InfoActivity_credits_details">
+        Kairosz application credits\n
+        Application version number: 1.0 \n
+        Project Code: https://github.com/vlazar83/MyGoals\n
+        Copyright (c) 2020 Viktor Lázár\n
+        License: MIT License\n\n
+
+        Other libraries used in this application:\n
+        Name: Android-Onboarder\n
+        Project Code: https://github.com/Swisyn/Android-Onboarder\n
+        Copyright (c) 2017 Cuneyt AYYILDIZ\n
+        License: MIT License\n\n
+
+        Name: CardStackView\n
+        Project Code: https://github.com/yuyakaido/CardStackView\n
+        Copyright (c) Copyright 2018 yuyakaido\n
+        License: Apache License, Version 2.0 - http://www.apache.org/licenses/LICENSE-2.0\n\n
+
+        Name: glide\n
+        Project Code: https://github.com/bumptech/glide\n
+        License: BSD, part MIT and Apache 2.0.\n\n
+
+        Name: RoundedImageView\n
+        Project Code: https://github.com/vinc3m1/RoundedImageView\n
+        Copyright 2017 Vincent Mi\n
+        License: Apache License, Version 2.0 - http://www.apache.org/licenses/LICENSE-2.0\n\n
+
+        Name: CircleProgress\n
+        Project Code: https://github.com/lzyzsd/CircleProgress\n
+        Copyright --\n
+        License: --\n\n
+
+        Name: ThreeTenABP\n
+        Project Code: https://github.com/JakeWharton/ThreeTenABP\n
+        Copyright (c) 2015 Jake Wharton\n
+        License: Apache License, Version 2.0 - http://www.apache.org/licenses/LICENSE-2.0\n
+    </string>
 
 </resources>
