@@ -308,40 +308,62 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
     private List<CardShape> generateCards(){
 
         ArrayList<CardShape> cardShapesList = new ArrayList<CardShape>();
+
         //The leading Idea card comes always to the front
-
-        String leadingIdea = Utils.loadLeadingIdeaFromSharedPreferences();
-        if(leadingIdea != null && !leadingIdea.equalsIgnoreCase("") ){
-
-            LeadingIdeaActivity.leadingCardWasUpdated = true;
-
-        }
-
-        if(!LeadingIdeaActivity.leadingCardWasUpdated){
-            ActualCardSet.getInstance().addCardToFront(generateLeadingIdeaCard());
-        }
-
+        //check if we have a leading Idea card on front, if not add it.
         if(ActualCardSet.getInstance().getCardShapeList().size() == 0){
-            ActualCardSet.getInstance().addCardToFront(generateLeadingIdeaCard());
+            String leadingIdea = Utils.loadLeadingIdeaFromSharedPreferences();
+            if(leadingIdea != null && !leadingIdea.equalsIgnoreCase("") ){
+
+                ActualCardSet.getInstance().addCardToFront(generateLeadingIdeaCard(leadingIdea));
+
+            } else {
+
+                ActualCardSet.getInstance().addCardToFront(generateLeadingIdeaCard(null));
+
+            }
+        } else if(!(ActualCardSet.getInstance().getCardShapeList().get(0).getCardClass().equalsIgnoreCase("RedCard") && ActualCardSet.getInstance().getCardShapeList().get(0).getCardGoal().equalsIgnoreCase(getString(R.string.LeadingIdea_cardLabel)))){
+            String leadingIdea = Utils.loadLeadingIdeaFromSharedPreferences();
+            if(leadingIdea != null && !leadingIdea.equalsIgnoreCase("") ){
+
+                ActualCardSet.getInstance().addCardToFront(generateLeadingIdeaCard(leadingIdea));
+
+            } else {
+
+                ActualCardSet.getInstance().addCardToFront(generateLeadingIdeaCard(null));
+
+            }
         }
 
-        // check if we have a leading Idea card on front, if not add it.
-        if(!(ActualCardSet.getInstance().getCardShapeList().get(0).getCardClass().equalsIgnoreCase("RedCard") && ActualCardSet.getInstance().getCardShapeList().get(0).getCardGoal().equalsIgnoreCase(getString(R.string.LeadingIdea_cardLabel)))){
-            ActualCardSet.getInstance().addCardToFront(generateLeadingIdeaCard());
-        }
+
+
+
+
+
 
         cardShapesList.addAll(ActualCardSet.getInstance().getCardShapeList());
         return cardShapesList;
 
     }
 
-    private CardShape generateLeadingIdeaCard(){
+    private CardShape generateLeadingIdeaCard(String idea){
+
         CardFactory cardFactory = new CardFactory();
+
+        if(idea != null && !idea.equalsIgnoreCase("") ){
+
+            return cardFactory.getCardShape("RedCard", getString(R.string.LeadingIdea_cardLabel), idea, "https://source.unsplash.com/Xq1ntWruZQI/600x800");
+
+        } else {
+            return cardFactory.getCardShape("RedCard", getString(R.string.LeadingIdea_cardLabel), getString(R.string.LeadingIdeaActivity_default_entry), "https://source.unsplash.com/Xq1ntWruZQI/600x800");
+        }
+
+/*
         if(LeadingIdeaActivity.leadingIdeaDetail!= null && !LeadingIdeaActivity.leadingIdeaDetail.isEmpty()){
             return cardFactory.getCardShape("RedCard", getString(R.string.LeadingIdea_cardLabel), LeadingIdeaActivity.leadingIdeaDetail, "https://source.unsplash.com/Xq1ntWruZQI/600x800");
         } else {
             return cardFactory.getCardShape("RedCard", getString(R.string.LeadingIdea_cardLabel), getString(R.string.LeadingIdeaActivity_default_entry), "https://source.unsplash.com/Xq1ntWruZQI/600x800");
-        }
+        }*/
 
     }
 

@@ -20,9 +20,6 @@ import java.util.Collection;
 
 public class LeadingIdeaActivity extends AppCompatActivity {
 
-    static Boolean leadingCardWasUpdated = false;
-    static String leadingIdeaDetail = "";
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,10 +39,9 @@ public class LeadingIdeaActivity extends AppCompatActivity {
 
             // then add a new one to it.
             CardFactory cardFactory = new CardFactory();
+            String leadingIdeaDetail = "";
             leadingIdeaDetail = editText_Idea.getText().toString();
-            ActualCardSet.getInstance().addCardToFront(cardFactory.getCardShape("RedCard", getString(R.string.LeadingIdea_cardLabel), leadingIdeaDetail, "https://source.unsplash.com/Xq1ntWruZQI/600x800"));
-
-            leadingCardWasUpdated = true;
+            //ActualCardSet.getInstance().addCardToFront(cardFactory.getCardShape("RedCard", getString(R.string.LeadingIdea_cardLabel), leadingIdeaDetail, "https://source.unsplash.com/Xq1ntWruZQI/600x800"));
 
             //Create our gson instance
             GsonBuilder builder = new GsonBuilder();
