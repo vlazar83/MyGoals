@@ -5,12 +5,8 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
-
-import android.app.AlarmManager;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
-import android.app.PendingIntent;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
@@ -26,6 +22,7 @@ import com.google.android.material.navigation.NavigationView;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
+import com.jakewharton.threetenabp.AndroidThreeTen;
 import com.yuyakaido.android.cardstackview.CardStackLayoutManager;
 import com.yuyakaido.android.cardstackview.CardStackListener;
 import com.yuyakaido.android.cardstackview.CardStackView;
@@ -35,8 +32,9 @@ import com.yuyakaido.android.cardstackview.StackFrom;
 import com.yuyakaido.android.cardstackview.SwipeAnimationSetting;
 import com.yuyakaido.android.cardstackview.SwipeableMethod;
 
+import org.threeten.bp.LocalDate;
+
 import java.lang.reflect.Type;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collection;
@@ -59,6 +57,7 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        AndroidThreeTen.init(this);
 
         // check if this is the first run
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
