@@ -4,12 +4,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.gson.Gson;
 
 public class SettingsActivity extends AppCompatActivity {
@@ -36,6 +38,7 @@ public class SettingsActivity extends AppCompatActivity {
         ageNumber = findViewById(R.id.age_number);
         listView=findViewById(R.id.listView_for_goldenSentences);
         textView=findViewById(R.id.textView_for_goldenSentences);
+        FloatingActionButton addNewGoldenSentenceFloatingButton = findViewById(R.id.add_golden_sentence_fab);
 
         loadSettingsFromSharedPreferences();
 
@@ -43,6 +46,13 @@ public class SettingsActivity extends AppCompatActivity {
         final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_list_item_1, android.R.id.text1, listItem);
         listView.setAdapter(adapter);
+
+        addNewGoldenSentenceFloatingButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
 
 
     }
