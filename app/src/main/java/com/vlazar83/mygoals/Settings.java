@@ -1,7 +1,5 @@
 package com.vlazar83.mygoals;
 
-import android.util.Log;
-
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -89,17 +87,43 @@ public class Settings {
 
     }
 
+    public void setGoldenSentences(ArrayList<String> goldenSentences){
+
+        this.goldenSentences.clear();
+        this.goldenSentences.addAll(goldenSentences);
+
+    }
+
+
+    public void dropGoldenSentence(int index){
+
+        this.goldenSentences.remove(index);
+
+    }
+
     public void addGoldenSentence(String newSentence){
-        this.goldenSentences.add(newSentence);
+        this.goldenSentences.add(0,newSentence);
     }
 
     public ArrayList<String> getGoldenSentences(){
         return this.goldenSentences;
     }
 
+    public String getGoldenSentence(int index){
+        return this.goldenSentences.get(index);
+    }
+
     public String getRandomGoldenSentence(){
-        Random rand = new Random();
-        int value = rand.nextInt(goldenSentences.size());
-        return goldenSentences.get(value);
+        String randomSentence = "";
+        if(goldenSentences.isEmpty()){
+            randomSentence = MyGoals.getAppContext().getString(R.string.GoldenSentencesAreEmpty);
+        } else {
+            Random rand = new Random();
+            int value = rand.nextInt(goldenSentences.size());
+            if(value >=0 && value < goldenSentences.size()){
+                randomSentence = goldenSentences.get(value);
+            }
+        }
+        return randomSentence;
     }
 }

@@ -55,6 +55,12 @@
     <string name="LeadingIdea_menuItem">Leading Idea</string>
     <string name="LeadingIdea_cardLabel">Leading Idea</string>
 
+    <string name="AddGoldenSentenceActivity_label">Add new Golden Sentence</string>
+    <string name="AddGoldenSentenceActivity_default_entry">Golden Sentence</string>
+    <string name="AddGoldenSentenceActivity_button_update_label">Add</string>
+    <string name="GoldenSentencesAreEmpty">There are no golden sentences - add it in Settings</string>
+    <string name="GoldenSentencesDeleted_ToastMessage">Golden Sentence deleted!</string>
+
     <string name="FinalizeNewCard_Toast_Message">Fill cards details!</string>
 
     <string name="NotificationGoldenSentenceTitle1">Daily Golden Sentence for You!</string>

@@ -48,6 +48,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
                 android:layout_marginEnd="16dp"
+                android:focusable="auto"
+                android:focusedByDefault="true"
                 android:text="@string/toggle_button_default_activity_settings"
                 android:textOff="@string/toggle_button_family_status_in_family_activity_settings"
                 android:textOn="@string/toggle_button_family_status_alone_activity_settings"

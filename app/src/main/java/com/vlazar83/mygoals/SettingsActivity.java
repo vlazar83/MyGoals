@@ -2,25 +2,27 @@ package com.vlazar83.mygoals;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.ToggleButton;
-
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.gson.Gson;
+import java.util.ArrayList;
 
 public class SettingsActivity extends AppCompatActivity {
 
     private ToggleButton toggleButton, toggleButton_isExtrovert, toggleButton_isOwl;
     private EditText ageNumber;
     private ListView listView;
-    private TextView textView;
-    private String[] listItem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,22 +39,35 @@ public class SettingsActivity extends AppCompatActivity {
         toggleButton_isOwl = findViewById(R.id.toggle_button_owl_or_lark);
         ageNumber = findViewById(R.id.age_number);
         listView=findViewById(R.id.listView_for_goldenSentences);
-        textView=findViewById(R.id.textView_for_goldenSentences);
         FloatingActionButton addNewGoldenSentenceFloatingButton = findViewById(R.id.add_golden_sentence_fab);
 
         loadSettingsFromSharedPreferences();
 
-        listItem = Settings.getInstance().getGoldenSentences().stream().toArray(String[]::new);
-        final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_list_item_1, android.R.id.text1, listItem);
+        ArrayList<GoldenSentence> arrayOfGoldenSentences = new ArrayList<GoldenSentence>();
+        GoldenSentenceAdapter adapter = new GoldenSentenceAdapter(this, arrayOfGoldenSentences);
         listView.setAdapter(adapter);
+        for(int i =0; i<Settings.getInstance().getGoldenSentences().size();i++){
+            adapter.add(new GoldenSentence(Settings.getInstance().getGoldenSentence(i)));
+        }
 
-        addNewGoldenSentenceFloatingButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        listView.setOnItemClickListener((parent, view, position, id) -> {
 
+            if(Settings.getInstance().getGoldenSentences().size() > 0 && position < Settings.getInstance().getGoldenSentences().size()) {
+                Settings.getInstance().dropGoldenSentence(position);
+
+                adapter.clear();
+                for(int i =0; i<Settings.getInstance().getGoldenSentences().size();i++){
+                    adapter.add(new GoldenSentence(Settings.getInstance().getGoldenSentence(i)));
+                }
+                adapter.notifyDataSetChanged();
+
+                saveSettingsToSharedPreferences();
+                Toast.makeText(SettingsActivity.this, getApplicationContext().getString(R.string.GoldenSentencesDeleted_ToastMessage), Toast.LENGTH_LONG).show();
             }
+
         });
+
+        addNewGoldenSentenceFloatingButton.setOnClickListener(v -> goToCreateNewGoldenSentence());
 
 
     }
@@ -97,6 +112,7 @@ public class SettingsActivity extends AppCompatActivity {
             Settings.getInstance().setAge(settings.getAge());
             Settings.getInstance().setIsExtrovert(settings.getIsExtrovert());
             Settings.getInstance().setIsOwl(settings.getIsOwl());
+            Settings.getInstance().setGoldenSentences(settings.getGoldenSentences());
 
             setupValuesOnUi();
 
@@ -129,6 +145,38 @@ public class SettingsActivity extends AppCompatActivity {
         toggleButton_isOwl.setChecked(Settings.getInstance().getIsOwl());
         ageNumber.setText(Integer.toString(Settings.getInstance().getAge()));
 
+    }
+
+    private void goToCreateNewGoldenSentence(){
+        Intent intent = new Intent(SettingsActivity.this, AddGoldenSentenceActivity.class);
+        startActivity(intent);
+
+    }
+
+    public class GoldenSentence {
+        public String goldenSentence;
+
+        public GoldenSentence(String goldenSentence) {
+            this.goldenSentence = goldenSentence;
+        }
+    }
+
+    public class GoldenSentenceAdapter extends ArrayAdapter<GoldenSentence> {
+        public GoldenSentenceAdapter(Context context, ArrayList<GoldenSentence> goldenSentences) {
+            super(context, 0, goldenSentences);
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+
+            GoldenSentence goldenSentence = getItem(position);
+            if (convertView == null) {
+                convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_golden_sentence, parent, false);
+            }
+            TextView tvName = (TextView) convertView.findViewById(R.id.goldenSentence);
+            tvName.setText(goldenSentence.goldenSentence);
+            return convertView;
+        }
     }
 
 }

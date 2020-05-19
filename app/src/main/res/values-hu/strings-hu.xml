@@ -57,6 +57,12 @@
     <string name="LeadingIdea_menuItem">Vezérgondolat</string>
     <string name="LeadingIdea_cardLabel">Vezérgondolat</string>
 
+    <string name="AddGoldenSentenceActivity_label">Új aranymondás keszítése</string>
+    <string name="AddGoldenSentenceActivity_default_entry">Új aranymondás</string>
+    <string name="AddGoldenSentenceActivity_button_update_label">Hozzáadás</string>
+    <string name="GoldenSentencesAreEmpty">Nincs egy aranymondás sem, keszíthetsz a Beállítások-ban</string>
+    <string name="GoldenSentencesDeleted_ToastMessage">Aranymondás törölve!</string>
+
     <string name="FinalizeNewCard_Toast_Message">Töltds ki a kártya részleteit!</string>
 
     <string name="NotificationGoldenSentenceTitle1">Napi aranymondás!</string>
