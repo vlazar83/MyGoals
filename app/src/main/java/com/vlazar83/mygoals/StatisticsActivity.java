@@ -10,6 +10,7 @@ import android.view.animation.DecelerateInterpolator;
 import android.widget.TextView;
 
 import com.github.lzyzsd.circleprogress.CircleProgress;
+import com.google.gson.Gson;
 
 import java.util.Calendar;
 import java.util.Timer;
@@ -29,6 +30,8 @@ public class StatisticsActivity extends AppCompatActivity{
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         // to make the navigation back
         toolbar.setNavigationOnClickListener(view -> onBackPressed());
+
+        loadSettingsFromSharedPreferences();
 
         CircleProgress circleProgressBlue = findViewById(R.id.circle_progress_blue);
         CircleProgress circleProgressGreen = findViewById(R.id.circle_progress_green);
@@ -50,6 +53,23 @@ public class StatisticsActivity extends AppCompatActivity{
         circleProgressRed.setFinishedColor(Color.RED);
 
         timer = new Timer();
+        int redMax = 0, greenMax = 0, blueMax = 0, redMax2, greenMax2, blueMax2;
+        if((Integer.valueOf(Utils.getRedCardsCountFromWeek(statisticsHolder))*100/Settings.getInstance().getWeekly_target_red_card()) > 100) redMax = 100; else{
+            redMax =Integer.valueOf(Utils.getRedCardsCountFromWeek(statisticsHolder))*100/Settings.getInstance().getWeekly_target_red_card();
+        }
+
+        if((Integer.valueOf(Utils.getGreenCardsCountFromWeek(statisticsHolder))*100/Settings.getInstance().getWeekly_target_green_card()) > 100) greenMax = 100; else{
+            greenMax =Integer.valueOf(Utils.getGreenCardsCountFromWeek(statisticsHolder))*100/Settings.getInstance().getWeekly_target_green_card();
+        }
+
+        if((Integer.valueOf(Utils.getBlueCardsCountFromWeek(statisticsHolder))*100/Settings.getInstance().getWeekly_target_blue_card()) > 100) blueMax = 100; else{
+            blueMax =Integer.valueOf(Utils.getBlueCardsCountFromWeek(statisticsHolder))*100/Settings.getInstance().getWeekly_target_blue_card();
+        }
+
+        redMax2 = redMax;
+        greenMax2 = greenMax;
+        blueMax2 = blueMax;
+
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
@@ -57,9 +77,9 @@ public class StatisticsActivity extends AppCompatActivity{
                     @Override
                     public void run() {
 
-                        ObjectAnimator anim = ObjectAnimator.ofInt(circleProgressBlue, "progress", 0, 10);
-                        ObjectAnimator anim2 = ObjectAnimator.ofInt(circleProgressGreen, "progress", 0, 50);
-                        ObjectAnimator anim3 = ObjectAnimator.ofInt(circleProgressRed, "progress", 0, 100);
+                        ObjectAnimator anim = ObjectAnimator.ofInt(circleProgressBlue, "progress", 0, blueMax2);
+                        ObjectAnimator anim2 = ObjectAnimator.ofInt(circleProgressGreen, "progress", 0, greenMax2);
+                        ObjectAnimator anim3 = ObjectAnimator.ofInt(circleProgressRed, "progress", 0, redMax2);
                         anim.setInterpolator(new DecelerateInterpolator());
                         anim.setDuration(500);
                         anim.start();
@@ -78,4 +98,26 @@ public class StatisticsActivity extends AppCompatActivity{
         }, 1000, 5000);
 
     }
+
+    private void loadSettingsFromSharedPreferences(){
+
+        Gson gson = new Gson();
+        String settingsJsonFormat = Utils.loadSettingsFromSharedPreferences();
+        Settings settings = gson.fromJson(settingsJsonFormat, Settings.class);
+
+        // set it up in singleton Settings
+        if(settings != null) {
+            Settings.getInstance().setInFamily(settings.isInFamily());
+            Settings.getInstance().setAge(settings.getAge());
+            Settings.getInstance().setIsExtrovert(settings.getIsExtrovert());
+            Settings.getInstance().setIsOwl(settings.getIsOwl());
+            Settings.getInstance().setGoldenSentences(settings.getGoldenSentences());
+            Settings.getInstance().setWeekly_target_red_card(settings.getWeekly_target_red_card());
+            Settings.getInstance().setWeekly_target_green_card(settings.getWeekly_target_green_card());
+            Settings.getInstance().setWeekly_target_blue_card(settings.getWeekly_target_blue_card());
+
+        }
+
+    }
+
 }

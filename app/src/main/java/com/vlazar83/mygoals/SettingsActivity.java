@@ -36,13 +36,6 @@ public class SettingsActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        redCardsTargetButton = findViewById(R.id.red_cards_target_button);
-        redCardsTargetButton.setText(String.valueOf(Settings.getInstance().getWeekly_target_red_card()));
-        greenCardsTargetButton = findViewById(R.id.green_cards_target_button);
-        greenCardsTargetButton.setText(String.valueOf(Settings.getInstance().getWeekly_target_green_card()));
-        blueCardsTargetButton = findViewById(R.id.blue_cards_target_button);
-        blueCardsTargetButton.setText(String.valueOf(Settings.getInstance().getWeekly_target_blue_card()));
-
         toggleButton = findViewById(R.id.toggle_button);
         toggleButton_isExtrovert = findViewById(R.id.toggle_button_introvert_or_extrovert);
         toggleButton_isOwl = findViewById(R.id.toggle_button_owl_or_lark);
@@ -51,6 +44,13 @@ public class SettingsActivity extends AppCompatActivity {
         FloatingActionButton addNewGoldenSentenceFloatingButton = findViewById(R.id.add_golden_sentence_fab);
 
         loadSettingsFromSharedPreferences();
+
+        redCardsTargetButton = findViewById(R.id.red_cards_target_button);
+        redCardsTargetButton.setText(String.valueOf(Settings.getInstance().getWeekly_target_red_card()));
+        greenCardsTargetButton = findViewById(R.id.green_cards_target_button);
+        greenCardsTargetButton.setText(String.valueOf(Settings.getInstance().getWeekly_target_green_card()));
+        blueCardsTargetButton = findViewById(R.id.blue_cards_target_button);
+        blueCardsTargetButton.setText(String.valueOf(Settings.getInstance().getWeekly_target_blue_card()));
 
         ArrayList<GoldenSentence> arrayOfGoldenSentences = new ArrayList<GoldenSentence>();
         GoldenSentenceAdapter adapter = new GoldenSentenceAdapter(this, arrayOfGoldenSentences);
