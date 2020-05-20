@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -23,6 +24,7 @@ public class SettingsActivity extends AppCompatActivity {
     private ToggleButton toggleButton, toggleButton_isExtrovert, toggleButton_isOwl;
     private EditText ageNumber;
     private ListView listView;
+    private Button redCardsTargetButton,greenCardsTargetButton,blueCardsTargetButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +35,13 @@ public class SettingsActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar_in_settings_activity);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        redCardsTargetButton = findViewById(R.id.red_cards_target_button);
+        redCardsTargetButton.setText(String.valueOf(Settings.getInstance().getWeekly_target_red_card()));
+        greenCardsTargetButton = findViewById(R.id.green_cards_target_button);
+        greenCardsTargetButton.setText(String.valueOf(Settings.getInstance().getWeekly_target_green_card()));
+        blueCardsTargetButton = findViewById(R.id.blue_cards_target_button);
+        blueCardsTargetButton.setText(String.valueOf(Settings.getInstance().getWeekly_target_blue_card()));
 
         toggleButton = findViewById(R.id.toggle_button);
         toggleButton_isExtrovert = findViewById(R.id.toggle_button_introvert_or_extrovert);
@@ -68,6 +77,36 @@ public class SettingsActivity extends AppCompatActivity {
         });
 
         addNewGoldenSentenceFloatingButton.setOnClickListener(v -> goToCreateNewGoldenSentence());
+
+        redCardsTargetButton.setOnClickListener(v -> {
+            if(Settings.getInstance().getWeekly_target_red_card() == 10){
+                Settings.getInstance().setWeekly_target_red_card(1);
+                redCardsTargetButton.setText(String.valueOf(Settings.getInstance().getWeekly_target_red_card()));
+            } else {
+                Settings.getInstance().setWeekly_target_red_card(Settings.getInstance().getWeekly_target_red_card()+1);
+                redCardsTargetButton.setText(String.valueOf(Settings.getInstance().getWeekly_target_red_card()));
+            }
+        });
+
+        greenCardsTargetButton.setOnClickListener(v -> {
+            if(Settings.getInstance().getWeekly_target_green_card() == 10){
+                Settings.getInstance().setWeekly_target_green_card(1);
+                greenCardsTargetButton.setText(String.valueOf(Settings.getInstance().getWeekly_target_green_card()));
+            } else {
+                Settings.getInstance().setWeekly_target_green_card(Settings.getInstance().getWeekly_target_green_card()+1);
+                greenCardsTargetButton.setText(String.valueOf(Settings.getInstance().getWeekly_target_green_card()));
+            }
+        });
+
+        blueCardsTargetButton.setOnClickListener(v -> {
+            if(Settings.getInstance().getWeekly_target_blue_card() == 10){
+                Settings.getInstance().setWeekly_target_blue_card(1);
+                blueCardsTargetButton.setText(String.valueOf(Settings.getInstance().getWeekly_target_blue_card()));
+            } else {
+                Settings.getInstance().setWeekly_target_blue_card(Settings.getInstance().getWeekly_target_blue_card()+1);
+                blueCardsTargetButton.setText(String.valueOf(Settings.getInstance().getWeekly_target_blue_card()));
+            }
+        });
 
 
     }
@@ -113,6 +152,9 @@ public class SettingsActivity extends AppCompatActivity {
             Settings.getInstance().setIsExtrovert(settings.getIsExtrovert());
             Settings.getInstance().setIsOwl(settings.getIsOwl());
             Settings.getInstance().setGoldenSentences(settings.getGoldenSentences());
+            Settings.getInstance().setWeekly_target_red_card(settings.getWeekly_target_red_card());
+            Settings.getInstance().setWeekly_target_green_card(settings.getWeekly_target_green_card());
+            Settings.getInstance().setWeekly_target_blue_card(settings.getWeekly_target_blue_card());
 
             setupValuesOnUi();
 

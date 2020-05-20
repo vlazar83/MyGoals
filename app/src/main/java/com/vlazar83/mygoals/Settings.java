@@ -7,10 +7,17 @@ public class Settings {
 
     private static Settings uniqueInstance = null;
     public static final int default_age = 40;
+    public static final int weekly_target_red_card_default = 3;
+    public static final int weekly_target_blue_card_default = 3;
+    public static final int weekly_target_green_card_default = 3;
     public static final int max_age = 100;
     public static final int min_age = 18;
     private boolean inFamily;
     private int age;
+
+    private int weekly_target_red_card;
+    private int weekly_target_green_card;
+    private int weekly_target_blue_card;
     private boolean isExtrovert;
     private boolean isOwl;
     private ArrayList<String> goldenSentences;
@@ -22,6 +29,9 @@ public class Settings {
         this.isOwl = true;
         this.goldenSentences = new ArrayList<String>();
         setDefaultGoldenSentences();
+        weekly_target_red_card = weekly_target_red_card_default;
+        weekly_target_blue_card = weekly_target_blue_card_default;
+        weekly_target_green_card = weekly_target_green_card_default;
     }
 
     public static synchronized Settings getInstance(){
@@ -125,5 +135,29 @@ public class Settings {
             }
         }
         return randomSentence;
+    }
+
+    public int getWeekly_target_red_card() {
+        return weekly_target_red_card;
+    }
+
+    public void setWeekly_target_red_card(int weekly_target_red_card) {
+        this.weekly_target_red_card = weekly_target_red_card;
+    }
+
+    public int getWeekly_target_green_card() {
+        return weekly_target_green_card;
+    }
+
+    public void setWeekly_target_green_card(int weekly_target_green_card) {
+        this.weekly_target_green_card = weekly_target_green_card;
+    }
+
+    public int getWeekly_target_blue_card() {
+        return weekly_target_blue_card;
+    }
+
+    public void setWeekly_target_blue_card(int weekly_target_blue_card) {
+        this.weekly_target_blue_card = weekly_target_blue_card;
     }
 }

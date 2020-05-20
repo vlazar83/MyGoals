@@ -60,6 +60,8 @@
     <string name="AddGoldenSentenceActivity_button_update_label">Add</string>
     <string name="GoldenSentencesAreEmpty">There are no golden sentences - add it in Settings</string>
     <string name="GoldenSentencesDeleted_ToastMessage">Golden Sentence deleted!</string>
+    <string name="SettingsActivity_targets_label">Weekly Targets:</string>
+    <string name="SettingsActivity_targets_button_default_label">3</string>
 
     <string name="FinalizeNewCard_Toast_Message">Fill cards details!</string>
 

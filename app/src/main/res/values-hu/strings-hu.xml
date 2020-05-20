@@ -62,6 +62,8 @@
     <string name="AddGoldenSentenceActivity_button_update_label">Hozzáadás</string>
     <string name="GoldenSentencesAreEmpty">Nincs egy aranymondás sem, keszíthetsz a Beállítások-ban</string>
     <string name="GoldenSentencesDeleted_ToastMessage">Aranymondás törölve!</string>
+    <string name="SettingsActivity_targets_label">Heti célok:</string>
+    <string name="SettingsActivity_targets_button_default_label">3</string>
 
     <string name="FinalizeNewCard_Toast_Message">Töltds ki a kártya részleteit!</string>
 
