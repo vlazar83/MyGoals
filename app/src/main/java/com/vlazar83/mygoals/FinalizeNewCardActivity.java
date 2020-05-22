@@ -263,6 +263,10 @@ public class FinalizeNewCardActivity extends AppCompatActivity {
                     createNewCardFloatingButton.setBackgroundTintList(ColorStateList.valueOf(Color.RED));
                     break;
 
+                case "LightGreenCard":
+                    createNewCardFloatingButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.light_green)));
+                    break;
+
                 case "GreenCard":
                     createNewCardFloatingButton.setBackgroundTintList(ColorStateList.valueOf(Color.GREEN));
                     break;

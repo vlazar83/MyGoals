@@ -214,6 +214,15 @@ public class Utils {
         return String.valueOf(total);
     }
 
+    public static String getLightGreenCardsCountFromWeek(StatisticsHolder statisticsHolder){
+        int total=0;
+
+        for(int i=getFirstDayOfWeek();i<getLastDayOfWeek();i++){
+            total += statisticsHolder.getStatistic(i).getLightGreenCardCount();
+        }
+        return String.valueOf(total);
+    }
+
     public static String getGreenCardsCountFromWeek(StatisticsHolder statisticsHolder){
         int total=0;
 

@@ -453,6 +453,9 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
             case "GreenCard":
                 todayStatistics.incrementGreenCardCount();
                 break;
+            case "LightGreenCard":
+                todayStatistics.incrementLightGreenCardCount();
+                break;
             case "RedCard":
                 todayStatistics.incrementRedCardCount();
                 break;

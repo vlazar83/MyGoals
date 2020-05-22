@@ -12,6 +12,8 @@ public class CardFactory {
             return new RedCard(cardGoal, city, url);
         } else if (cardShapeType.equalsIgnoreCase("GreenCard")){
             return new GreenCard(cardGoal, city, url);
+        } else if (cardShapeType.equalsIgnoreCase("LightGreenCard")){
+            return new LightGreenCard(cardGoal, city, url);
         }
 
         return null;

@@ -46,7 +46,7 @@ public class StatisticsActivity extends AppCompatActivity{
 
         blueCardsCountTextView.setText(String.valueOf(statisticsHolder.getStatistic(today).getBlueCardCount()) + "/" + Utils.getBlueCardsCountFromWeek(statisticsHolder));
         redCardsCountTextView.setText(String.valueOf(statisticsHolder.getStatistic(today).getRedCardCount()) + "/" + Utils.getRedCardsCountFromWeek(statisticsHolder));
-        greenCardsCountTextView.setText(String.valueOf(statisticsHolder.getStatistic(today).getGreenCardCount()) + "/" + Utils.getGreenCardsCountFromWeek(statisticsHolder));
+        greenCardsCountTextView.setText(String.valueOf(statisticsHolder.getStatistic(today).getGreenCardCount() + statisticsHolder.getStatistic(today).getLightGreenCardCount()) + "/" + String.valueOf(Integer.valueOf(Utils.getGreenCardsCountFromWeek(statisticsHolder)) + Integer.valueOf(Utils.getLightGreenCardsCountFromWeek(statisticsHolder))));
 
         circleProgressBlue.setFinishedColor(Color.BLUE);
         circleProgressGreen.setFinishedColor(Color.GREEN);

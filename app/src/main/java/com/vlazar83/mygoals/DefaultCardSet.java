@@ -36,7 +36,7 @@ public class DefaultCardSet {
         addCard(cardFactory.getCardShape("RedCard", "Istentisztelet", "Vasarnaponkent", getUriToResource(MyGoals.getAppContext(),R.drawable.istentisztelet_szines_600_800).toString()));
         addCard(cardFactory.getCardShape("BlueCard", "Olvasas", "Regenyeket", getUriToResource(MyGoals.getAppContext(),R.drawable.olvasas_szines_600_800).toString()));
         addCard(cardFactory.getCardShape("GreenCard", "Tarsasjatek", "Monopoly", getUriToResource(MyGoals.getAppContext(),R.drawable.tarsasjatek_szines_800_600).toString()));
-        addCard(cardFactory.getCardShape("GreenCard", "put the trash out3", "Kyoto", "https://source.unsplash.com/buF62ewDLcQ/600x800"));
+        addCard(cardFactory.getCardShape("LightGreenCard", "LightGreenCard example", "Kyoto", "https://source.unsplash.com/buF62ewDLcQ/600x800"));
         addCard(cardFactory.getCardShape("RedCard", "put the trash out4", "New York", "https://source.unsplash.com/THozNzxEP3g/600x800"));
         addCard(cardFactory.getCardShape("GreenCard", "put the trash out5", "New York", "https://source.unsplash.com/USrZRcRS2Lw/600x800"));
     }
