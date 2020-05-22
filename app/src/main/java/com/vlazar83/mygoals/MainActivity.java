@@ -66,12 +66,9 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
             SharedPreferences.Editor edit = prefs.edit();
             edit.putBoolean(getString(R.string.pref_previously_started), Boolean.TRUE);
             edit.commit();
+            createNotificationChannel();
+            AlarmScheduler.scheduleAllAlarms();
 
-            if(Settings.getInstance().getIsOwl()){
-                Utils.scheduleAlarm(19,15,86400000, ReminderBroadcast.class);
-            } else {
-                Utils.scheduleAlarm(10,15,86400000, ReminderBroadcast.class);
-            }
             startActivity(new Intent(MainActivity.this, IntroActivity.class));
         }
 
@@ -92,7 +89,6 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
         adapter.setCards(generateCards());
 
         setupStatistics();
-        createNotificationChannel();
 
     }
 

@@ -257,6 +257,22 @@ public class Utils {
 
     }
 
+    public static void scheduleAlarmOnSpecifiedDay(int dayOfWeek, int hour, int minute, Class classOfBroadcast){
+
+        Intent intent = new Intent(MyGoals.getAppContext(), classOfBroadcast);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(MyGoals.getAppContext(), 0, intent, 0);
+        AlarmManager alarmManager = (AlarmManager) MyGoals.getAppContext().getSystemService(ALARM_SERVICE);
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(System.currentTimeMillis());
+        calendar.set(Calendar.DAY_OF_WEEK, dayOfWeek);
+        calendar.set(Calendar.HOUR_OF_DAY, hour);
+        calendar.set(Calendar.MINUTE, minute);
+
+        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),7 * 24 * 60 * 60 * 1000,pendingIntent);
+
+    }
+
     public static void cancelAllAlarms(){
         NotificationManagerCompat notificationManager = NotificationManagerCompat.from(MyGoals.getAppContext());
         notificationManager.cancelAll();

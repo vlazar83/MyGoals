@@ -17,7 +17,13 @@ public class NotificationResultActivity extends AppCompatActivity {
         TextView content = findViewById(R.id.notificationContent);
 
         Intent intent = getIntent();
-        title.setText(intent.getStringExtra(ReminderBroadcast.TITLE));
-        content.setText(intent.getStringExtra(ReminderBroadcast.CONTENT));
+        if(intent.getStringExtra(ReminderBroadcast.TITLE) != null && !intent.getStringExtra(ReminderBroadcast.TITLE).equalsIgnoreCase("") ){
+            title.setText(intent.getStringExtra(ReminderBroadcast.TITLE));
+            content.setText(intent.getStringExtra(ReminderBroadcast.CONTENT));
+        } else if(intent.getStringExtra(ReminderBroadcastForIntroExtro.TITLE_FOR_INTRO_EXTRO) != null && !intent.getStringExtra(ReminderBroadcastForIntroExtro.TITLE_FOR_INTRO_EXTRO).equalsIgnoreCase("") ){
+            title.setText(intent.getStringExtra(ReminderBroadcastForIntroExtro.TITLE_FOR_INTRO_EXTRO));
+            content.setText(intent.getStringExtra(ReminderBroadcastForIntroExtro.CONTENT_FOR_INTRO_EXTRO));
+        }
+
     }
 }

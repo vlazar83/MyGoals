@@ -10,6 +10,7 @@
 
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
 
     <application
         android:name=".MyGoals"
@@ -19,6 +20,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+        <receiver android:name=".SampleBootReceiver"
+            android:enabled="true">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"></action>
+            </intent-filter>
+        </receiver>
+
         <activity android:name=".AddGoldenSentenceActivity"
             android:parentActivityName=".SettingsActivity"
             android:screenOrientation="portrait"></activity>
@@ -82,6 +91,7 @@
             android:screenOrientation="portrait" />
 
         <receiver android:name=".ReminderBroadcast" />
+        <receiver android:name=".ReminderBroadcastForIntroExtro" />
 
         <provider
             android:name="androidx.core.content.FileProvider"

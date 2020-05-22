@@ -53,7 +53,7 @@
 
     <string name="LeadingIdeaActivity_label">Életed vezérgondolata</string>
     <string name="LeadingIdeaActivity_default_entry">Vezérgondolat</string>
-    <string name="LeadingIdeaActivity_button_update_label">Módosítas</string>
+    <string name="LeadingIdeaActivity_button_update_label">Módosítás</string>
     <string name="LeadingIdea_menuItem">Vezérgondolat</string>
     <string name="LeadingIdea_cardLabel">Vezérgondolat</string>
 
@@ -69,6 +69,11 @@
 
     <string name="NotificationGoldenSentenceTitle1">Napi aranymondás!</string>
     <string name="NotificationGoldenSentenceText1">Kattints a részletekért!</string>
+
+    <string name="NotificationIntroExtroTitle1">Figyelmeztetés a célok elérésével kapcsolatban</string>
+    <string name="NotificationIntroExtroText1">Kattints a részletekért!</string>
+    <string name="NotificationIntroText_more_private_time">Próbálj több énidőt adni magadnak.</string>
+    <string name="NotificationExtroText_more_private_time">Próbálj több énidőt adni magadnak. Tölts több időt a barátaiddal / családoddal!</string>
 
     <string name="InfoActivity_credits_details">
         Kairosz application credits\n
