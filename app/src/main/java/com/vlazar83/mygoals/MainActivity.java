@@ -47,6 +47,8 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
     private CardStackAdapter adapter;
     private DrawerLayout drawerLayout;
     private StatisticsHolder statisticsHolder;
+    private CardShape swipedCard;  // for the case if we select the card using swipe gesture
+    private Boolean swipedUsingButton = false;
 
     @Override
     protected void onResume() {
@@ -126,7 +128,16 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
 
     @Override
     public void onCardSwiped(Direction direction) {
+        if(direction == Direction.Right && swipedCard != null && !swipedUsingButton){
 
+            // only then add it to statistics if it is not the Leading Idea card
+            if(!(swipedCard.getCardClass().equalsIgnoreCase("RedCard") && swipedCard.getCardGoal().equalsIgnoreCase(getString(R.string.LeadingIdea_cardLabel)))){
+                addToStatistics(swipedCard);
+            }
+        }
+
+        swipedCard = null;
+        swipedUsingButton = false;
     }
 
     @Override
@@ -146,7 +157,7 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
 
     @Override
     public void onCardDisappeared(View view, int position) {
-
+        swipedCard = adapter.getCard(manager.getTopPosition());
     }
 
     private void setupButton(){
@@ -197,6 +208,7 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
                     .setInterpolator(new AccelerateInterpolator())
                     .build();
             manager.setSwipeAnimationSetting(setting);
+            swipedUsingButton = true;
             cardStackView.swipe();
         });
 

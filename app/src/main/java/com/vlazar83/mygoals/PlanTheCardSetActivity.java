@@ -34,6 +34,8 @@ public class PlanTheCardSetActivity extends AppCompatActivity implements CardSta
     private ActualCardSet actualCardSet;
     private ImageView createNewCard;
     private CreatedCardSet createdCardSet;
+    private CardShape swipedCard;  // for the case if we select the card during the planning using swipe gesture
+    private Boolean swipedUsingButton = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,7 +66,12 @@ public class PlanTheCardSetActivity extends AppCompatActivity implements CardSta
 
     @Override
     public void onCardSwiped(Direction direction) {
+        if(direction == Direction.Right && swipedCard != null && !swipedUsingButton){
+            addFirstThroughSwipe(swipedCard);
+        }
 
+        swipedCard = null;
+        swipedUsingButton = false;
     }
 
     @Override
@@ -84,7 +91,7 @@ public class PlanTheCardSetActivity extends AppCompatActivity implements CardSta
 
     @Override
     public void onCardDisappeared(View view, int position) {
-
+        swipedCard = adapter.getCard(manager.getTopPosition());
     }
 
     private void setupButton(){
@@ -137,6 +144,7 @@ public class PlanTheCardSetActivity extends AppCompatActivity implements CardSta
                     .setInterpolator(new AccelerateInterpolator())
                     .build();
             manager.setSwipeAnimationSetting(setting);
+            swipedUsingButton = true;
             cardStackView.swipe();
         });
 
@@ -155,6 +163,12 @@ public class PlanTheCardSetActivity extends AppCompatActivity implements CardSta
         actualCardSet.addCard(adapter.getCard(manager.getTopPosition()));
 
     }
+
+    private void addFirstThroughSwipe(CardShape card){
+        actualCardSet.addCard(card);
+        swipedCard = null;
+    }
+
     private void removeFirst(){
         if (adapter.getCards().isEmpty()) {
             return;
