@@ -33,20 +33,21 @@ public class DefaultCardSet {
 
     private void fillWithDefaultSet(){
         CardFactory cardFactory = new CardFactory();
-        addCard(cardFactory.getCardShape("RedCard", "Work", "worships on Sundays", getUriToResource(MyGoals.getAppContext(),R.drawable.red_card_1).toString()));
-        addCard(cardFactory.getCardShape("RedCard", "Work", "teaching about God's love", getUriToResource(MyGoals.getAppContext(),R.drawable.red_card_2).toString()));
-        addCard(cardFactory.getCardShape("RedCard", "Work", "preparations...", getUriToResource(MyGoals.getAppContext(),R.drawable.red_card_3).toString()));
-        addCard(cardFactory.getCardShape("RedCard", "Work", "other work related activities", getUriToResource(MyGoals.getAppContext(),R.drawable.red_card_generic).toString()));
+        addCard(cardFactory.getCardShape("RedCard", MyGoals.getAppContext().getString(R.string.DefaultCard_red_goal), MyGoals.getAppContext().getString(R.string.DefaultCard_red_geneic), getUriToResource(MyGoals.getAppContext(),R.drawable.red_card_generic).toString()));
+        addCard(cardFactory.getCardShape("RedCard", MyGoals.getAppContext().getString(R.string.DefaultCard_red_goal), MyGoals.getAppContext().getString(R.string.DefaultCard_red1), getUriToResource(MyGoals.getAppContext(),R.drawable.red_card_1).toString()));
+        addCard(cardFactory.getCardShape("RedCard", MyGoals.getAppContext().getString(R.string.DefaultCard_red_goal), MyGoals.getAppContext().getString(R.string.DefaultCard_red2), getUriToResource(MyGoals.getAppContext(),R.drawable.red_card_2).toString()));
+        addCard(cardFactory.getCardShape("RedCard", MyGoals.getAppContext().getString(R.string.DefaultCard_red_goal), MyGoals.getAppContext().getString(R.string.DefaultCard_red3), getUriToResource(MyGoals.getAppContext(),R.drawable.red_card_3).toString()));
 
-        addCard(cardFactory.getCardShape("BlueCard", "Family", "visit your family", getUriToResource(MyGoals.getAppContext(),R.drawable.blue_card_1).toString()));
-        addCard(cardFactory.getCardShape("BlueCard", "Family", "family trip in the woods", getUriToResource(MyGoals.getAppContext(),R.drawable.blue_card_2).toString()));
-        addCard(cardFactory.getCardShape("BlueCard", "Family", "other activities with your loved ones", getUriToResource(MyGoals.getAppContext(),R.drawable.blue_card_generic).toString()));
+        addCard(cardFactory.getCardShape("BlueCard", MyGoals.getAppContext().getString(R.string.DefaultCard_blue_goal), MyGoals.getAppContext().getString(R.string.DefaultCard_blue_geneic), getUriToResource(MyGoals.getAppContext(),R.drawable.blue_card_generic).toString()));
+        addCard(cardFactory.getCardShape("BlueCard", MyGoals.getAppContext().getString(R.string.DefaultCard_blue_goal), MyGoals.getAppContext().getString(R.string.DefaultCard_blue1), getUriToResource(MyGoals.getAppContext(),R.drawable.blue_card_1).toString()));
+        addCard(cardFactory.getCardShape("BlueCard", MyGoals.getAppContext().getString(R.string.DefaultCard_blue_goal), MyGoals.getAppContext().getString(R.string.DefaultCard_blue2), getUriToResource(MyGoals.getAppContext(),R.drawable.blue_card_2).toString()));
 
-        addCard(cardFactory.getCardShape("LightGreenCard", "Self-Time", "reading a book", getUriToResource(MyGoals.getAppContext(),R.drawable.green_card_introvert_1).toString()));
-        addCard(cardFactory.getCardShape("GreenCard", "Self-Time", "board game night with the family", getUriToResource(MyGoals.getAppContext(),R.drawable.green_card_extrovert_1).toString()));
-        addCard(cardFactory.getCardShape("LightGreenCard", "Self-Time", "pray", getUriToResource(MyGoals.getAppContext(),R.drawable.green_card_introvert_2).toString()));
-        addCard(cardFactory.getCardShape("GreenCard", "Self-Time", "football with friends", getUriToResource(MyGoals.getAppContext(),R.drawable.green_card_extrovert_2).toString()));
-        addCard(cardFactory.getCardShape("GreenCard", "Self-Time", "other activities for yourself", getUriToResource(MyGoals.getAppContext(),R.drawable.green_card_generic).toString()));
+        addCard(cardFactory.getCardShape("GreenCard", MyGoals.getAppContext().getString(R.string.DefaultCard_green_goal), MyGoals.getAppContext().getString(R.string.DefaultCard_green_geneic), getUriToResource(MyGoals.getAppContext(),R.drawable.green_card_generic).toString()));
+        addCard(cardFactory.getCardShape("LightGreenCard", MyGoals.getAppContext().getString(R.string.DefaultCard_green_goal), MyGoals.getAppContext().getString(R.string.DefaultCard_green_card_introvert_1), getUriToResource(MyGoals.getAppContext(),R.drawable.green_card_introvert_1).toString()));
+        addCard(cardFactory.getCardShape("GreenCard", MyGoals.getAppContext().getString(R.string.DefaultCard_green_goal), MyGoals.getAppContext().getString(R.string.DefaultCard_green_card_extrovert_1), getUriToResource(MyGoals.getAppContext(),R.drawable.green_card_extrovert_1).toString()));
+        addCard(cardFactory.getCardShape("LightGreenCard", MyGoals.getAppContext().getString(R.string.DefaultCard_green_goal), MyGoals.getAppContext().getString(R.string.DefaultCard_green_card_introvert_2), getUriToResource(MyGoals.getAppContext(),R.drawable.green_card_introvert_2).toString()));
+        addCard(cardFactory.getCardShape("GreenCard", MyGoals.getAppContext().getString(R.string.DefaultCard_green_goal), MyGoals.getAppContext().getString(R.string.DefaultCard_green_card_extrovert_2), getUriToResource(MyGoals.getAppContext(),R.drawable.green_card_extrovert_2).toString()));
+
 
     }
 

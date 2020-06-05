@@ -113,4 +113,22 @@
         License: Apache License, Version 2.0 - http://www.apache.org/licenses/LICENSE-2.0\n
     </string>
 
+    <string name="DefaultCard_red_goal">Hivatás</string>
+    <string name="DefaultCard_red1">Istentisztelet tartása vasárnaponként</string>
+    <string name="DefaultCard_red2">Isten szeretetéről tanítani</string>
+    <string name="DefaultCard_red3">Felkészülés a teendőkre…</string>
+    <string name="DefaultCard_red_geneic">Egyéb hivatással kapcsolatos tevékenység</string>
+
+    <string name="DefaultCard_blue_goal">Család</string>
+    <string name="DefaultCard_blue1">Csáladi látogatás</string>
+    <string name="DefaultCard_blue2">Kirándulás</string>
+    <string name="DefaultCard_blue_geneic">Egyéb családdal kapcsolatos tevékenység</string>
+
+    <string name="DefaultCard_green_goal">Én-idő</string>
+    <string name="DefaultCard_green_card_introvert_1">Olvasás</string>
+    <string name="DefaultCard_green_card_extrovert_1">Társasjáték este a családdal</string>
+    <string name="DefaultCard_green_card_introvert_2">Elcsendesedés / Imádság</string>
+    <string name="DefaultCard_green_card_extrovert_2">Focizás a barátokkal</string>
+    <string name="DefaultCard_green_geneic">Egyéb Én-Idő tevékenység</string>
+
 </resources>

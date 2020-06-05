@@ -111,4 +111,22 @@
         License: Apache License, Version 2.0 - http://www.apache.org/licenses/LICENSE-2.0\n
     </string>
 
+    <string name="DefaultCard_red_goal">Work</string>
+    <string name="DefaultCard_red1">worships on Sundays</string>
+    <string name="DefaultCard_red2">teaching about God\'s love</string>
+    <string name="DefaultCard_red3">preparations…</string>
+    <string name="DefaultCard_red_geneic">other work related activities</string>
+
+    <string name="DefaultCard_blue_goal">Family</string>
+    <string name="DefaultCard_blue1">visit your family</string>
+    <string name="DefaultCard_blue2">family trip in the woods</string>
+    <string name="DefaultCard_blue_geneic">other activities with your loved ones</string>
+
+    <string name="DefaultCard_green_goal">Self-Time</string>
+    <string name="DefaultCard_green_card_introvert_1">reading a book</string>
+    <string name="DefaultCard_green_card_extrovert_1">board game night with the family</string>
+    <string name="DefaultCard_green_card_introvert_2">pray</string>
+    <string name="DefaultCard_green_card_extrovert_2">football with friends</string>
+    <string name="DefaultCard_green_geneic">other activities for yourself</string>
+
 </resources>
