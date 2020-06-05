@@ -235,6 +235,9 @@ public class PlanTheCardSetActivity extends AppCompatActivity implements CardSta
 
         });
 
+        // put the created cards to front
+        cardSetHolder.reverseCardShapeList();
+
         return cardSetHolder.getCardShapeList();
     }
 

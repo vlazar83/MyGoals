@@ -1,6 +1,7 @@
 package com.vlazar83.mygoals;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
@@ -66,6 +67,10 @@ public class CardSetHolder {
 
         return result;
 
+    }
+
+    public void reverseCardShapeList(){
+        Collections.reverse(cardShapesList);
     }
 
 }
