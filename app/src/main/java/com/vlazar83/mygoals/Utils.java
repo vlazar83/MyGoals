@@ -276,6 +276,28 @@ public class Utils {
     public static void cancelAllAlarms(){
         NotificationManagerCompat notificationManager = NotificationManagerCompat.from(MyGoals.getAppContext());
         notificationManager.cancelAll();
+
+        AlarmManager alarmManager = (AlarmManager) MyGoals.getAppContext().getSystemService(Context.ALARM_SERVICE);
+
+
+        Intent alarmIntent = new Intent(MyGoals.getAppContext(), ReminderBroadcast.class);
+
+        PendingIntent displayIntent = PendingIntent.getBroadcast(MyGoals.getAppContext(), 0, alarmIntent, 0);
+
+        alarmManager.cancel(displayIntent);
+
+        alarmIntent = new Intent(MyGoals.getAppContext(), ReminderBroadcastForIntroExtro.class);
+
+        displayIntent = PendingIntent.getBroadcast(MyGoals.getAppContext(), 0, alarmIntent, 0);
+
+        alarmManager.cancel(displayIntent);
+
+        alarmIntent = new Intent(MyGoals.getAppContext(), ReminderBroadcastForOwlOrLark.class);
+
+        displayIntent = PendingIntent.getBroadcast(MyGoals.getAppContext(), 0, alarmIntent, 0);
+
+        alarmManager.cancel(displayIntent);
+
     }
 
 }

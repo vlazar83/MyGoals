@@ -72,7 +72,6 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
             edit.putBoolean(getString(R.string.pref_previously_started), Boolean.TRUE);
             edit.commit();
             createNotificationChannel();
-            AlarmScheduler.scheduleAllAlarms();
 
             startActivity(new Intent(MainActivity.this, IntroActivity.class));
         }
@@ -96,6 +95,10 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
         setupStatistics();
 
         startToastIfInFamily();
+
+        // each time drop all alarms and re-schedule it. Just to make sure it is properly setup even after settings changed.
+        Utils.cancelAllAlarms();
+        AlarmScheduler.scheduleAllAlarms();
 
     }
 
