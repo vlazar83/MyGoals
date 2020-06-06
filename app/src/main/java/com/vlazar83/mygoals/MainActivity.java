@@ -17,6 +17,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.LinearInterpolator;
+import android.widget.Toast;
+
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.gson.Gson;
@@ -39,6 +41,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collection;
 import java.util.List;
+import java.util.Random;
 
 public class MainActivity extends AppCompatActivity implements CardStackListener {
 
@@ -79,7 +82,7 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
         manager = new CardStackLayoutManager(this, this);
         cardStackView = findViewById(R.id.card_stack_view);
         adapter = new CardStackAdapter();
-        //adapter.setCards(generateCards());
+
         drawerLayout = findViewById(R.id.drawer_layout);
 
         setupNavigation();
@@ -91,6 +94,8 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
         adapter.setCards(generateCards());
 
         setupStatistics();
+
+        startToastIfInFamily();
 
     }
 
@@ -158,6 +163,20 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
     @Override
     public void onCardDisappeared(View view, int position) {
         swipedCard = adapter.getCard(manager.getTopPosition());
+    }
+
+    private void startToastIfInFamily(){
+
+        if(Settings.getInstance().isInFamily() && Integer.valueOf(Utils.getBlueCardsCountFromWeek(statisticsHolder)) < 1 && Calendar.DAY_OF_WEEK > 4){
+            Random rand = new Random();
+            int value = rand.nextInt(100);
+            if(value<50){
+                Toast.makeText(MainActivity.this, MyGoals.getAppContext().getString(R.string.MainActivity_Toast_inFamily1), Toast.LENGTH_LONG).show();
+            } else {
+                Toast.makeText(MainActivity.this, MyGoals.getAppContext().getString(R.string.MainActivity_Toast_inFamily2), Toast.LENGTH_LONG).show();
+            }
+        }
+
     }
 
     private void setupButton(){

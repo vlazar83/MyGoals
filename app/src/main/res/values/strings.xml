@@ -108,7 +108,11 @@
         Name: ThreeTenABP\n
         Project Code: https://github.com/JakeWharton/ThreeTenABP\n
         Copyright (c) 2015 Jake Wharton\n
-        License: Apache License, Version 2.0 - http://www.apache.org/licenses/LICENSE-2.0\n
+        License: Apache License, Version 2.0 - http://www.apache.org/licenses/LICENSE-2.0\n\n
+
+        -----------\n
+        Graphics by Gally-Nagy Krisztina:\n
+        https://designfreak.hu/
     </string>
 
     <string name="DefaultCard_red_goal">Work</string>
@@ -128,5 +132,14 @@
     <string name="DefaultCard_green_card_introvert_2">pray</string>
     <string name="DefaultCard_green_card_extrovert_2">football with friends</string>
     <string name="DefaultCard_green_geneic">other activities for yourself</string>
+
+    <string name="StatisticsActivity_Toast_extrovert">Try to spend time with your family/friends!</string>
+    <string name="StatisticsActivity_Toast_introvert">Try to allocate time for yourself!</string>
+
+    <string name="MainActivity_Toast_inFamily1">Did you calculate in your planning with your family too?</string>
+    <string name="MainActivity_Toast_inFamily2">What activities did you favour, if not your family?</string>
+
+    <string name="Notification_owl_or_lark_title">Question</string>
+    <string name="Notification_owl_or_lark_text">When are you the most active on a day?</string>
 
 </resources>

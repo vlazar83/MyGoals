@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.github.lzyzsd.circleprogress.CircleProgress;
 import com.google.gson.Gson;
@@ -96,6 +97,17 @@ public class StatisticsActivity extends AppCompatActivity{
                 });
             }
         }, 1000, 5000);
+
+        if( Settings.getInstance().getIsExtrovert()){
+            if(Integer.valueOf(Utils.getGreenCardsCountFromWeek(statisticsHolder)) < 1){
+                Toast.makeText(StatisticsActivity.this, MyGoals.getAppContext().getString(R.string.StatisticsActivity_Toast_extrovert), Toast.LENGTH_LONG).show();
+            }
+        } else {
+            if(Integer.valueOf(Utils.getLightGreenCardsCountFromWeek(statisticsHolder)) < 1){
+                Toast.makeText(StatisticsActivity.this, MyGoals.getAppContext().getString(R.string.StatisticsActivity_Toast_introvert), Toast.LENGTH_LONG).show();
+            }
+        }
+
 
     }
 

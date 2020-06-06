@@ -110,7 +110,11 @@
         Name: ThreeTenABP\n
         Project Code: https://github.com/JakeWharton/ThreeTenABP\n
         Copyright (c) 2015 Jake Wharton\n
-        License: Apache License, Version 2.0 - http://www.apache.org/licenses/LICENSE-2.0\n
+        License: Apache License, Version 2.0 - http://www.apache.org/licenses/LICENSE-2.0\n\n
+
+        -----------\n
+        Graphics by Gally-Nagy Krisztina:\n
+        https://designfreak.hu/
     </string>
 
     <string name="DefaultCard_red_goal">Hivatás</string>
@@ -130,5 +134,14 @@
     <string name="DefaultCard_green_card_introvert_2">Elcsendesedés / Imádság</string>
     <string name="DefaultCard_green_card_extrovert_2">Focizás a barátokkal</string>
     <string name="DefaultCard_green_geneic">Egyéb Én-Idő tevékenység</string>
+
+    <string name="StatisticsActivity_Toast_extrovert">Próbálj több időt tölteni a családoddal / barátaiddal!</string>
+    <string name="StatisticsActivity_Toast_introvert">Próbálj több időt szánni magadra!</string>
+
+    <string name="MainActivity_Toast_inFamily1">Az energia beosztásodba beleszámítottad a családod?</string>
+    <string name="MainActivity_Toast_inFamily2">Mit figyeltél meg, mi az ami fontosabb volt a családdal töltött időnél?</string>
+
+    <string name="Notification_owl_or_lark_title">Kérdés</string>
+    <string name="Notification_owl_or_lark_text">Mit figyeltél meg, mikor vagy a legaktívabb?</string>
 
 </resources>

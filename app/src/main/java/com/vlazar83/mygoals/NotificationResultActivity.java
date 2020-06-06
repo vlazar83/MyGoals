@@ -23,6 +23,9 @@ public class NotificationResultActivity extends AppCompatActivity {
         } else if(intent.getStringExtra(ReminderBroadcastForIntroExtro.TITLE_FOR_INTRO_EXTRO) != null && !intent.getStringExtra(ReminderBroadcastForIntroExtro.TITLE_FOR_INTRO_EXTRO).equalsIgnoreCase("") ){
             title.setText(intent.getStringExtra(ReminderBroadcastForIntroExtro.TITLE_FOR_INTRO_EXTRO));
             content.setText(intent.getStringExtra(ReminderBroadcastForIntroExtro.CONTENT_FOR_INTRO_EXTRO));
+        } else if(intent.getStringExtra(ReminderBroadcastForOwlOrLark.TITLE_FOR_OWL_OR_LARK) != null && !intent.getStringExtra(ReminderBroadcastForOwlOrLark.TITLE_FOR_OWL_OR_LARK).equalsIgnoreCase("") ){
+            title.setText(intent.getStringExtra(ReminderBroadcastForOwlOrLark.TITLE_FOR_OWL_OR_LARK));
+            content.setText(intent.getStringExtra(ReminderBroadcastForOwlOrLark.CONTENT_FOR_OWL_OR_LARK));
         }
 
     }
