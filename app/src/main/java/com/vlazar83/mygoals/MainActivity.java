@@ -43,6 +43,8 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Random;
 
+import static com.vlazar83.mygoals.DefaultCardSet.getUriToResource;
+
 public class MainActivity extends AppCompatActivity implements CardStackListener {
 
     private CardStackLayoutManager manager;
@@ -391,10 +393,10 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
 
         if(idea != null && !idea.equalsIgnoreCase("") ){
 
-            return cardFactory.getCardShape("RedCard", getString(R.string.LeadingIdea_cardLabel), idea, "https://source.unsplash.com/Xq1ntWruZQI/600x800");
+            return cardFactory.getCardShape("RedCard", getString(R.string.LeadingIdea_cardLabel), idea, getUriToResource(MyGoals.getAppContext(),R.drawable.leading_idea).toString());
 
         } else {
-            return cardFactory.getCardShape("RedCard", getString(R.string.LeadingIdea_cardLabel), getString(R.string.LeadingIdeaActivity_default_entry), "https://source.unsplash.com/Xq1ntWruZQI/600x800");
+            return cardFactory.getCardShape("RedCard", getString(R.string.LeadingIdea_cardLabel), getString(R.string.LeadingIdeaActivity_default_entry), getUriToResource(MyGoals.getAppContext(),R.drawable.leading_idea).toString());
         }
 
 /*
