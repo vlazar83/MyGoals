@@ -31,6 +31,10 @@ public class CardSetHolder {
         cardShapesList.add(cardShape);
     }
 
+    public void addCardToPosition(CardShape cardShape, int position){
+        cardShapesList.add(position, cardShape);
+    }
+
     public void removeCard(CardShape cardShape){
         cardShapesList.remove(cardShape);
     }

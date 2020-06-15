@@ -23,6 +23,7 @@ import android.view.animation.LinearInterpolator;
 import android.widget.ImageView;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class PlanTheCardSetActivity extends AppCompatActivity implements CardStackListener {
@@ -228,15 +229,14 @@ public class PlanTheCardSetActivity extends AppCompatActivity implements CardSta
 
         // add manually created cards to the list
 
-        CreatedCardSet.getInstance().getCardShapeList().forEach((cardShape) -> {
+        List<CardShape> list = CreatedCardSet.getInstance().getCardShapeList();
+        Collections.reverse(list);
+        list.forEach((cardShape) -> {
 
             // only add if it is not added before
-            if(!cardSetHolder.hasCard(cardShape)) cardSetHolder.addCard(cardShape);
+            if(!cardSetHolder.hasCard(cardShape)) cardSetHolder.addCardToPosition(cardShape, 0);
 
         });
-
-        // put the created cards to front
-        cardSetHolder.reverseCardShapeList();
 
         return cardSetHolder.getCardShapeList();
     }
