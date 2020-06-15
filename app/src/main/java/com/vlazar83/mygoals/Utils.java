@@ -16,6 +16,9 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collection;
+import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.Random;
 
 import static android.content.Context.ALARM_SERVICE;
 import static android.content.Context.MODE_PRIVATE;
@@ -29,6 +32,13 @@ public class Utils {
     public static final int STATISTICS_YEAR_DEFAULT = 1990;
     private static final String CREATED_CARDS = "CREATED_CARDS";
     private static final String SETTINGS = "SETTINGS";
+    private static final String LAST_DISPLAYED_AGE_RELATED_MESSAGE_KEY = "LAST_DISPLAYED_AGE_RELATED_MESSAGE_KEY";
+
+    private static String[] defaultAge20RelatedSentences = {"Age 20", "Age 21"};
+    private static String[] defaultAge30RelatedSentences = {"Age 30", "Age 31"};
+    private static String[] defaultAge40RelatedSentences = {"Age 40", "Age 41"};
+    private static String[] defaultAge50RelatedSentences = {"Age 50", "Age 51"};
+    private static String[] defaultAge60RelatedSentences = {"Age 60", "Age 61"};
 
     public static ArrayList<String> getCardGoalList(ArrayList<CardShape> cardShapesList){
 
@@ -41,6 +51,81 @@ public class Utils {
         return cardGoalList;
 
     }
+
+    public static String getRandomAgeRelatedMessage(){
+
+        int age = Settings.getInstance().getAge();
+        String selectedMessage = "";
+
+        if(age > 19 && age < 30){
+            int sizeOfList = defaultAge20RelatedSentences.length;
+            Random rand = new Random();
+            int value = rand.nextInt(sizeOfList);
+            selectedMessage = defaultAge20RelatedSentences[value];
+        } else if (age > 29 && age < 40){
+            int sizeOfList = defaultAge30RelatedSentences.length;
+            Random rand = new Random();
+            int value = rand.nextInt(sizeOfList);
+            selectedMessage = defaultAge30RelatedSentences[value];
+        } else if (age > 39 && age < 50){
+            int sizeOfList = defaultAge40RelatedSentences.length;
+            Random rand = new Random();
+            int value = rand.nextInt(sizeOfList);
+            selectedMessage = defaultAge40RelatedSentences[value];
+        } else if (age > 49 && age < 60){
+            int sizeOfList = defaultAge50RelatedSentences.length;
+            Random rand = new Random();
+            int value = rand.nextInt(sizeOfList);
+            selectedMessage = defaultAge50RelatedSentences[value];
+        } else if (age > 60){
+            int sizeOfList = defaultAge60RelatedSentences.length;
+            Random rand = new Random();
+            int value = rand.nextInt(sizeOfList);
+            selectedMessage = defaultAge60RelatedSentences[value];
+        }
+
+        return selectedMessage;
+
+    }
+
+    public static void saveDayAboutLastDisplayedAgeRelatedMessageToSharedPreferences(){
+        Context context = MyGoals.getAppContext();
+        SharedPreferences preferences =  context.getSharedPreferences(LAST_DISPLAYED_AGE_RELATED_MESSAGE_KEY, MODE_PRIVATE);
+        SharedPreferences.Editor edit = preferences.edit();
+
+        Date date = new Date(System.currentTimeMillis());
+        long millis = date.getTime();
+
+        edit.putLong(LAST_DISPLAYED_AGE_RELATED_MESSAGE_KEY, millis);
+        edit.apply();
+
+    }
+
+    public static Date loadDayAboutLastDisplayedAgeRelatedMessageFromSharedPreferences(){
+        Context context = MyGoals.getAppContext();
+        SharedPreferences preferences =  context.getSharedPreferences(LAST_DISPLAYED_AGE_RELATED_MESSAGE_KEY, MODE_PRIVATE);
+
+        Date futureDate = new GregorianCalendar(2100, Calendar.JANUARY, 1).getTime();
+
+        long myDate = preferences.getLong(LAST_DISPLAYED_AGE_RELATED_MESSAGE_KEY, futureDate.getTime());
+
+        return new Date(myDate);
+
+    }
+
+    public static boolean checkIfAgeRelatedMessageDisplayIsNeeded(){
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(loadDayAboutLastDisplayedAgeRelatedMessageFromSharedPreferences());
+        cal.add(Calendar.HOUR_OF_DAY, 168);  // calculate a one week later time
+
+        if(new Date(System.currentTimeMillis()).after(cal.getTime())){
+            return true;
+        } else {
+            return false;
+        }
+
+    }
+
 
     public static void saveSharedPreferences(String data){
         Context context = MyGoals.getAppContext();

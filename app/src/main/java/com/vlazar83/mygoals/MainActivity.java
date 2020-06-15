@@ -96,7 +96,7 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
 
         setupStatistics();
 
-        startToastIfInFamily();
+        startToast();
 
         // each time drop all alarms and re-schedule it. Just to make sure it is properly setup even after settings changed.
         Utils.cancelAllAlarms();
@@ -170,7 +170,7 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
         swipedCard = adapter.getCard(manager.getTopPosition());
     }
 
-    private void startToastIfInFamily(){
+    private void startToast(){
 
         if(Settings.getInstance().isInFamily() && Integer.valueOf(Utils.getBlueCardsCountFromWeek(statisticsHolder)) < 1 && Calendar.DAY_OF_WEEK > 4){
             Random rand = new Random();
@@ -180,6 +180,9 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
             } else {
                 Toast.makeText(MainActivity.this, MyGoals.getAppContext().getString(R.string.MainActivity_Toast_inFamily2), Toast.LENGTH_LONG).show();
             }
+        } else if(Utils.checkIfAgeRelatedMessageDisplayIsNeeded()){
+            Toast.makeText(MainActivity.this, Utils.getRandomAgeRelatedMessage(), Toast.LENGTH_LONG).show();
+            Utils.saveDayAboutLastDisplayedAgeRelatedMessageToSharedPreferences();
         }
 
     }
