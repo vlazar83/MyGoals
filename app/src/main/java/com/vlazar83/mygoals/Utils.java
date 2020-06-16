@@ -16,8 +16,11 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.List;
 import java.util.Random;
 
 import static android.content.Context.ALARM_SERVICE;
@@ -51,6 +54,46 @@ public class Utils {
         return cardGoalList;
 
     }
+
+    public static void scanForHighestCardIds(ArrayList<CardShape> cardShapesList){
+
+        int foundHighestBlueId = -100;
+        int foundHighestGreenId = -100;
+        int foundHighestLightGreenId = -100;
+        int foundHighestRedId = -100;
+        if(!cardShapesList.isEmpty()){
+
+            for(int i =0; i<cardShapesList.size();i++){
+
+                if(cardShapesList.get(i).getCardClass().equalsIgnoreCase("RedCard")){
+                    if(cardShapesList.get(i).getId() > foundHighestRedId){
+                        foundHighestRedId = cardShapesList.get(i).getId();
+                    }
+                } else if(cardShapesList.get(i).getCardClass().equalsIgnoreCase("GreenCard")){
+                    if(cardShapesList.get(i).getId() > foundHighestGreenId){
+                        foundHighestGreenId = cardShapesList.get(i).getId();
+                    }
+                } else if(cardShapesList.get(i).getCardClass().equalsIgnoreCase("LightGreenCard")){
+                    if(cardShapesList.get(i).getId() > foundHighestLightGreenId){
+                        foundHighestLightGreenId = cardShapesList.get(i).getId();
+                    }
+                } else if(cardShapesList.get(i).getCardClass().equalsIgnoreCase("BlueCard")){
+                    if(cardShapesList.get(i).getId() > foundHighestBlueId){
+                        foundHighestBlueId = cardShapesList.get(i).getId();
+                    }
+                }
+
+            }
+        }
+
+        if(BlueCard.getCount() < foundHighestBlueId) BlueCard.setCount(foundHighestBlueId + 1);
+        if(RedCard.getCount() < foundHighestRedId) RedCard.setCount(foundHighestRedId + 1);
+        if(GreenCard.getCount() < foundHighestGreenId) GreenCard.setCount(foundHighestGreenId + 1);
+        if(LightGreenCard.getCount() < foundHighestLightGreenId) LightGreenCard.setCount(foundHighestLightGreenId + 1);
+
+    }
+
+
 
     public static String getRandomAgeRelatedMessage(){
 

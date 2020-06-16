@@ -226,11 +226,13 @@ public class PlanTheCardSetActivity extends AppCompatActivity implements CardSta
 
     private List<CardShape> generateCards(){
         cardSetHolder = CardSetHolder.getInstance();
+        Utils.scanForHighestCardIds((ArrayList<CardShape>)cardSetHolder.getCardShapeList());
 
         // add manually created cards to the list
 
         List<CardShape> list = CreatedCardSet.getInstance().getCardShapeList();
         Collections.reverse(list);
+        Utils.scanForHighestCardIds((ArrayList<CardShape>)list);
         list.forEach((cardShape) -> {
 
             // only add if it is not added before

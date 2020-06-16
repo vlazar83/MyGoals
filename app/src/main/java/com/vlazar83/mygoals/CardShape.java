@@ -28,6 +28,14 @@ class BlueCard implements CardShape{
         count = count+1;
     }
 
+    public static int getCount(){
+        return count;
+    }
+
+    public static void setCount(int newCount){
+        count = newCount;
+    }
+
     public String getCardGoal() {
         return cardGoal;
     }
@@ -54,7 +62,6 @@ class BlueCard implements CardShape{
     public void draw() {
         System.out.println("Inside BlueCard draw() method");
     }
-
 }
 
 // represents cards for Work activities
@@ -72,6 +79,14 @@ class RedCard implements CardShape{
         this.url = url;
         id=count;
         count = count+1;
+    }
+
+    public static int getCount(){
+        return count;
+    }
+
+    public static void setCount(int newCount){
+        count = newCount;
     }
 
     public String getCardGoal() { return cardGoal; }
@@ -116,6 +131,14 @@ class GreenCard implements CardShape{
         this.url = url;
         id=count;
         count = count+1;
+    }
+
+    public static int getCount(){
+        return count;
+    }
+
+    public static void setCount(int newCount){
+        count = newCount;
     }
 
     public String getCardGoal() {
@@ -163,6 +186,14 @@ class LightGreenCard implements CardShape{
         this.url = url;
         id=count;
         count = count+1;
+    }
+
+    public static int getCount(){
+        return count;
+    }
+
+    public static void setCount(int newCount){
+        count = newCount;
     }
 
     public String getCardGoal() {

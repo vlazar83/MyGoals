@@ -173,6 +173,7 @@ public class CreateNewCardActivity extends AppCompatActivity implements CardStac
 
     private List<CardShape> generateCards(){
         creationCardSetHolder = CreationCardSetHolder.getInstance();
+        Utils.scanForHighestCardIds(creationCardSetHolder.getCardShapeList());
         return creationCardSetHolder.getCardShapeList();
     }
 
