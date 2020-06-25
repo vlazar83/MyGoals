@@ -12,9 +12,9 @@
     <string name="own_cards">Own cards</string>
     <string name="plan_the_card_set">Plan the Card Set</string>
     <string name="title_activity_plan_the_card_set">PlanTheCardSet</string>
-    <string name="statistics_activity_RedCircle_text_above">Red Cards: Day / Week</string>
-    <string name="statistics_activity_GreenCircle_text_above">Green Cards: Day / Week</string>
-    <string name="statistics_activity_BlueCircle_text_above">Blue Cards: Day / Week</string>
+    <string name="statistics_activity_RedCircle_text_above">Red Cards: Day / Week / Target</string>
+    <string name="statistics_activity_GreenCircle_text_above">Green Cards: Day / Week / Target</string>
+    <string name="statistics_activity_BlueCircle_text_above">Blue Cards: Day / Week / Target</string>
     <string name="statistics_activity_blue_cards_count">0</string>
     <string name="statistics_activity_green_cards_count">0</string>
     <string name="statistics_activity_red_cards_count">0</string>

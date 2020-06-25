@@ -45,9 +45,9 @@ public class StatisticsActivity extends AppCompatActivity{
         statisticsHolder = StatisticsHolder.getInstance();
         int today = Calendar.getInstance().get(Calendar.DAY_OF_YEAR);
 
-        blueCardsCountTextView.setText(String.valueOf(statisticsHolder.getStatistic(today).getBlueCardCount()) + "/" + Utils.getBlueCardsCountFromWeek(statisticsHolder));
-        redCardsCountTextView.setText(String.valueOf(statisticsHolder.getStatistic(today).getRedCardCount()) + "/" + Utils.getRedCardsCountFromWeek(statisticsHolder));
-        greenCardsCountTextView.setText(String.valueOf(statisticsHolder.getStatistic(today).getGreenCardCount() + statisticsHolder.getStatistic(today).getLightGreenCardCount()) + "/" + String.valueOf(Integer.valueOf(Utils.getGreenCardsCountFromWeek(statisticsHolder)) + Integer.valueOf(Utils.getLightGreenCardsCountFromWeek(statisticsHolder))));
+        blueCardsCountTextView.setText(String.valueOf(statisticsHolder.getStatistic(today).getBlueCardCount()) + "/" + Utils.getBlueCardsCountFromWeek(statisticsHolder) + "/" + String.valueOf(Settings.getInstance().getWeekly_target_blue_card()));
+        redCardsCountTextView.setText(String.valueOf(statisticsHolder.getStatistic(today).getRedCardCount()) + "/" + Utils.getRedCardsCountFromWeek(statisticsHolder) + "/" + String.valueOf(Settings.getInstance().getWeekly_target_red_card()));
+        greenCardsCountTextView.setText(String.valueOf(statisticsHolder.getStatistic(today).getGreenCardCount() + statisticsHolder.getStatistic(today).getLightGreenCardCount()) + "/" + String.valueOf(Integer.valueOf(Utils.getGreenCardsCountFromWeek(statisticsHolder)) + Integer.valueOf(Utils.getLightGreenCardsCountFromWeek(statisticsHolder))) + "/" + String.valueOf(Settings.getInstance().getWeekly_target_green_card()));
 
         circleProgressBlue.setFinishedColor(Color.BLUE);
         circleProgressGreen.setFinishedColor(Color.GREEN);
@@ -59,8 +59,8 @@ public class StatisticsActivity extends AppCompatActivity{
             redMax =Integer.valueOf(Utils.getRedCardsCountFromWeek(statisticsHolder))*100/Settings.getInstance().getWeekly_target_red_card();
         }
 
-        if((Integer.valueOf(Utils.getGreenCardsCountFromWeek(statisticsHolder))*100/Settings.getInstance().getWeekly_target_green_card()) > 100) greenMax = 100; else{
-            greenMax =Integer.valueOf(Utils.getGreenCardsCountFromWeek(statisticsHolder))*100/Settings.getInstance().getWeekly_target_green_card();
+        if(((Integer.valueOf(Utils.getGreenCardsCountFromWeek(statisticsHolder))+Integer.valueOf(Utils.getLightGreenCardsCountFromWeek(statisticsHolder)))*100/Settings.getInstance().getWeekly_target_green_card()) > 100) greenMax = 100; else{
+            greenMax =(Integer.valueOf(Utils.getGreenCardsCountFromWeek(statisticsHolder))+Integer.valueOf(Utils.getLightGreenCardsCountFromWeek(statisticsHolder)))*100/Settings.getInstance().getWeekly_target_green_card();
         }
 
         if((Integer.valueOf(Utils.getBlueCardsCountFromWeek(statisticsHolder))*100/Settings.getInstance().getWeekly_target_blue_card()) > 100) blueMax = 100; else{

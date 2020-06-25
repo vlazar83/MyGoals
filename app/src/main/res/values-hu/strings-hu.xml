@@ -14,9 +14,9 @@
     <string name="own_cards">Saját kártyák</string>
     <string name="plan_the_card_set">Kártya pakli tervezés</string>
     <string name="title_activity_plan_the_card_set">Kártya pakli tervezés</string>
-    <string name="statistics_activity_RedCircle_text_above">Munka kártya: Nap / Hét</string>
-    <string name="statistics_activity_GreenCircle_text_above">En idö kártya: Nap / Hét</string>
-    <string name="statistics_activity_BlueCircle_text_above">Család kártya: Nap / Hét</string>
+    <string name="statistics_activity_RedCircle_text_above">Munka kártya: Nap / Hét / Cél</string>
+    <string name="statistics_activity_GreenCircle_text_above">En idö kártya: Nap / Hét / Cél</string>
+    <string name="statistics_activity_BlueCircle_text_above">Család kártya: Nap / Hét / Cél</string>
     <string name="statistics_activity_blue_cards_count">0</string>
     <string name="statistics_activity_green_cards_count">0</string>
     <string name="statistics_activity_red_cards_count">0</string>
