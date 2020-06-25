@@ -181,6 +181,7 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
                 Toast.makeText(MainActivity.this, MyGoals.getAppContext().getString(R.string.MainActivity_Toast_inFamily2), Toast.LENGTH_LONG).show();
             }
         } else if(Utils.checkIfAgeRelatedMessageDisplayIsNeeded()){
+            // since the message is too long we show it on a new Activity instead of on Toast
             showTheAgeRelatedMessage();
             //Toast.makeText(MainActivity.this, Utils.getRandomAgeRelatedMessage(), Toast.LENGTH_LONG).show();
             Utils.saveDayAboutLastDisplayedAgeRelatedMessageToSharedPreferences();
