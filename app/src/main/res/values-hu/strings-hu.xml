@@ -70,6 +70,8 @@
     <string name="NotificationGoldenSentenceTitle1">Napi aranymondás!</string>
     <string name="NotificationGoldenSentenceText1">Kattints a részletekért!</string>
 
+    <string name="NotificationAgeRelatedMessageTitle1">Életkori üzenet</string>
+
     <string name="NotificationIntroExtroTitle1">Figyelmeztetés a célok elérésével kapcsolatban</string>
     <string name="NotificationIntroExtroText1">Kattints a részletekért!</string>
     <string name="NotificationIntroText_more_private_time">Próbálj több énidőt adni magadnak.</string>

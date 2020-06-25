@@ -181,7 +181,8 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
                 Toast.makeText(MainActivity.this, MyGoals.getAppContext().getString(R.string.MainActivity_Toast_inFamily2), Toast.LENGTH_LONG).show();
             }
         } else if(Utils.checkIfAgeRelatedMessageDisplayIsNeeded()){
-            Toast.makeText(MainActivity.this, Utils.getRandomAgeRelatedMessage(), Toast.LENGTH_LONG).show();
+            showTheAgeRelatedMessage();
+            //Toast.makeText(MainActivity.this, Utils.getRandomAgeRelatedMessage(), Toast.LENGTH_LONG).show();
             Utils.saveDayAboutLastDisplayedAgeRelatedMessageToSharedPreferences();
         }
 
@@ -294,6 +295,13 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
                 return true;
             }
         });
+    }
+
+    private void showTheAgeRelatedMessage(){
+        Intent showTheAgeRelatedMessageIntent = new Intent(MainActivity.this, NotificationResultActivity.class);
+        showTheAgeRelatedMessageIntent.putExtra(NotificationResultActivity.AGE_TITLE, MyGoals.getAppContext().getString(R.string.NotificationAgeRelatedMessageTitle1));
+        showTheAgeRelatedMessageIntent.putExtra(NotificationResultActivity.AGE_CONTENT, Utils.getRandomAgeRelatedMessage());
+        startActivity(showTheAgeRelatedMessageIntent);
     }
 
     private void planTheLeadingIdea(){

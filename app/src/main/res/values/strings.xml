@@ -68,6 +68,8 @@
     <string name="NotificationGoldenSentenceTitle1">Daily Golden Sentence for You!</string>
     <string name="NotificationGoldenSentenceText1">Tap for details!</string>
 
+    <string name="NotificationAgeRelatedMessageTitle1">Age related message</string>
+
     <string name="NotificationIntroExtroTitle1">Notification about progress</string>
     <string name="NotificationIntroExtroText1">Tap for details!</string>
     <string name="NotificationIntroText_more_private_time">Try to finish more private time activities!</string>

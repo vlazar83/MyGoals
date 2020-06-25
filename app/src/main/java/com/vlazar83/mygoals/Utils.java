@@ -37,8 +37,39 @@ public class Utils {
     private static final String SETTINGS = "SETTINGS";
     private static final String LAST_DISPLAYED_AGE_RELATED_MESSAGE_KEY = "LAST_DISPLAYED_AGE_RELATED_MESSAGE_KEY";
 
-    private static String[] defaultAge20RelatedSentences = {"Age 20", "Age 21"};
-    private static String[] defaultAge30RelatedSentences = {"Age 30", "Age 31"};
+    private static String[] defaultAge20RelatedSentences = {"Életkorszakodra azt mondják, hogy átmenet a serdülőből a felnőtt korba. A 2000\n" +
+            "évek eleje óta nem is annyira fiatal felnőtt kornak, hanem inkább készülődő,\n" +
+            "kezdődő felnőttkornak mondja a magyar szakirodalom.", "Életszakaszod egyik jellemző élménye lehet a „kapunyitási pánik.” Komplex és sok\n" +
+            "szempontból bizonytalan felnőttkort kell megkezdeni, ami ma különösen nehéz.\n" +
+            "Posztmodern korunkban kortársaid számára nagyon nagy feladatot jelenet az\n" +
+            "önálló felnőtté válás.", "Kortársaid közül - egy 2014-es felmérés szerint - Magyarországon a korosztály\n" +
+            "kétharmada szüleivel élt.", "Az életútra egészében tekinteni, azt folyamatában szemlélni a keresztény hit\n" +
+            "olyan lényegi eleme, ami a mai modernitás értelmezésében egyáltalán nem\n" +
+            "természetes. Különleges ajándék az, hogy ez megadatik neked.", "Tudtad, hogy az érettségizettek aránya 1970 óta 18 év feletti népesség körében\n" +
+            "megháromszorozódott, a diplomások száma megötszöröződött? Mivel az\n" +
+            "oktatásban töltött idő radikálisan kitolódott, a felnőtté válás legfontosabb elemei\n" +
+            "elkezdtek egymástól elválni és a felnőtté válás folyamata akár évtizedes\n" +
+            "életszakasszá vált.", "Korosztályodnak egy több eseményből álló folyamat révén kell felnőtté válnia.\n" +
+            "Tipikusan 6 stációt kell végigjárnia mindenkinek: 1.Önálló döntéshozatal a\n" +
+            "tanulmányokat és a munkehelyet tekintve. 2.Anyagi önfenntartás elérése.\n" +
+            "3.Önálló önfenntartó életvitel elérése. 4. Hosszú távú párkapcsolat kialakulása. Az\n" +
+            "elköteleződés megjelenése. 5.Saját otthon megteremtése. 6.Gyermek(ek)\n" +
+            "születése, ami lezárja a fiatal felnőttkor első szakaszát, és egy átmenet egy új\n" +
+            "szakaszba.", "Érdekesség: egy 15-29 évesek körében végzett felmérés szerint a megkérdezettek\n" +
+            "64% úgy vélte, hogy a felnőttség legfontosabb ismeréve az önálló döntés és 55%\n" +
+            "gondolta úgy, hogy felnőttnek érzi magát."};
+
+    private static String[] defaultAge30RelatedSentences = {"Tudtad, hogy Daniel Levinson azt az életszakaszt melyben vagy még az előzővel\n" +
+            "egy egységben látja és „Korai felnőttkornak” nevezi. Az ő szakaszai: (17 év) korai\n" +
+            "felnőttkori átmenet, belépés a felnőttkorba, 30 éves kori átmenet,\n" +
+            "megszilárdulás, középkori átmenet (45év)", "A „felnőtt” kifejezés egy idealizált és statikus, már nyelvi megjelenésében is egy\n" +
+            "bizonyos befejezett és elért állapot szintje jelenik meg, ami nem fejezi ki teljesen\n" +
+            "hogy a fejlődés egy felnőtt ember életében is állandóan zajló folymat. A változás\n" +
+            "nem egy állapot, hanem egy életen át tartó folyamat, melynek megvannak a\n" +
+            "maga kisebb és nagyobb eseményei. Maga a változás sem elérendő cél, hanem a\n" +
+            "belső érlelődési folyamat eredménye..." ,"A felnőttkor a saját élettörténetnek a tanulás folyamata által való dinamikus és\n" +
+            "kontextuális felépítése"};
+
     private static String[] defaultAge40RelatedSentences = {"Age 40", "Age 41"};
     private static String[] defaultAge50RelatedSentences = {"Age 50", "Age 51"};
     private static String[] defaultAge60RelatedSentences = {"Age 60", "Age 61"};
@@ -148,7 +179,7 @@ public class Utils {
         Context context = MyGoals.getAppContext();
         SharedPreferences preferences =  context.getSharedPreferences(LAST_DISPLAYED_AGE_RELATED_MESSAGE_KEY, MODE_PRIVATE);
 
-        Date futureDate = new GregorianCalendar(2100, Calendar.JANUARY, 1).getTime();
+        Date futureDate = new GregorianCalendar(2000, Calendar.JANUARY, 1).getTime();
 
         long myDate = preferences.getLong(LAST_DISPLAYED_AGE_RELATED_MESSAGE_KEY, futureDate.getTime());
 

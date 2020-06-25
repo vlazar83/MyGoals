@@ -8,6 +8,9 @@ import android.widget.TextView;
 
 public class NotificationResultActivity extends AppCompatActivity {
 
+    protected static final String AGE_TITLE = "AGE_TITLE";
+    protected static final String AGE_CONTENT = "AGE_CONTENT";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,6 +29,9 @@ public class NotificationResultActivity extends AppCompatActivity {
         } else if(intent.getStringExtra(ReminderBroadcastForOwlOrLark.TITLE_FOR_OWL_OR_LARK) != null && !intent.getStringExtra(ReminderBroadcastForOwlOrLark.TITLE_FOR_OWL_OR_LARK).equalsIgnoreCase("") ){
             title.setText(intent.getStringExtra(ReminderBroadcastForOwlOrLark.TITLE_FOR_OWL_OR_LARK));
             content.setText(intent.getStringExtra(ReminderBroadcastForOwlOrLark.CONTENT_FOR_OWL_OR_LARK));
+        } else if(intent.getStringExtra(NotificationResultActivity.AGE_TITLE) != null && !intent.getStringExtra(NotificationResultActivity.AGE_TITLE).equalsIgnoreCase("") ){
+            title.setText(intent.getStringExtra(NotificationResultActivity.AGE_TITLE));
+            content.setText(intent.getStringExtra(NotificationResultActivity.AGE_CONTENT));
         }
 
     }
