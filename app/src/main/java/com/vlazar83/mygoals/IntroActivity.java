@@ -78,6 +78,6 @@ public class IntroActivity extends OnboarderActivity implements OnboarderPageCha
 
     @Override
     public void onPageChanged(int position) {
-        Log.d(getClass().getSimpleName(), "onPageChanged: " + position);
+        //Log.d(getClass().getSimpleName(), "onPageChanged: " + position);
     }
 }

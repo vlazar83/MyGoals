@@ -238,7 +238,7 @@ public class CreatedCardsActivity extends AppCompatActivity implements CardStack
         //Let's serialize our array
         Type typeOfSrc = new TypeToken<Collection<CardShape>>(){}.getType();
         String cardsJsonFormat = gson.toJson(ActualCardSet.getInstance().getCardShapeList(), typeOfSrc);
-            Log.w("Cards in Json Format:", cardsJsonFormat);
+        //Log.w("Cards in Json Format:", cardsJsonFormat);
 
         // save actual card set to SharedPreferences
         Utils.saveSharedPreferences(cardsJsonFormat);
@@ -299,7 +299,7 @@ public class CreatedCardsActivity extends AppCompatActivity implements CardStack
         //Let's serialize our array
         Type typeOfSrc = new TypeToken<Collection<CardShape>>(){}.getType();
         String cardsJsonFormat = gson.toJson(CreatedCardSet.getInstance().getCardShapeList(), typeOfSrc);
-        Log.w("Cards in Json Format:", cardsJsonFormat);
+        //Log.w("Cards in Json Format:", cardsJsonFormat);
 
         // save actual card set to SharedPreferences
         Utils.saveCreatedCardsToSharedPreferences(cardsJsonFormat);
