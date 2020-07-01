@@ -4,6 +4,9 @@ Android application to help the user find the balance in work and life.
 Helps us focus on what is important in life. This is a card based app where you can setup and create your
 card set. Each card represents something important in your own-time, family-time, or in work.
 
+You can find the app on google Play:
+https://play.google.com/store/apps/details?id=com.vlazar83.mygoals
+
 # License
 MIT License
 Copyright (C) 2020 Viktor Lázár
