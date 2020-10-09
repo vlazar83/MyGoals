@@ -5,8 +5,11 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
+
+import android.app.AlertDialog;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
@@ -54,6 +57,8 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
     private StatisticsHolder statisticsHolder;
     private CardShape swipedCard;  // for the case if we select the card using swipe gesture
     private Boolean swipedUsingButton = false;
+
+    private static boolean workFamilyLifeMessageAlreadyDisplayed = false;
 
     @Override
     protected void onResume() {
@@ -172,19 +177,19 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
 
     private void startToast(){
 
-        if(Settings.getInstance().isInFamily() && Integer.valueOf(Utils.getBlueCardsCountFromWeek(statisticsHolder)) < 1 && Calendar.DAY_OF_WEEK > 4){
-            Random rand = new Random();
-            int value = rand.nextInt(100);
-            if(value<50){
-                Toast.makeText(MainActivity.this, MyGoals.getAppContext().getString(R.string.MainActivity_Toast_inFamily1), Toast.LENGTH_LONG).show();
-            } else {
-                Toast.makeText(MainActivity.this, MyGoals.getAppContext().getString(R.string.MainActivity_Toast_inFamily2), Toast.LENGTH_LONG).show();
-            }
-        } else if(Utils.checkIfAgeRelatedMessageDisplayIsNeeded()){
+        if(Utils.checkIfAgeRelatedMessageDisplayIsNeeded()){
             // since the message is too long we show it on a new Activity instead of on Toast
             showTheAgeRelatedMessage();
             //Toast.makeText(MainActivity.this, Utils.getRandomAgeRelatedMessage(), Toast.LENGTH_LONG).show();
             Utils.saveDayAboutLastDisplayedAgeRelatedMessageToSharedPreferences();
+        } else if (!workFamilyLifeMessageAlreadyDisplayed){
+            workFamilyLifeMessageAlreadyDisplayed = true;
+            AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).create();
+            alertDialog.setTitle("Munka/Család/Énidő üzenet");
+            alertDialog.setMessage(Utils.getRandomFamilyLifeWorkRelatedMessage());
+            alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                    (dialog, which) -> dialog.dismiss());
+            alertDialog.show();
         }
 
     }

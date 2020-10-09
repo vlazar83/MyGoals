@@ -2,7 +2,10 @@ package com.vlazar83.mygoals;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -62,16 +65,34 @@ public class SettingsActivity extends AppCompatActivity {
         listView.setOnItemClickListener((parent, view, position, id) -> {
 
             if(Settings.getInstance().getGoldenSentences().size() > 0 && position < Settings.getInstance().getGoldenSentences().size()) {
-                Settings.getInstance().dropGoldenSentence(position);
 
-                adapter.clear();
-                for(int i =0; i<Settings.getInstance().getGoldenSentences().size();i++){
-                    adapter.add(new GoldenSentence(Settings.getInstance().getGoldenSentence(i)));
-                }
-                adapter.notifyDataSetChanged();
+                AlertDialog alertDialog = new AlertDialog.Builder(SettingsActivity.this).create();
+                alertDialog.setTitle("Valóban törlöd?");
+                alertDialog.setMessage("Valóban törlöd ezt az aranymondást?");
 
-                saveSettingsToSharedPreferences();
-                Toast.makeText(SettingsActivity.this, getApplicationContext().getString(R.string.GoldenSentencesDeleted_ToastMessage), Toast.LENGTH_LONG).show();
+                alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Törlés", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        Settings.getInstance().dropGoldenSentence(position);
+
+                        adapter.clear();
+                        for(int i =0; i<Settings.getInstance().getGoldenSentences().size();i++){
+                            adapter.add(new GoldenSentence(Settings.getInstance().getGoldenSentence(i)));
+                        }
+                        adapter.notifyDataSetChanged();
+
+                        saveSettingsToSharedPreferences();
+                        Toast.makeText(SettingsActivity.this, getApplicationContext().getString(R.string.GoldenSentencesDeleted_ToastMessage), Toast.LENGTH_LONG).show();
+                    }
+                });
+
+                alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "Mégse", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        //Toast.makeText(getApplicationContext(), "You clicked on OK", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+                alertDialog.show();
+
             }
 
         });

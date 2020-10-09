@@ -14,6 +14,7 @@ import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Collection;
 import java.util.Collections;
@@ -22,6 +23,7 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Stream;
 
 import static android.content.Context.ALARM_SERVICE;
 import static android.content.Context.MODE_PRIVATE;
@@ -99,6 +101,45 @@ public class Utils {
             "Az életközép nemzedék egyfajta tükör-tengelyt alkot. Visszatükrözik a korábbi nemzedékek lehetséges értékeit, hordozva azok átkait és áldásait saját döntéseikben, de ugyanígy már láthatják saját nevelésük eredményét vagy csődjét is gyermekeik, unokáik sorsának alakulásában. (328.)",
             "Ebbe az életkorba jutva az élet értékei súlyozásra kerülnek. Mi mennyit ér?  Mindenki látja, hogy mindennek következménye van, s tettei nyomot hagynak környezetében. Egyre több helyzetben kerül előtérbe a „belső hang”, mely figyelmezteti saját árnyékaira. Vagy éppen kevéssé érékesnek érzi eddigi tetteit, s teljese fordulatot tesz. Ez akár a család, akár a környezet számára lehet teljesen érhetetlen Pál-fordulás.",
             "Ez az életszakasz nagy váltás az alkotás és az elmúlás közötti átmenet. Az előbbi még javában folyik, de az utóbbi megtapasztalása egyre valóságosabb, egyre közelibb..."};
+
+    private static String[] workRelatedQuestions = {"Milyen elvárásaid vannak magaddal szemben?",
+            "Mennyi energiát fektetsz be a munkádba, mennyit kapsz vissza abból?",
+            "Meg tudsz-e elégedni az elég jóval?",
+            "Milyen tevékenységedben lenne szükséged segítségre?",
+            "Meg tudod tenni, hogy segítséget kérsz?",
+            "Szabad vágy vezérel-e a szolgálatod végzésekor vagy kényszer?",
+            "Mi a legfontosabb belső motivációd a szolgálatod végzéséhez?",
+            "Mihez szükséges a legnagyobb erőfeszítés a szolgálatod végzésében?",
+            "Mennyi napi, heti, havi és éves pihenés, regenerálódás szükséges számodra, hogy tudd végezni a szolgálatodat? Megadod-e ezt magadnak? Megengedsz-e ennyit magadnak?",
+            "Mi jelenti számodra a legerősebb külső/belső konfliktust?",
+            "Mikor érzed, hogy a rutin elveszi a szolgálatod ízét?",
+            "Mikor kapaszkodsz a rutinba a szolgálatod során?",
+            "Mik azok a rutinossá vált tevékenységeid, megoldási módjaid, amik negatívan hatnak személyiségedre, családodra, hivatásod gyakorlására?",
+            "Mik azok a feladatok, amiknek rendszerint nehezen kezdesz neki? Miért?",
+            "Ha hivatásbeli feladataidat fontossági sorrendbe kell állítani, a te listád hogy néz ki? Mi előzte meg a most elmaradt feladatot?"};
+
+    private static String[] selfTimeRelatedQuestions = {"Mi motivál téged? Az, hogy növekedj, megfelelj vagy betöltsd a hiányt?",
+            "El tudsz-e köteleződni a döntéseid mellett? Milyen döntéseid mellett tudsz elköteleződni?",
+            "Mi az, amit teljes elmélyüléssel végzel?",
+            "Mik a hosszú távú életcéljaid?",
+            "Vannak-e belső életcéljaid is a külső célok mellett?",
+            "Mi az, ami kimozdít az egyensúlyodból?",
+            "Milyen következménye van az életedben az egyensúlyvesztésnek?",
+            "Mi segít visszaállítani az egyensúlyt?",
+            "Szánsz-e tudatosan időt az istenkapcsolatod ápolására, egyéni csendességre?",
+            "Beírod-e a naptárodba, a teendőid közé a hobbidra, kikapcsolódásra szánt időt?",
+            "Tudatosan osztod-e be az énidődet vagy a maradék időddel gazdálkodsz?",
+            "Van-e olyan személy, akinek az én-idő felhasználását követendő példának tartod. Miért ő?"};
+
+    private static String[] familyRelatedQuestions = {"Miért vagy leginkább hálás a családodban? Miért vagy leginkább hálás a hivatásodban? Hogyan tudod kifejezni a háládat? Meg tudod-e fogalmazni a háládat?",
+            "Mik életed kulcseseményei? Ma is erőforrást jelentenek-e ezek neked?",
+            "Elégedett vagy az életeddel?",
+            "Előfordul-e veled, hogy háttérbe szorítod a családodat a szolgálatod végzése miatt? Mikor fordul ez elő rendszerint? Mikor fordult ez elő utoljára?",
+            "Milyen családi program jelenti számodra a legnagyobb örömöt?",
+            "Mi az a családoddal közös tevékenység, amire nem sajnálod az időt?",
+            "Jelen tudsz-e lenni igazán a családoddal töltött programokon?",
+            "Van-e embered, akinek őszintén megmutathatod gyengeségedet?",
+            "Van-e embered, akivel megünnepelheted a kiemelt pillanataidat?"};
 
     public static ArrayList<String> getCardGoalList(ArrayList<CardShape> cardShapesList){
 
@@ -183,6 +224,27 @@ public class Utils {
             int value = rand.nextInt(sizeOfList);
             selectedMessage = defaultAge60RelatedSentences[value];
         }
+
+        return selectedMessage;
+
+    }
+
+    public static String getRandomFamilyLifeWorkRelatedMessage(){
+
+        String selectedMessage;
+        String[] collection;
+
+        if(Settings.getInstance().isInFamily()){
+            String[] collectionIntermediate = Stream.concat(Arrays.stream(workRelatedQuestions), Arrays.stream(selfTimeRelatedQuestions)).toArray(String[]::new);
+            collection = Stream.concat(Arrays.stream(collectionIntermediate), Arrays.stream(familyRelatedQuestions)).toArray(String[]::new);
+        } else {
+            collection = Stream.concat(Arrays.stream(workRelatedQuestions), Arrays.stream(selfTimeRelatedQuestions)).toArray(String[]::new);
+        }
+
+        int sizeOfList = collection.length;
+        Random rand = new Random();
+        int value = rand.nextInt(sizeOfList);
+        selectedMessage = collection[value];
 
         return selectedMessage;
 
