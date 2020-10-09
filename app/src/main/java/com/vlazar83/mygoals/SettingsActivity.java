@@ -67,10 +67,10 @@ public class SettingsActivity extends AppCompatActivity {
             if(Settings.getInstance().getGoldenSentences().size() > 0 && position < Settings.getInstance().getGoldenSentences().size()) {
 
                 AlertDialog alertDialog = new AlertDialog.Builder(SettingsActivity.this).create();
-                alertDialog.setTitle("Valóban törlöd?");
-                alertDialog.setMessage("Valóban törlöd ezt az aranymondást?");
+                alertDialog.setTitle(MyGoals.getAppContext().getString(R.string.AlertDialog_goldenSentenceDeletion_title));
+                alertDialog.setMessage(MyGoals.getAppContext().getString(R.string.AlertDialog_goldenSentenceDeletion_message));
 
-                alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Törlés", new DialogInterface.OnClickListener() {
+                alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, MyGoals.getAppContext().getString(R.string.AlertDialog_goldenSentenceDeletion_action_delete), new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         Settings.getInstance().dropGoldenSentence(position);
 
@@ -85,7 +85,7 @@ public class SettingsActivity extends AppCompatActivity {
                     }
                 });
 
-                alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "Mégse", new DialogInterface.OnClickListener() {
+                alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, MyGoals.getAppContext().getString(R.string.AlertDialog_goldenSentenceDeletion_action_cancel), new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         //Toast.makeText(getApplicationContext(), "You clicked on OK", Toast.LENGTH_SHORT).show();
                     }

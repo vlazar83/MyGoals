@@ -185,7 +185,7 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
         } else if (!workFamilyLifeMessageAlreadyDisplayed){
             workFamilyLifeMessageAlreadyDisplayed = true;
             AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).create();
-            alertDialog.setTitle("Munka/Család/Énidő üzenet");
+            alertDialog.setTitle(MyGoals.getAppContext().getString(R.string.AlertDialog_work_family_life_title));
             alertDialog.setMessage(Utils.getRandomFamilyLifeWorkRelatedMessage());
             alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
                     (dialog, which) -> dialog.dismiss());

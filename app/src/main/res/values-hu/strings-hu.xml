@@ -146,4 +146,11 @@
     <string name="Notification_owl_or_lark_title">Kérdés</string>
     <string name="Notification_owl_or_lark_text">Mit figyeltél meg, mikor vagy a legaktívabb?</string>
 
+    <string name="AlertDialog_work_family_life_title">Munka/Család/Énidő üzenet</string>
+    <string name="AlertDialog_goldenSentenceDeletion_title">Valóban törlöd?</string>
+    <string name="AlertDialog_goldenSentenceDeletion_message">Valóban törlöd ezt az aranymondást?</string>
+
+    <string name="AlertDialog_goldenSentenceDeletion_action_delete">Törlés</string>
+    <string name="AlertDialog_goldenSentenceDeletion_action_cancel">Mégse</string>
+
 </resources>

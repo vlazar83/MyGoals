@@ -144,4 +144,11 @@
     <string name="Notification_owl_or_lark_title">Question</string>
     <string name="Notification_owl_or_lark_text">When are you the most active on a day?</string>
 
+    <string name="AlertDialog_work_family_life_title">Work/Family/Self-Time related message</string>
+    <string name="AlertDialog_goldenSentenceDeletion_title">Really delete?</string>
+    <string name="AlertDialog_goldenSentenceDeletion_message">Really delete this golden sentence?</string>
+
+    <string name="AlertDialog_goldenSentenceDeletion_action_delete">Delete</string>
+    <string name="AlertDialog_goldenSentenceDeletion_action_cancel">Cancel</string>
+
 </resources>
